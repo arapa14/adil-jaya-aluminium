@@ -26,6 +26,12 @@ class DatabaseSeeder extends Seeder
             PortfolioCategorySeeder::class,
             PortfolioSeeder::class,
             PortfolioImageSeeder::class,
+
+            ServiceSeeder::class,
+            TestimonialSeeder::class,
+            GallerySeeder::class,
+            SeoPageSeeder::class,
+            SettingSeeder::class,
         ]);
     }
 }
