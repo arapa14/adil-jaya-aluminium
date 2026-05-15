@@ -7,14 +7,15 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController
 {
-    public function login() {
+    public function login()
+    {
         return view('auth.login');
     }
 
     public function loginSubmit(Request $request)
     {
         $request->validate([
-            'email'    => 'required|email',
+            'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
 
@@ -35,7 +36,8 @@ class AuthController
         return redirect()->route('login')->with('success', 'Logout berhasil!');
     }
 
-    public function dashboard() {
+    public function dashboard()
+    {
         return view('admin.dashboard');
     }
 }
