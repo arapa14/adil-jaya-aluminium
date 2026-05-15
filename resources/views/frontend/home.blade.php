@@ -17,7 +17,8 @@
     <div class="top-bar d-none d-md-block">
         <div class="container">
             <div class="d-flex justify-content-between">
-                <div class="p-2"><i class="ti ti-map-pin"></i> Jl. Pintu Air RT03/RW02, Karang Tengah, Tangerang, Banten
+                <div class="p-2"><i class="ti ti-map-pin"></i> Jl. Pintu Air RT03/RW02, Karang Tengah, Tangerang,
+                    Banten
                 </div>
                 <div class="p-2"><i class="ti ti-clock"></i> Senin - Sabtu: 08.00 - 17.00</div>
             </div>
@@ -31,8 +32,9 @@
             <a class="navbar-brand" href="#">
                 <img src="./assets/img/logo.svg" alt="Logo" class="img-fluid" style="max-height:48px;">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
-                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
@@ -324,8 +326,8 @@
                         <div class="col-6 col-md-3">
                             <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
                                 <div class="ratio ratio-1x1 overflow-hidden rounded-top">
-                                    <img src="assets/img/thumbnail.svg" alt="Rumah Tinggal Modern" class="w-100 h-100"
-                                        style="object-fit:cover;">
+                                    <img src="assets/img/thumbnail.svg" alt="Rumah Tinggal Modern"
+                                        class="w-100 h-100" style="object-fit:cover;">
                                 </div>
                                 <div class="card-body">
                                     <h6 class="mb-1 fw-bold">Rumah Tinggal Modern</h6>
@@ -570,7 +572,8 @@
                         <div class="mb-2">
                             <span class="text-warning">★★★★★</span>
                         </div>
-                        <p class="text-muted small mb-0">Pelayanan ramah, harga kompetitif, dan hasil kerja sangat rapi.
+                        <p class="text-muted small mb-0">Pelayanan ramah, harga kompetitif, dan hasil kerja sangat
+                            rapi.
                             Recommended!</p>
                     </div>
                 </div>
@@ -639,7 +642,8 @@
                             <i class="ti ti-brand-youtube"></i>
                         </a>
                     </div>
-                    <div class="small text-light-50 mt-3">© <span id="year"></span> Adil Jaya Aluminium. All Rights
+                    <div class="small text-light-50 mt-3">© <span id="year"></span> Adil Jaya Aluminium. All
+                        Rights
                         Reserved.</div>
                 </div>
 
@@ -711,8 +715,8 @@
     </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
