@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Portfolio;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,6 +22,10 @@ class DatabaseSeeder extends Seeder
             ProductCategorySeeder::class,
             ProductSeeder::class,
             ProductImageSeeder::class,
+
+            PortfolioCategorySeeder::class,
+            PortfolioSeeder::class,
+            PortfolioImageSeeder::class,
         ]);
     }
 }
