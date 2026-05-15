@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('type', ['product', 'portfolio', 'service', 'banner', 'testimonial', 'company', 'gallery'])->default('gallery');
             $table->string('caption');
             $table->string('alt_text');
+            $table->enum('status', [true, false]);
             $table->timestamps();
         });
     }

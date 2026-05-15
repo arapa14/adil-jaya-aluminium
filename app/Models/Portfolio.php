@@ -21,6 +21,7 @@ class Portfolio extends Model
         'focus_keyword',
         'og_image',
         'alt_image',
+        'status,'
     ];
 
     public function category()

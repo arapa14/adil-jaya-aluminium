@@ -13,5 +13,6 @@ class Gallery extends Model
         'type',
         'caption',
         'alt_text',
+        'status,'
     ];
 }

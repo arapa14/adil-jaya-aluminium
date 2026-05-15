@@ -19,5 +19,6 @@ class Service extends Model
         'meta_keywords',
         'focus_keyword',
         'og_image',
+        'status,'
     ];
 }
