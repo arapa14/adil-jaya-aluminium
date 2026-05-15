@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('rating');
             $table->text('message');
             $table->string('photo');
-            $table->enum('status', [true, false]);
+            $table->enum('status', [true, false])->default(true);
             $table->timestamps();
         });
     }

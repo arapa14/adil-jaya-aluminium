@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('meta_keywords');
             $table->string('focus_keyword');
             $table->string('og_image');
-            $table->enum('status', [true, false]);
+            $table->enum('status', [true, false])->default(true);
             $table->timestamps();
         });
     }

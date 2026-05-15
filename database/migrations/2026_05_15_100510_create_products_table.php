@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('focus_keyword');
             $table->string('og_image');
             $table->string('alt_image');
-            $table->enum('status', [true, false]);
+            $table->enum('status', [true, false])->default(true);
             $table->timestamps();
         });
     }
