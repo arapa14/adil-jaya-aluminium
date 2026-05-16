@@ -33,6 +33,7 @@
     <!-- BEGIN DEMO SCRIPTS -->
     <script src="{{ asset('assets/backend/preview/js/demo.min.js') }}" defer></script>
     <!-- END DEMO SCRIPTS -->
+    @stack('scripts')
 </body>
 
 </html>

@@ -439,85 +439,230 @@
             <div class="page-body">
                 <div class="container-xl">
                     <x-notify />
-                    <div class="row row-deck row-cards">
-                        <div class="col-12 col-md-6">
-                            <form class="card" action="#" method="POST"
-                                enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
-                                <div class="card-body">
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Judul Website</label>
-                                        <div class="col">
-                                            <input type="text" name="nama_aplikasi" class="form-control"
-                                                placeholder="Judul Website"
-                                                value="">
-                                            @if ($errors->has('nama_aplikasi'))
-                                                <div class="invalid-feedback d-block">{{ $errors->first('nama_aplikasi') }}
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Logo Aplikasi</label>
-                                        <div class="col">
-                                            <input type="file" name="logo" class="mb-2 form-control">
-                                            @if ($errors->has('logo'))
-                                                <div class="invalid-feedback d-block">{{ $errors->first('logo') }}</div>
-                                            @endif
-                                            {{-- @if ($pengaturan->logo)
-                                                <div class="col-auto">
-                                                    <img src="#" alt="Logo Aplikasi"
-                                                        class="img-fluid" style="max-height: 50px;">
-                                                </div>
-                                            @else
-                                                <div class="col-auto">
-                                                    <div class="border border-1 border-danger d-inline-block">
-                                                        <img src="{{ asset('static/empty-picture.svg') }}"
-                                                            alt="Logo Aplikasi" class="img-fluid" width="25">
-                                                        <span class="text-danger me-2">Belum ada logo</span>
-                                                    </div>
-                                                </div>
-                                            @endif --}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer text-end">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modal-confirm"
-                                        class="btn btn-primary">Update Pengaturan</button>
-                                </div>
 
-                                <!-- Modal Konfirmasi -->
-                                <div class="modal modal-blur fade" id="modal-confirm" tabindex="-1" role="dialog"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <h2>Perhatian!</h2>
-                                                <p>Apakah anda yakin ingin mengubah pengaturan aplikasi?</p>
+                    <form action="#" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="row row-cards">
+                            <!-- Kolom 1: General Information -->
+                            <div class="col-12 col-md-7">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <h3 class="card-title fw-bold">General Information</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- Company Name -->
+                                        <div class="mb-3 row">
+                                            <label class="col-3 col-form-label required">Company Name</label>
+                                            <div class="col">
+                                                <input type="text" name="company_name" class="form-control"
+                                                    placeholder="Company Name"
+                                                    value="{{ old('company_name', $setting->company_name ?? '') }}">
+                                                @if ($errors->has('company_name'))
+                                                    <div class="invalid-feedback d-block">
+                                                        {{ $errors->first('company_name') }}</div>
+                                                @endif
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn me-auto"
-                                                    data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-danger">Ya, Ubah Pengaturan</button>
+                                        </div>
+
+                                        <!-- Company Description -->
+                                        <div class="mb-3 row">
+                                            <label class="col-3 col-form-label">Company Description</label>
+                                            <div class="col">
+                                                <textarea name="company_desc" class="form-control" rows="3" placeholder="Short description">{{ old('company_desc', $setting->company_desc ?? '') }}</textarea>
+                                                @if ($errors->has('company_desc'))
+                                                    <div class="invalid-feedback d-block">
+                                                        {{ $errors->first('company_desc') }}</div>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <!-- Address -->
+                                        <div class="mb-3 row">
+                                            <label class="col-3 col-form-label">Address</label>
+                                            <div class="col">
+                                                <input type="text" name="address" class="form-control"
+                                                    placeholder="Address"
+                                                    value="{{ old('address', $setting->address ?? '') }}">
+                                                @if ($errors->has('address'))
+                                                    <div class="invalid-feedback d-block">{{ $errors->first('address') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <!-- Vision -->
+                                        <div class="mb-3 row">
+                                            <label class="col-3 col-form-label">Vision</label>
+                                            <div class="col">
+                                                <textarea id="tinymce-vision" name="visson" class="form-control" rows="2" placeholder="Vision">{{ old('visson', $setting->visson ?? '') }}</textarea>
+                                                @if ($errors->has('visson'))
+                                                    <div class="invalid-feedback d-block">{{ $errors->first('visson') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <!-- Mission -->
+                                        <div class="mb-3 row">
+                                            <label class="col-3 col-form-label">Mission</label>
+                                            <div class="col">
+                                                <textarea id="tinymce-mission" name="mission" class="form-control" rows="3" placeholder="Mission">{{ old('mission', $setting->mission ?? '') }}</textarea>
+                                                @if ($errors->has('mission'))
+                                                    <div class="invalid-feedback d-block">{{ $errors->first('mission') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <!-- Logo -->
+                                        <div class="mb-3 row">
+                                            <label class="col-3 col-form-label">Logo</label>
+                                            <div class="col">
+                                                <input type="file" name="logo" class="mb-2 form-control">
+                                                @if ($errors->has('logo'))
+                                                    <div class="invalid-feedback d-block">{{ $errors->first('logo') }}
+                                                    </div>
+                                                @endif
+
+                                                @if (!empty($setting->logo))
+                                                    <div class="mt-2">
+                                                        <img src="{{ asset('storage/' . $setting->logo) }}"
+                                                            alt="Logo" class="img-fluid" style="max-height: 60px;">
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <!-- Favicon -->
+                                        <div class="mb-3 row">
+                                            <label class="col-3 col-form-label">Favicon</label>
+                                            <div class="col">
+                                                <input type="file" name="favicon" class="mb-2 form-control">
+                                                @if ($errors->has('favicon'))
+                                                    <div class="invalid-feedback d-block">{{ $errors->first('favicon') }}
+                                                    </div>
+                                                @endif
+
+                                                @if (!empty($setting->favicon))
+                                                    <div class="mt-2">
+                                                        <img src="{{ asset('storage/' . $setting->favicon) }}"
+                                                            alt="Favicon" class="img-fluid" style="max-height: 40px;">
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
-                        {{-- <div class="alert alert-warning bg-light">
-                            <div class="d-flex">
-                                <div class="alert-icon">
-                                    <x-icon-alert-triangle />
-                                </div>
-                                <div class="alert-content lh-sm">
-                                    <h4 class="mb-1 alert-heading">Perhatian!</h4>
-                                    <p class="mb-0">Data yang anda ubah akan mempengaruhi sistem secara keseluruhan.</p>
                                 </div>
                             </div>
-                        </div> --}}
-                    </div>
+
+                            <!-- Kolom 2: Social Media & Contact Info -->
+                            <div class="col-12 col-md-5">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <h3 class="card-title fw-bold">Social Media & Contacts</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- Whatsapp -->
+                                        <div class="mb-3 row">
+                                            <label class="col-3 col-form-label">Whatsapp</label>
+                                            <div class="col">
+                                                <input type="text" name="whatsapp" class="form-control"
+                                                    placeholder="Whatsapp number"
+                                                    value="{{ old('whatsapp', $setting->whatsapp ?? '') }}">
+                                                @if ($errors->has('whatsapp'))
+                                                    <div class="invalid-feedback d-block">{{ $errors->first('whatsapp') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <!-- Email -->
+                                        <div class="mb-3 row">
+                                            <label class="col-3 col-form-label">Email</label>
+                                            <div class="col">
+                                                <input type="email" name="email" class="form-control"
+                                                    placeholder="contact@example.com"
+                                                    value="{{ old('email', $setting->email ?? '') }}">
+                                                @if ($errors->has('email'))
+                                                    <div class="invalid-feedback d-block">{{ $errors->first('email') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <!-- Facebook -->
+                                        <div class="mb-3 row">
+                                            <label class="col-3 col-form-label">Facebook</label>
+                                            <div class="col">
+                                                <input type="text" name="facebook" class="form-control"
+                                                    placeholder="Facebook URL"
+                                                    value="{{ old('facebook', $setting->facebook ?? '') }}">
+                                                @if ($errors->has('facebook'))
+                                                    <div class="invalid-feedback d-block">{{ $errors->first('facebook') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <!-- Instagram -->
+                                        <div class="mb-3 row">
+                                            <label class="col-3 col-form-label">Instagram</label>
+                                            <div class="col">
+                                                <input type="text" name="instagram" class="form-control"
+                                                    placeholder="Instagram URL"
+                                                    value="{{ old('instagram', $setting->instagram ?? '') }}">
+                                                @if ($errors->has('instagram'))
+                                                    <div class="invalid-feedback d-block">
+                                                        {{ $errors->first('instagram') }}</div>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <!-- Maps Embed -->
+                                        <div class="mb-3 row">
+                                            <label class="col-3 col-form-label">Maps (iframe)</label>
+                                            <div class="col">
+                                                <textarea name="maps_embed" class="form-control" rows="4" placeholder="Paste maps iframe code">{{ old('maps_embed', $setting->maps_embed ?? '') }}</textarea>
+                                                @if ($errors->has('maps_embed'))
+                                                    <div class="invalid-feedback d-block">
+                                                        {{ $errors->first('maps_embed') }}</div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tombol Action & Modal (Di Luar Baris Kolom) -->
+                        <div class="row mt-3">
+                            <div class="col-12 text-end">
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#modal-confirm"
+                                    class="btn btn-primary">
+                                    Update Pengaturan
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Modal Konfirmasi -->
+                        <div class="modal modal-blur fade" id="modal-confirm" tabindex="-1" role="dialog"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <h2>Perhatian!</h2>
+                                        <p>Apakah anda yakin ingin mengubah pengaturan aplikasi?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Batal</button>
+                                        <button type="submit" class="btn btn-danger">Ya, Ubah Pengaturan</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- END PAGE BODY -->
@@ -680,3 +825,48 @@
     </div>
     <!-- END PAGE MODALS -->
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('assets/backend/libs/tinymce/tinymce.min.js') }}" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let options = {
+                selector: "#tinymce-vision, #tinymce-mission",
+                height: 200,
+                menubar: false,
+                statusbar: false,
+                license_key: "gpl",
+                plugins: [
+                    "advlist",
+                    "autolink",
+                    "lists",
+                    "link",
+                    "image",
+                    "charmap",
+                    "preview",
+                    "anchor",
+                    "searchreplace",
+                    "visualblocks",
+                    "code",
+                    "fullscreen",
+                    "insertdatetime",
+                    "media",
+                    "table",
+                    "code",
+                    "help",
+                    "wordcount",
+                ],
+                toolbar: "undo redo | formatselect | " +
+                    "bold italic backcolor | alignleft aligncenter " +
+                    "alignright alignjustify | bullist numlist outdent indent | " +
+                    "removeformat",
+                content_style: "body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; -webkit-font-smoothing: antialiased; }",
+            };
+            if (localStorage.getItem("tablerTheme") === "dark") {
+                options.skin = "oxide-dark";
+                options.content_css = "dark";
+            }
+            tinyMCE.init(options);
+        });
+    </script>
+@endpush
