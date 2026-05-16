@@ -31,7 +31,7 @@ class SettingController
             'favicon' => 'nullable|image|mimes:png,ico,svg,webp,jpeg,jpg',
         ]);
 
-        $setting = Setting::first() ?: new \App\Models\Setting();
+        $setting = Setting::first() ?: new Setting();
 
         // Handle logo upload
         if ($request->hasFile('logo')) {
