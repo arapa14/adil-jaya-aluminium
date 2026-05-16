@@ -52,6 +52,7 @@ class SettingController
         $setting->fill($data);
         $setting->save();
 
-        return redirect()->back()->with('success', 'Pengaturan berhasil diperbarui.');
+        toastr()->success('Pengaturan berhasil diperbarui.');
+        return back();
     }
 }

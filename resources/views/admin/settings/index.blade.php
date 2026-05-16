@@ -427,8 +427,8 @@
                     <div class="row g-2 align-items-center">
                         <div class="col">
                             <!-- Page pre-title -->
-                            <div class="page-pretitle">Settings</div>
-                            <h2 class="page-title">Change Your Preferences</h2>
+                            <div class="page-pretitle">Pengaturan</div>
+                            <h2 class="page-title">Ubah Preferensi Website</h2>
                         </div>
                         <!-- Page title actions -->
                     </div>
@@ -440,7 +440,7 @@
                 <div class="container-xl">
                     <x-notify />
 
-                    <form action="#" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -449,12 +449,12 @@
                             <div class="col-12 col-md-7">
                                 <div class="card h-100">
                                     <div class="card-header">
-                                        <h3 class="card-title fw-bold">General Information</h3>
+                                        <h3 class="card-title fw-bold">Informasi Umum</h3>
                                     </div>
                                     <div class="card-body">
                                         <!-- Company Name -->
                                         <div class="mb-3 row">
-                                            <label class="col-3 col-form-label required">Company Name</label>
+                                            <label class="col-3 col-form-label required">Nama Perusahaan</label>
                                             <div class="col">
                                                 <input type="text" name="company_name" class="form-control"
                                                     placeholder="Company Name"
@@ -468,7 +468,7 @@
 
                                         <!-- Company Description -->
                                         <div class="mb-3 row">
-                                            <label class="col-3 col-form-label">Company Description</label>
+                                            <label class="col-3 col-form-label">Deskripsi Perusahaan</label>
                                             <div class="col">
                                                 <textarea name="company_desc" class="form-control" rows="3" placeholder="Short description">{{ old('company_desc', $setting->company_desc ?? '') }}</textarea>
                                                 @if ($errors->has('company_desc'))
@@ -480,7 +480,7 @@
 
                                         <!-- Address -->
                                         <div class="mb-3 row">
-                                            <label class="col-3 col-form-label">Address</label>
+                                            <label class="col-3 col-form-label">Alamat Perusahaan</label>
                                             <div class="col">
                                                 <input type="text" name="address" class="form-control"
                                                     placeholder="Address"
@@ -494,7 +494,7 @@
 
                                         <!-- Vision -->
                                         <div class="mb-3 row">
-                                            <label class="col-3 col-form-label">Vision</label>
+                                            <label class="col-3 col-form-label">Visi Perusahaan</label>
                                             <div class="col">
                                                 <textarea id="tinymce-vision" name="visson" class="form-control" rows="2" placeholder="Vision">{{ old('visson', $setting->visson ?? '') }}</textarea>
                                                 @if ($errors->has('visson'))
@@ -506,7 +506,7 @@
 
                                         <!-- Mission -->
                                         <div class="mb-3 row">
-                                            <label class="col-3 col-form-label">Mission</label>
+                                            <label class="col-3 col-form-label">Misi Perusahaan</label>
                                             <div class="col">
                                                 <textarea id="tinymce-mission" name="mission" class="form-control" rows="3" placeholder="Mission">{{ old('mission', $setting->mission ?? '') }}</textarea>
                                                 @if ($errors->has('mission'))
@@ -520,18 +520,18 @@
                                         <div class="mb-3 row">
                                             <label class="col-3 col-form-label">Logo</label>
                                             <div class="col">
-                                                <input type="file" name="logo" class="mb-2 form-control">
                                                 @if ($errors->has('logo'))
-                                                    <div class="invalid-feedback d-block">{{ $errors->first('logo') }}
-                                                    </div>
+                                                <div class="invalid-feedback d-block">{{ $errors->first('logo') }}
+                                                </div>
                                                 @endif
 
                                                 @if (!empty($setting->logo))
-                                                    <div class="mt-2">
-                                                        <img src="{{ asset('storage/' . $setting->logo) }}"
-                                                            alt="Logo" class="img-fluid" style="max-height: 60px;">
-                                                    </div>
+                                                <div class="mt-2">
+                                                    <img src="{{ asset('storage/' . $setting->logo) }}"
+                                                    alt="Logo" class="img-fluid" style="max-height: 60px;">
+                                                </div>
                                                 @endif
+                                                <input type="file" name="logo" class="mb-2 form-control">
                                             </div>
                                         </div>
 
@@ -539,18 +539,18 @@
                                         <div class="mb-3 row">
                                             <label class="col-3 col-form-label">Favicon</label>
                                             <div class="col">
-                                                <input type="file" name="favicon" class="mb-2 form-control">
                                                 @if ($errors->has('favicon'))
-                                                    <div class="invalid-feedback d-block">{{ $errors->first('favicon') }}
-                                                    </div>
+                                                <div class="invalid-feedback d-block">{{ $errors->first('favicon') }}
+                                                </div>
                                                 @endif
 
                                                 @if (!empty($setting->favicon))
-                                                    <div class="mt-2">
-                                                        <img src="{{ asset('storage/' . $setting->favicon) }}"
-                                                            alt="Favicon" class="img-fluid" style="max-height: 40px;">
-                                                    </div>
+                                                <div class="mt-2">
+                                                    <img src="{{ asset('storage/' . $setting->favicon) }}"
+                                                    alt="Favicon" class="img-fluid" style="max-height: 40px;">
+                                                </div>
                                                 @endif
+                                                <input type="file" name="favicon" class="mb-2 form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -561,12 +561,12 @@
                             <div class="col-12 col-md-5">
                                 <div class="card h-100">
                                     <div class="card-header">
-                                        <h3 class="card-title fw-bold">Social Media & Contacts</h3>
+                                        <h3 class="card-title fw-bold">Sosial Media & Kontak</h3>
                                     </div>
                                     <div class="card-body">
                                         <!-- Whatsapp -->
                                         <div class="mb-3 row">
-                                            <label class="col-3 col-form-label">Whatsapp</label>
+                                            <label class="col-3 col-form-label">Nomor Whatsapp</label>
                                             <div class="col">
                                                 <input type="text" name="whatsapp" class="form-control"
                                                     placeholder="Whatsapp number"
@@ -641,7 +641,8 @@
                             <div class="col-12 text-end">
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#modal-confirm"
                                     class="btn btn-primary">
-                                    Update Pengaturan
+                                    <x-icon-edit/>
+                                    Ubah Pengaturan
                                 </button>
                             </div>
                         </div>
@@ -652,12 +653,12 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-body">
-                                        <h2>Perhatian!</h2>
+                                        <h2>Konfirmasi!</h2>
                                         <p>Apakah anda yakin ingin mengubah pengaturan aplikasi?</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn me-auto" data-bs-dismiss="modal">Batal</button>
-                                        <button type="submit" class="btn btn-danger">Ya, Ubah Pengaturan</button>
+                                        <button type="submit" class="btn btn-primary">Ya, Ubah Pengaturan</button>
                                     </div>
                                 </div>
                             </div>
@@ -832,7 +833,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             let options = {
                 selector: "#tinymce-vision, #tinymce-mission",
-                height: 200,
+                height: 150,
                 menubar: false,
                 statusbar: false,
                 license_key: "gpl",

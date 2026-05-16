@@ -15,4 +15,5 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     Route::get('/settings', [SettingController::class, 'index'])->name('settings');
+    Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
 });
