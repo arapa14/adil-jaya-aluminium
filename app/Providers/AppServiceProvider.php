@@ -21,9 +21,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::share([
+        if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
+            View::share([
             'favicon' => Setting::value('favicon'),
-            'logo' => Setting::value('logo')
-        ]);
+            'logo' => Setting::value('logo'),
+            ]);
+        }
     }
 }
