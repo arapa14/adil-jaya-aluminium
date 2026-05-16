@@ -1,407 +1,419 @@
 @extends('layouts.dashboard')
-@section('title', 'Dashboard')
+
+@section('title', 'Products Management')
+
 @section('content')
     <div class="page-wrapper">
+
         <!-- BEGIN PAGE HEADER -->
         <div class="page-header d-print-none">
             <div class="container-xl">
                 <div class="row g-2 align-items-center">
                     <div class="col">
-                        <!-- Page pre-title -->
-                        <div class="page-pretitle">Pengaturan</div>
-                        <h2 class="page-title">Ubah Preferensi Website</h2>
+                        <div class="page-pretitle">
+                            Product Management
+                        </div>
+                        <h2 class="page-title">
+                            Kelola Product & Category
+                        </h2>
                     </div>
-                    <!-- Page title actions -->
+
+                    <div class="col-auto ms-auto d-print-none">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create-product">
+                            <x-icon-plus />
+                            Tambah Product
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- END PAGE HEADER -->
+
         <!-- BEGIN PAGE BODY -->
         <div class="page-body">
             <div class="container-xl">
+
                 <x-notify />
 
-                <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
+                <div class="row row-cards">
+
+                    <!-- CATEGORY -->
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title fw-bold">
+                                    Product Categories
+                                </h3>
+                            </div>
+
+                            <div class="card-body">
+                                <!-- CREATE CATEGORY -->
+                                <form action="{{ route('admin.products.categories.store') }}" method="POST">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label class="form-label required">
+                                            Nama Category
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="text" name="name" class="form-control"
+                                                placeholder="Contoh: Pintu Aluminium">
+                                            <button type="submit" class="btn btn-primary">
+                                                Tambah
+                                            </button>
+                                        </div>
+                                        @error('name')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </form>
+
+                                <div class="hr-text">
+                                    List Category
+                                </div>
+
+                                <!-- CATEGORY LIST -->
+                                <div class="list-group list-group-flush">
+                                    @forelse ($categories as $category)
+                                        <div class="list-group-item">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <div class="fw-bold">
+                                                        {{ $category->name }}
+                                                    </div>
+                                                    <div class="text-secondary small">
+                                                        {{ $category->slug }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="dropdown">
+                                                    <button class="btn-action dropdown-toggle"
+                                                        data-bs-toggle="dropdown"></button>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <!-- EDIT -->
+                                                        <button class="dropdown-item" data-bs-toggle="modal"
+                                                            data-bs-target="#modal-edit-category-{{ $category->id }}">
+                                                            Edit
+                                                        </button>
+
+                                                        <!-- DELETE -->
+                                                        <form
+                                                            action="{{ route('admin.products.categories.destroy', $category->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="dropdown-item text-danger">
+                                                                Hapus
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- MODAL EDIT CATEGORY -->
+                                        <div class="modal modal-blur fade" id="modal-edit-category-{{ $category->id }}"
+                                            tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <form
+                                                        action="{{ route('admin.products.categories.update', $category->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">
+                                                                Edit Category
+                                                            </h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="mb-3">
+                                                                <label class="form-label required">
+                                                                    Nama Category
+                                                                </label>
+                                                                <input type="text" name="name" class="form-control"
+                                                                    value="{{ $category->name }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn me-auto"
+                                                                data-bs-dismiss="modal">
+                                                                Batal
+                                                            </button>
+                                                            <button type="submit" class="btn btn-primary">
+                                                                Update
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @empty
+                                        <div class="text-secondary text-center py-4">
+                                            Belum ada category
+                                        </div>
+                                    @endforelse
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRODUCTS -->
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title fw-bold">
+                                    Product List
+                                </h3>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-vcenter card-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Thumbnail</th>
+                                            <th>Product</th>
+                                            <th>Category</th>
+                                            <th>Status</th>
+                                            <th class="w-1"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($products as $product)
+                                            <tr>
+                                                <td>
+                                                    <img src="{{ asset('storage/' . $product->thumbnail) }}" class="rounded"
+                                                        style="width: 80px; height: 80px; object-fit: cover;">
+                                                </td>
+                                                <td>
+                                                    <div class="fw-bold">
+                                                        {{ $product->name }}
+                                                    </div>
+                                                    <div class="text-secondary small">
+                                                        {{ $product->slug }}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-blue-lt">
+                                                        {{ $product->category->name }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    @if ($product->status)
+                                                        <span class="badge bg-green">
+                                                            Active
+                                                        </span>
+                                                    @else
+                                                        <span class="badge bg-red">
+                                                            Inactive
+                                                        </span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button class="btn-action dropdown-toggle"
+                                                            data-bs-toggle="dropdown"></button>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                                data-bs-target="#modal-edit-product-{{ $product->id }}">
+                                                                Edit
+                                                            </button>
+                                                            <form
+                                                                action="{{ route('admin.products.destroy', $product->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="dropdown-item text-danger">
+                                                                    Delete
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- MODAL EDIT PRODUCT -->
+                                            <div class="modal modal-blur fade"
+                                                id="modal-edit-product-{{ $product->id }}" tabindex="-1">
+                                                <div class="modal-dialog modal-xl modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <form action="{{ route('admin.products.update', $product->id) }}"
+                                                            method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">
+                                                                    Edit Product
+                                                                </h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label required">
+                                                                                Product Name
+                                                                            </label>
+                                                                            <input type="text" name="name"
+                                                                                class="form-control"
+                                                                                value="{{ $product->name }}">
+                                                                        </div>
+
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label required">
+                                                                                Category
+                                                                            </label>
+                                                                            <select name="category_id"
+                                                                                class="form-select">
+                                                                                @foreach ($categories as $category)
+                                                                                    <option value="{{ $category->id }}"
+                                                                                        @selected($product->category_id == $category->id)>
+                                                                                        {{ $category->name }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label required">
+                                                                                Description
+                                                                            </label>
+                                                                            <textarea name="description" rows="6" class="form-control">{{ $product->description }}</textarea>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-4">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label">
+                                                                                Thumbnail
+                                                                            </label>
+                                                                            <img src="{{ asset('storage/' . $product->thumbnail) }}"
+                                                                                class="img-fluid rounded mb-2">
+                                                                            <input type="file" name="thumbnail"
+                                                                                class="form-control">
+                                                                        </div>
+
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label">
+                                                                                OG Image
+                                                                            </label>
+                                                                            <input type="file" name="og_image"
+                                                                                class="form-control">
+                                                                        </div>
+
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label">
+                                                                                Status
+                                                                            </label>
+                                                                            <select name="status" class="form-select">
+                                                                                <option value="1"
+                                                                                    @selected($product->status)>
+                                                                                    Active
+                                                                                </option>
+                                                                                <option value="0"
+                                                                                    @selected(!$product->status)>
+                                                                                    Inactive
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn me-auto"
+                                                                    data-bs-dismiss="modal">
+                                                                    Cancel
+                                                                </button>
+                                                                <button type="submit" class="btn btn-primary">
+                                                                    Update Product
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center text-secondary py-5">
+                                                    Belum ada product
+                                                </td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="card-footer">
+                                {{ $products->links() }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- END PAGE BODY -->
+
+    </div>
+
+    <!-- CREATE PRODUCT MODAL -->
+    <div class="modal modal-blur fade" id="modal-create-product" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
-
-                    <div class="row row-cards">
-                        <!-- Kolom 1: General Information -->
-                        <div class="col-12 col-md-7">
-                            <div class="card h-100">
-                                <div class="card-header">
-                                    <h3 class="card-title fw-bold">Informasi Umum</h3>
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Tambah Product
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="mb-3">
+                                    <label class="form-label required">
+                                        Product Name
+                                    </label>
+                                    <input type="text" name="name" class="form-control">
                                 </div>
-                                <div class="card-body">
-                                    <!-- Company Name -->
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Nama Perusahaan</label>
-                                        <div class="col">
-                                            <input type="text" name="company_name" class="form-control"
-                                                placeholder="Company Name"
-                                                value="{{ old('company_name', $setting->company_name ?? '') }}">
-                                            @if ($errors->has('company_name'))
-                                                <div class="invalid-feedback d-block">
-                                                    {{ $errors->first('company_name') }}</div>
-                                            @endif
-                                        </div>
-                                    </div>
 
-                                    <!-- Company Description -->
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Deskripsi Perusahaan</label>
-                                        <div class="col">
-                                            <textarea name="company_desc" class="form-control" rows="3" placeholder="Short description">{{ old('company_desc', $setting->company_desc ?? '') }}</textarea>
-                                            @if ($errors->has('company_desc'))
-                                                <div class="invalid-feedback d-block">
-                                                    {{ $errors->first('company_desc') }}</div>
-                                            @endif
-                                        </div>
-                                    </div>
+                                <div class="mb-3">
+                                    <label class="form-label required">
+                                        Category
+                                    </label>
+                                    <select name="category_id" class="form-select">
+                                        <option value="">
+                                            Pilih Category
+                                        </option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">
+                                                {{ $category->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                                    <!-- Address -->
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Alamat Perusahaan</label>
-                                        <div class="col">
-                                            <input type="text" name="address" class="form-control" placeholder="Address"
-                                                value="{{ old('address', $setting->address ?? '') }}">
-                                            @if ($errors->has('address'))
-                                                <div class="invalid-feedback d-block">{{ $errors->first('address') }}
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <!-- Vision -->
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Visi Perusahaan</label>
-                                        <div class="col">
-                                            <textarea id="tinymce-vision" name="visson" class="form-control" rows="2" placeholder="Vision">{{ old('visson', $setting->visson ?? '') }}</textarea>
-                                            @if ($errors->has('visson'))
-                                                <div class="invalid-feedback d-block">{{ $errors->first('visson') }}
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <!-- Mission -->
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Misi Perusahaan</label>
-                                        <div class="col">
-                                            <textarea id="tinymce-mission" name="mission" class="form-control" rows="3" placeholder="Mission">{{ old('mission', $setting->mission ?? '') }}</textarea>
-                                            @if ($errors->has('mission'))
-                                                <div class="invalid-feedback d-block">{{ $errors->first('mission') }}
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <!-- Logo -->
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Logo</label>
-                                        <div class="col">
-                                            @if ($errors->has('logo'))
-                                                <div class="invalid-feedback d-block">{{ $errors->first('logo') }}
-                                                </div>
-                                            @endif
-
-                                            @if (!empty($setting->logo))
-                                                <div class="mt-2">
-                                                    <img src="{{ asset('storage/' . $setting->logo) }}" alt="Logo"
-                                                        class="img-fluid" style="max-height: 60px;">
-                                                </div>
-                                            @endif
-                                            <input type="file" name="logo" class="mb-2 form-control">
-                                        </div>
-                                    </div>
-
-                                    <!-- Favicon -->
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Favicon</label>
-                                        <div class="col">
-                                            @if ($errors->has('favicon'))
-                                                <div class="invalid-feedback d-block">{{ $errors->first('favicon') }}
-                                                </div>
-                                            @endif
-
-                                            @if (!empty($setting->favicon))
-                                                <div class="mt-2">
-                                                    <img src="{{ asset('storage/' . $setting->favicon) }}" alt="Favicon"
-                                                        class="img-fluid" style="max-height: 40px;">
-                                                </div>
-                                            @endif
-                                            <input type="file" name="favicon" class="mb-2 form-control">
-                                        </div>
-                                    </div>
+                                <div class="mb-3">
+                                    <label class="form-label required">
+                                        Description
+                                    </label>
+                                    <textarea name="description" rows="6" class="form-control"></textarea>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Kolom 2: Social Media & Contact Info -->
-                        <div class="col-12 col-md-5">
-                            <div class="card h-100">
-                                <div class="card-header">
-                                    <h3 class="card-title fw-bold">Sosial Media & Kontak</h3>
-                                </div>
-                                <div class="card-body">
-                                    <!-- Whatsapp -->
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Nomor Whatsapp</label>
-                                        <div class="col">
-                                            <input type="text" name="whatsapp" class="form-control"
-                                                placeholder="Whatsapp number"
-                                                value="{{ old('whatsapp', $setting->whatsapp ?? '') }}">
-                                            @if ($errors->has('whatsapp'))
-                                                <div class="invalid-feedback d-block">{{ $errors->first('whatsapp') }}
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <!-- Email -->
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Email</label>
-                                        <div class="col">
-                                            <input type="email" name="email" class="form-control"
-                                                placeholder="contact@example.com"
-                                                value="{{ old('email', $setting->email ?? '') }}">
-                                            @if ($errors->has('email'))
-                                                <div class="invalid-feedback d-block">{{ $errors->first('email') }}
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <!-- Facebook -->
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Facebook</label>
-                                        <div class="col">
-                                            <input type="text" name="facebook" class="form-control"
-                                                placeholder="Facebook URL"
-                                                value="{{ old('facebook', $setting->facebook ?? '') }}">
-                                            @if ($errors->has('facebook'))
-                                                <div class="invalid-feedback d-block">{{ $errors->first('facebook') }}
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <!-- Instagram -->
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Instagram</label>
-                                        <div class="col">
-                                            <input type="text" name="instagram" class="form-control"
-                                                placeholder="Instagram URL"
-                                                value="{{ old('instagram', $setting->instagram ?? '') }}">
-                                            @if ($errors->has('instagram'))
-                                                <div class="invalid-feedback d-block">
-                                                    {{ $errors->first('instagram') }}</div>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <!-- Maps Embed -->
-                                    <div class="mb-3 row">
-                                        <label class="col-3 col-form-label required">Maps (iframe)</label>
-                                        <div class="col">
-                                            <textarea name="maps_embed" class="form-control" rows="4" placeholder="Paste maps iframe code">{{ old('maps_embed', $setting->maps_embed ?? '') }}</textarea>
-                                            @if ($errors->has('maps_embed'))
-                                                <div class="invalid-feedback d-block">
-                                                    {{ $errors->first('maps_embed') }}</div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tombol Action & Modal (Di Luar Baris Kolom) -->
-                    <div class="row mt-3">
-                        <div class="col-12 text-end">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#modal-confirm"
-                                class="btn btn-primary">
-                                <x-icon-edit />
-                                Ubah Pengaturan
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Modal Konfirmasi -->
-                    <div class="modal modal-blur fade" id="modal-confirm" tabindex="-1" role="dialog"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <h2>Konfirmasi!</h2>
-                                    <p>Apakah anda yakin ingin mengubah pengaturan aplikasi?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Batal</button>
-                                    <button type="submit" class="btn btn-primary">Ya, Ubah Pengaturan</button>
-                                </div>
+                            <div class="col-md-4">
+                                <!-- Bagian ini otomatis tertutup rapi mengikuti struktur HTML Anda -->
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <!-- END PAGE BODY -->
     </div>
-    <!-- BEGIN PAGE MODALS -->
-    <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">New report</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Name</label>
-                        <input type="text" class="form-control" name="example-text-input"
-                            placeholder="Your report name" />
-                    </div>
-                    <label class="form-label">Report type</label>
-                    <div class="form-selectgroup-boxes row mb-3">
-                        <div class="col-lg-6">
-                            <label class="form-selectgroup-item">
-                                <input type="radio" name="report-type" value="1" class="form-selectgroup-input"
-                                    checked />
-                                <span class="form-selectgroup-label d-flex align-items-center p-3">
-                                    <span class="me-3">
-                                        <span class="form-selectgroup-check"></span>
-                                    </span>
-                                    <span class="form-selectgroup-label-content">
-                                        <span class="form-selectgroup-title strong mb-1">Simple</span>
-                                        <span class="d-block text-secondary">Provide only basic data needed for the
-                                            report</span>
-                                    </span>
-                                </span>
-                            </label>
-                        </div>
-                        <div class="col-lg-6">
-                            <label class="form-selectgroup-item">
-                                <input type="radio" name="report-type" value="1"
-                                    class="form-selectgroup-input" />
-                                <span class="form-selectgroup-label d-flex align-items-center p-3">
-                                    <span class="me-3">
-                                        <span class="form-selectgroup-check"></span>
-                                    </span>
-                                    <span class="form-selectgroup-label-content">
-                                        <span class="form-selectgroup-title strong mb-1">Advanced</span>
-                                        <span class="d-block text-secondary">Insert charts and additional advanced
-                                            analyses to be inserted in the report</span>
-                                    </span>
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="mb-3">
-                                <label class="form-label">Report url</label>
-                                <div class="input-group input-group-flat">
-                                    <span class="input-group-text"> https://tabler.io/reports/ </span>
-                                    <input type="text" class="form-control ps-0" value="report-01"
-                                        autocomplete="off" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Visibility</label>
-                                <select class="form-select">
-                                    <option value="1" selected>Private</option>
-                                    <option value="2">Public</option>
-                                    <option value="3">Hidden</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label class="form-label">Client name</label>
-                                <input type="text" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label class="form-label">Reporting period</label>
-                                <input type="date" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div>
-                                <label class="form-label">Additional information</label>
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-link link-secondary btn-3" data-bs-dismiss="modal"> Cancel </a>
-                    <a href="#" class="btn btn-primary btn-5 ms-auto" data-bs-dismiss="modal">
-                        <!-- Download SVG icon from http://tabler.io/icons/icon/plus -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="icon icon-2">
-                            <path d="M12 5l0 14" />
-                            <path d="M5 12l14 0" />
-                        </svg>
-                        Create new report
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- END PAGE MODALS -->
 @endsection
-
-@push('scripts')
-    <script src="{{ asset('assets/backend/libs/tinymce/tinymce.min.js') }}" defer></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let options = {
-                selector: "#tinymce-vision, #tinymce-mission",
-                height: 150,
-                menubar: false,
-                statusbar: false,
-                license_key: "gpl",
-                plugins: [
-                    "advlist",
-                    "autolink",
-                    "lists",
-                    "link",
-                    "image",
-                    "charmap",
-                    "preview",
-                    "anchor",
-                    "searchreplace",
-                    "visualblocks",
-                    "code",
-                    "fullscreen",
-                    "insertdatetime",
-                    "media",
-                    "table",
-                    "code",
-                    "help",
-                    "wordcount",
-                ],
-                toolbar: "undo redo | formatselect | " +
-                    "bold italic backcolor | alignleft aligncenter " +
-                    "alignright alignjustify | bullist numlist outdent indent | " +
-                    "removeformat",
-                content_style: "body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; -webkit-font-smoothing: antialiased; }",
-            };
-            if (localStorage.getItem("tablerTheme") === "dark") {
-                options.skin = "oxide-dark";
-                options.content_css = "dark";
-            }
-            tinyMCE.init(options);
-        });
-    </script>
-@endpush
