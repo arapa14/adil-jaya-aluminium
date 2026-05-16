@@ -35,9 +35,5 @@
     "/vendor/flasher/themes/sapphire/sapphire.min.js": "/vendor/flasher/themes/sapphire/sapphire.min.js?id=6b9266d751da3dff9201fdd70d86c42a",
     "/vendor/flasher/themes/shared/shared.min.js": "/vendor/flasher/themes/shared/shared.min.js?id=6099d7536c1f8046d778d61dfa40004c",
     "/vendor/flasher/themes/slack/slack.min.css": "/vendor/flasher/themes/slack/slack.min.css?id=4fa1fe1bdca7c256f225e9f4c2e6d779",
-    "/vendor/flasher/themes/slack/slack.min.js": "/vendor/flasher/themes/slack/slack.min.js?id=cd54c7e2570e9784e03d6772e9ae4e8e",
-    "/vendor/flasher/flasher-toastr.min.js": "/vendor/flasher/flasher-toastr.min.js?id=8285b44e43242b12946afdf304df9e83",
-    "/vendor/flasher/jquery.min.js": "/vendor/flasher/jquery.min.js?id=2c872dbe60f4ba70fb85356113d8b35e",
-    "/vendor/flasher/toastr.min.css": "/vendor/flasher/toastr.min.css?id=f284028c678041d687c6f1be6968f68a",
-    "/vendor/flasher/toastr.min.js": "/vendor/flasher/toastr.min.js?id=8ee1218b09fb02d43fcf0b84e30637ad"
+    "/vendor/flasher/themes/slack/slack.min.js": "/vendor/flasher/themes/slack/slack.min.js?id=cd54c7e2570e9784e03d6772e9ae4e8e"
 }
