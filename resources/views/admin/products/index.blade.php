@@ -11,10 +11,10 @@
                 <div class="row g-2 align-items-center">
                     <div class="col">
                         <div class="page-pretitle">
-                            Product Management
+                            Manajemen Produk
                         </div>
                         <h2 class="page-title">
-                            Kelola Product & Category
+                            Kelola Produk Anda
                         </h2>
                     </div>
 
@@ -35,12 +35,6 @@
                 <div class="row row-cards">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title fw-bold">
-                                    Product List
-                                </h3>
-                            </div>
-
                             <div class="table-responsive">
                                 <table class="table table-vcenter card-table">
                                     <thead>
@@ -350,7 +344,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">Batal</a>
+                        <a href="#" class="btn btn-1" data-bs-dismiss="modal">Batal</a>
                         <button type="submit" class="btn btn-primary ms-auto">
                             <x-icon-plus />
                             Tambah Produk

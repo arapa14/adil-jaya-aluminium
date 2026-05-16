@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Setting;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use View;
 
@@ -21,10 +22,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrapFive();
         if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
             View::share([
-            'favicon' => Setting::value('favicon'),
-            'logo' => Setting::value('logo'),
+                'favicon' => Setting::value('favicon'),
+                'logo' => Setting::value('logo'),
             ]);
         }
     }
