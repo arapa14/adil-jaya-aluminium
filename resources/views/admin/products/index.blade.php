@@ -1,7 +1,7 @@
+{{-- TASK: buat form untuk CRUD category dan product --}}
+
 @extends('layouts.dashboard')
-
 @section('title', 'Products Management')
-
 @section('content')
     <div class="page-wrapper">
 
