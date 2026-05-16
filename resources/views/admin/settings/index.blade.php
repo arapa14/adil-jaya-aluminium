@@ -49,7 +49,7 @@
 
                                     <!-- Company Description -->
                                     <div class="mb-3 row">
-                                        <label class="col-3 col-form-label">Deskripsi Perusahaan</label>
+                                        <label class="col-3 col-form-label required">Deskripsi Perusahaan</label>
                                         <div class="col">
                                             <textarea name="company_desc" class="form-control" rows="3" placeholder="Short description">{{ old('company_desc', $setting->company_desc ?? '') }}</textarea>
                                             @if ($errors->has('company_desc'))
@@ -61,7 +61,7 @@
 
                                     <!-- Address -->
                                     <div class="mb-3 row">
-                                        <label class="col-3 col-form-label">Alamat Perusahaan</label>
+                                        <label class="col-3 col-form-label required">Alamat Perusahaan</label>
                                         <div class="col">
                                             <input type="text" name="address" class="form-control" placeholder="Address"
                                                 value="{{ old('address', $setting->address ?? '') }}">
@@ -74,7 +74,7 @@
 
                                     <!-- Vision -->
                                     <div class="mb-3 row">
-                                        <label class="col-3 col-form-label">Visi Perusahaan</label>
+                                        <label class="col-3 col-form-label required">Visi Perusahaan</label>
                                         <div class="col">
                                             <textarea id="tinymce-vision" name="visson" class="form-control" rows="2" placeholder="Vision">{{ old('visson', $setting->visson ?? '') }}</textarea>
                                             @if ($errors->has('visson'))
@@ -86,7 +86,7 @@
 
                                     <!-- Mission -->
                                     <div class="mb-3 row">
-                                        <label class="col-3 col-form-label">Misi Perusahaan</label>
+                                        <label class="col-3 col-form-label required">Misi Perusahaan</label>
                                         <div class="col">
                                             <textarea id="tinymce-mission" name="mission" class="form-control" rows="3" placeholder="Mission">{{ old('mission', $setting->mission ?? '') }}</textarea>
                                             @if ($errors->has('mission'))
@@ -98,7 +98,7 @@
 
                                     <!-- Logo -->
                                     <div class="mb-3 row">
-                                        <label class="col-3 col-form-label">Logo</label>
+                                        <label class="col-3 col-form-label required">Logo</label>
                                         <div class="col">
                                             @if ($errors->has('logo'))
                                                 <div class="invalid-feedback d-block">{{ $errors->first('logo') }}
@@ -117,7 +117,7 @@
 
                                     <!-- Favicon -->
                                     <div class="mb-3 row">
-                                        <label class="col-3 col-form-label">Favicon</label>
+                                        <label class="col-3 col-form-label required">Favicon</label>
                                         <div class="col">
                                             @if ($errors->has('favicon'))
                                                 <div class="invalid-feedback d-block">{{ $errors->first('favicon') }}
@@ -146,7 +146,7 @@
                                 <div class="card-body">
                                     <!-- Whatsapp -->
                                     <div class="mb-3 row">
-                                        <label class="col-3 col-form-label">Nomor Whatsapp</label>
+                                        <label class="col-3 col-form-label required">Nomor Whatsapp</label>
                                         <div class="col">
                                             <input type="text" name="whatsapp" class="form-control"
                                                 placeholder="Whatsapp number"
@@ -160,7 +160,7 @@
 
                                     <!-- Email -->
                                     <div class="mb-3 row">
-                                        <label class="col-3 col-form-label">Email</label>
+                                        <label class="col-3 col-form-label required">Email</label>
                                         <div class="col">
                                             <input type="email" name="email" class="form-control"
                                                 placeholder="contact@example.com"
@@ -174,7 +174,7 @@
 
                                     <!-- Facebook -->
                                     <div class="mb-3 row">
-                                        <label class="col-3 col-form-label">Facebook</label>
+                                        <label class="col-3 col-form-label required">Facebook</label>
                                         <div class="col">
                                             <input type="text" name="facebook" class="form-control"
                                                 placeholder="Facebook URL"
@@ -188,7 +188,7 @@
 
                                     <!-- Instagram -->
                                     <div class="mb-3 row">
-                                        <label class="col-3 col-form-label">Instagram</label>
+                                        <label class="col-3 col-form-label required">Instagram</label>
                                         <div class="col">
                                             <input type="text" name="instagram" class="form-control"
                                                 placeholder="Instagram URL"
@@ -202,7 +202,7 @@
 
                                     <!-- Maps Embed -->
                                     <div class="mb-3 row">
-                                        <label class="col-3 col-form-label">Maps (iframe)</label>
+                                        <label class="col-3 col-form-label required">Maps (iframe)</label>
                                         <div class="col">
                                             <textarea name="maps_embed" class="form-control" rows="4" placeholder="Paste maps iframe code">{{ old('maps_embed', $setting->maps_embed ?? '') }}</textarea>
                                             @if ($errors->has('maps_embed'))
