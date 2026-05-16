@@ -191,124 +191,33 @@
                 </h2>
             </div>
             <div class="row justify-content-center">
-                <div class="col-md-3 mt-4">
-                    <div class="card rounded-4 shadow-sm overflow-hidden">
-                        <img src="assets/img/hero-section.jpeg" class="card-img-top" alt="Kusen Aluminium">
-                        <div class="card-body pt-5 text-center bg-white">
-                            <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"
-                                style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); width:56px; height:56px; z-index: 2;">
-                                <i class="ti ti-window" style="font-size:1.25rem;"></i>
+                @forelse ($data as $product)
+                    <div class="col-6 col-md-3">
+                        <div class="card rounded-4 shadow-sm overflow-hidden">
+                            <div class="ratio ratio-16x9">
+                                <img src="{{ Storage::url($product->thumbnail) }}" class="card-img-top"
+                                    alt="{{ $product->name }}">
                             </div>
-                            <h5 class="card-title fw-bold mb-2">Kusen Aluminium</h5>
-                            <p class="card-text text-secondary small mb-0">Solusi kusen aluminium modern untuk bangunan
-                                Anda.</p>
+                            <div class="card-body pt-5 text-center bg-white">
+                                <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white mx-auto"
+                                    style="width:56px; height:56px; margin-top:-28px; margin-bottom:12px; z-index:2;">
+                                    <i class="ti ti-window" style="font-size:1.25rem;"></i>
+                                </div>
+                                <h5 class="card-title fw-bold mb-2">{{ $product->name }}</h5>
+                                <p class="card-text text-secondary small mb-0">{{ $product->description }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 mt-4">
-                    <div class="card rounded-4 shadow-sm overflow-hidden">
-                        <img src="assets/img/hero-section.jpeg" class="card-img-top" alt="Kusen Aluminium">
-                        <div class="card-body pt-5 text-center bg-white">
-                            <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"
-                                style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); width:56px; height:56px; z-index: 2;">
-                                <i class="ti ti-window" style="font-size:1.25rem;"></i>
-                            </div>
-                            <h5 class="card-title fw-bold mb-2">Pintu Aluminium</h5>
-                            <p class="card-text text-secondary small mb-0">Solusi kusen aluminium modern untuk bangunan
-                                Anda.</p>
-                        </div>
+                @empty
+                    <div class="col-12">
+                        <p class="text-center">Tidak ada produk yang tersedia.</p>
                     </div>
-                </div>
-                <div class="col-md-3 mt-4">
-                    <div class="card rounded-4 shadow-sm overflow-hidden">
-                        <img src="assets/img/hero-section.jpeg" class="card-img-top" alt="Kusen Aluminium">
-                        <div class="card-body pt-5 text-center bg-white">
-                            <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"
-                                style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); width:56px; height:56px; z-index: 2;">
-                                <i class="ti ti-window" style="font-size:1.25rem;"></i>
-                            </div>
-                            <h5 class="card-title fw-bold mb-2">Jendela Sliding</h5>
-                            <p class="card-text text-secondary small mb-0">Solusi kusen aluminium modern untuk bangunan
-                                Anda.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mt-4">
-                    <div class="card rounded-4 shadow-sm overflow-hidden">
-                        <img src="assets/img/hero-section.jpeg" class="card-img-top" alt="Kusen Aluminium">
-                        <div class="card-body pt-5 text-center bg-white">
-                            <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"
-                                style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); width:56px; height:56px; z-index: 2;">
-                                <i class="ti ti-window" style="font-size:1.25rem;"></i>
-                            </div>
-                            <h5 class="card-title fw-bold mb-2">Partisi Kaca</h5>
-                            <p class="card-text text-secondary small mb-0">Solusi kusen aluminium modern untuk bangunan
-                                Anda.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mt-4">
-                    <div class="card rounded-4 shadow-sm overflow-hidden">
-                        <img src="assets/img/hero-section.jpeg" class="card-img-top" alt="Kusen Aluminium">
-                        <div class="card-body pt-5 text-center bg-white">
-                            <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"
-                                style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); width:56px; height:56px; z-index: 2;">
-                                <i class="ti ti-window" style="font-size:1.25rem;"></i>
-                            </div>
-                            <h5 class="card-title fw-bold mb-2">ACP Exterior</h5>
-                            <p class="card-text text-secondary small mb-0">Solusi kusen aluminium modern untuk bangunan
-                                Anda.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mt-4">
-                    <div class="card rounded-4 shadow-sm overflow-hidden">
-                        <img src="assets/img/hero-section.jpeg" class="card-img-top" alt="Kusen Aluminium">
-                        <div class="card-body pt-5 text-center bg-white">
-                            <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"
-                                style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); width:56px; height:56px; z-index: 2;">
-                                <i class="ti ti-window" style="font-size:1.25rem;"></i>
-                            </div>
-                            <h5 class="card-title fw-bold mb-2">Canopy</h5>
-                            <p class="card-text text-secondary small mb-0">Solusi kusen aluminium modern untuk bangunan
-                                Anda.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mt-4">
-                    <div class="card rounded-4 shadow-sm overflow-hidden">
-                        <img src="assets/img/hero-section.jpeg" class="card-img-top" alt="Kusen Aluminium">
-                        <div class="card-body pt-5 text-center bg-white">
-                            <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"
-                                style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); width:56px; height:56px; z-index: 2;">
-                                <i class="ti ti-window" style="font-size:1.25rem;"></i>
-                            </div>
-                            <h5 class="card-title fw-bold mb-2">Railing Tangga</h5>
-                            <p class="card-text text-secondary small mb-0">Solusi kusen aluminium modern untuk bangunan
-                                Anda.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mt-4">
-                    <div class="card rounded-4 shadow-sm overflow-hidden">
-                        <img src="assets/img/hero-section.jpeg" class="card-img-top" alt="Kusen Aluminium">
-                        <div class="card-body pt-5 text-center bg-white">
-                            <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"
-                                style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); width:56px; height:56px; z-index: 2;">
-                                <i class="ti ti-window" style="font-size:1.25rem;"></i>
-                            </div>
-                            <h5 class="card-title fw-bold mb-2">Shower Box</h5>
-                            <p class="card-text text-secondary small mb-0">Solusi kusen aluminium modern untuk bangunan
-                                Anda.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </div>
     <!-- End Produk kami -->
 
-    <!-- Start Portfolio -->
     <!-- Start Portfolio -->
     <section class="bg-primary p-4 mt-5">
         <div class="container my-5 font-poppins">
@@ -316,61 +225,33 @@
                 <div class="col-md-3">
                     <p class="text-light fw-semibold text-uppercase mb-1">Portofolio Kami</p>
                     <h2 class="fw-bold text-light pb-3">Proyek Terbaru</h2>
-                    <p class="text-light">Berbagai proyek telah kami selesaikan dengan hasil rapi, presisi, dan sesuai
+                    <p class="text-light">Berbagai proyek telah kami selesaikan dengan hasil rapi, presisi, dan
+                        sesuai
                         kebutuhan klien.</p>
-                    <a href="#" class="btn btn-outline-light text-uppercase my-4">Lihat Semua Portofolio</a>
+                    <a href="#" class="btn btn-outline-light text-uppercase my-4">Lihat Semua
+                        Portofolio</a>
                 </div>
 
                 <div class="col-md-9">
                     <div class="row g-3">
-                        <div class="col-6 col-md-3">
-                            <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
-                                <div class="ratio ratio-1x1 overflow-hidden rounded-top">
-                                    <img src="assets/img/thumbnail.svg" alt="Rumah Tinggal Modern"
-                                        class="w-100 h-100" style="object-fit:cover;">
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="mb-1 fw-bold">Rumah Tinggal Modern</h6>
-                                    <small class="text-secondary">Serpong, Tangerang</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
-                                <div class="ratio ratio-1x1 overflow-hidden rounded-top">
-                                    <img src="assets/img/thumbnail.svg" alt="Ruko 3 Lantai" class="w-100 h-100"
-                                        style="object-fit:cover;">
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="mb-1 fw-bold">Ruko 3 Lantai</h6>
-                                    <small class="text-secondary">Gading Serpong</small>
+                        @forelse($portofolios as $portofolio)
+                            <div class="col-6 col-md-3">
+                                <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
+                                    <div class="ratio ratio-1x1 overflow-hidden rounded-top">
+                                        <img src="{{ Storage::url($portofolio->thumbnail) }}" alt="Rumah Tinggal Modern"
+                                            class="w-100 h-100" style="object-fit:cover;">
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="mb-1 fw-bold">{{ $portofolio->name }}</h6>
+                                        <small class="text-secondary">{{ $portofolio->location }}</small>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
-                                <div class="ratio ratio-1x1 overflow-hidden rounded-top">
-                                    <img src="assets/img/thumbnail.svg" alt="Kantor Office" class="w-100 h-100"
-                                        style="object-fit:cover;">
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="mb-1 fw-bold">Kantor Office</h6>
-                                    <small class="text-secondary">BSD City</small>
-                                </div>
+                        @empty
+                            <div class="col-12">
+                                <p class="text-center">Belum ada portofolio yang tersedia.</p>
                             </div>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
-                                <div class="ratio ratio-1x1 overflow-hidden rounded-top">
-                                    <img src="assets/img/thumbnail.svg" alt="Villa Residence" class="w-100 h-100"
-                                        style="object-fit:cover;">
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="mb-1 fw-bold">Villa Residence</h6>
-                                    <small class="text-secondary">Pondok Indah</small>
-                                </div>
-                            </div>
-                        </div>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -536,7 +417,8 @@
                         <div class="mb-2">
                             <span class="text-warning">★★★★★</span>
                         </div>
-                        <p class="text-muted small mb-0">Hasil pemasangan rapi dan sesuai ekspektasi. Tim sangat
+                        <p class="text-muted small mb-0">Hasil pemasangan rapi dan sesuai ekspektasi. Tim
+                            sangat
                             profesional dan komunikatif.</p>
                     </div>
                 </div>
@@ -554,7 +436,8 @@
                         <div class="mb-2">
                             <span class="text-warning">★★★★★</span>
                         </div>
-                        <p class="text-muted small mb-0">Kualitas aluminium dan kaca sangat bagus. Pengerjaan tepat
+                        <p class="text-muted small mb-0">Kualitas aluminium dan kaca sangat bagus. Pengerjaan
+                            tepat
                             waktu dan memuaskan.</p>
                     </div>
                 </div>
@@ -572,7 +455,8 @@
                         <div class="mb-2">
                             <span class="text-warning">★★★★★</span>
                         </div>
-                        <p class="text-muted small mb-0">Pelayanan ramah, harga kompetitif, dan hasil kerja sangat
+                        <p class="text-muted small mb-0">Pelayanan ramah, harga kompetitif, dan hasil kerja
+                            sangat
                             rapi.
                             Recommended!</p>
                     </div>
@@ -586,8 +470,10 @@
         <div class="card rounded-4 shadow-lg overflow-hidden font-poppins" style="background:#0B1F3A;">
             <div class="row g-0 align-items-center">
                 <div class="col-12 col-md-7 p-4 p-md-5 text-white text-center text-md-start">
-                    <h4 class="fw-bold mb-2 text-uppercase fs-5 fs-md-4">Siap mewujudkan proyek aluminium Anda?</h4>
-                    <p class="mb-0 small">Konsultasikan kebutuhan Anda sekarang juga. Gratis survey & penawaran terbaik
+                    <h4 class="fw-bold mb-2 text-uppercase fs-5 fs-md-4">Siap mewujudkan proyek aluminium Anda?
+                    </h4>
+                    <p class="mb-0 small">Konsultasikan kebutuhan Anda sekarang juga. Gratis survey & penawaran
+                        terbaik
                         untuk Anda.</p>
                 </div>
                 <div
@@ -617,7 +503,8 @@
                             style="max-height:48px; filter: invert(1) brightness(2) saturate(0);">
                     </a>
                     <p class="small text-light-50">
-                        Spesialis aluminium & kaca untuk hunian, komersial, dan industri. Solusi modern, berkualitas,
+                        Spesialis aluminium & kaca untuk hunian, komersial, dan industri. Solusi modern,
+                        berkualitas,
                         dan terpercaya.
                     </p>
                     <div class="d-flex gap-2 mt-3">
@@ -642,7 +529,8 @@
                             <i class="ti ti-brand-youtube"></i>
                         </a>
                     </div>
-                    <div class="small text-light-50 mt-3">© <span id="year"></span> Adil Jaya Aluminium. All
+                    <div class="small text-light-50 mt-3">© <span id="year"></span> Adil Jaya Aluminium.
+                        All
                         Rights
                         Reserved.</div>
                 </div>
@@ -651,7 +539,8 @@
                     <h6 class="fw-semibold text-uppercase">Quick Link</h6>
                     <ul class="list-unstyled small mb-0">
                         <li><a class="text-decoration-none text-light-50" href="#">Beranda</a></li>
-                        <li><a class="text-decoration-none text-light-50" href="/about.html">Tentang Kami</a></li>
+                        <li><a class="text-decoration-none text-light-50" href="/about.html">Tentang Kami</a>
+                        </li>
                         <li><a class="text-decoration-none text-light-50" href="#">Produk</a></li>
                         <li><a class="text-decoration-none text-light-50" href="#">Kontak</a></li>
                     </ul>
@@ -660,9 +549,12 @@
                 <div class="col-6 col-md-2">
                     <h6 class="fw-semibold text-uppercase">Produk</h6>
                     <ul class="list-unstyled small mb-0">
-                        <li><a class="text-decoration-none text-light-50" href="#">Kusen Aluminium</a></li>
-                        <li><a class="text-decoration-none text-light-50" href="#">Pintu Aluminium</a></li>
-                        <li><a class="text-decoration-none text-light-50" href="#">Jendela Sliding</a></li>
+                        <li><a class="text-decoration-none text-light-50" href="#">Kusen Aluminium</a>
+                        </li>
+                        <li><a class="text-decoration-none text-light-50" href="#">Pintu Aluminium</a>
+                        </li>
+                        <li><a class="text-decoration-none text-light-50" href="#">Jendela Sliding</a>
+                        </li>
                         <li><a class="text-decoration-none text-light-50" href="#">Partisi Kaca</a></li>
                     </ul>
                 </div>
