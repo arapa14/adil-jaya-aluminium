@@ -19,8 +19,6 @@
         <!-- BEGIN PAGE BODY -->
         <div class="page-body">
             <div class="container-xl">
-                <x-notify />
-
                 <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -107,7 +105,7 @@
 
                                             @if (!empty($setting->logo))
                                                 <div class="mt-2">
-                                                    <img src="{{ asset('storage/' . $setting->logo) }}" alt="Logo"
+                                                    <img src="{{ Storage::url($setting->logo) }}" alt="Logo"
                                                         class="img-fluid" style="max-height: 60px;">
                                                 </div>
                                             @endif

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Log;
 
 class SettingController
 {
@@ -28,31 +29,62 @@ class SettingController
             'visson' => 'nullable|string',
             'mission' => 'nullable|string',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp',
-            'favicon' => 'nullable|image|mimes:png,ico,svg,webp,jpeg,jpg',
+            'favicon' => 'nullable|mimes:png,ico,svg,webp,jpeg,jpg',
         ]);
 
-        $setting = Setting::first() ?: new \App\Models\Setting();
+        $setting = Setting::first() ?: new Setting();
+        $dir = 'settings';
+        $newFiles = [];
 
-        // Handle logo upload
-        if ($request->hasFile('logo')) {
-            if ($setting->logo) {
-                Storage::disk('public')->delete($setting->logo);
+        try {
+            // Handle logo upload: store first, then delete old
+            if ($request->hasFile('logo')) {
+                $file = $request->file('logo');
+                $filename = time() . '_logo.' . $file->getClientOriginalExtension();
+
+                $path = $file->storeAs($dir, $filename, 'public');
+                $data['logo'] = $path;
+                $newFiles[] = $path;
+
+                // delete old logo if exists
+                if ($setting->logo && Storage::disk('public')->exists($setting->logo)) {
+                    Storage::disk('public')->delete($setting->logo);
+                }
             }
-            $data['logo'] = $request->file('logo')->store('settings', 'public');
-        }
 
-        // Handle favicon upload
-        if ($request->hasFile('favicon')) {
-            if ($setting->favicon) {
-                Storage::disk('public')->delete($setting->favicon);
+            // Handle favicon upload: store first, then delete old
+            if ($request->hasFile('favicon')) {
+                $file = $request->file('favicon');
+                $filename = time() . '_favicon.' . $file->getClientOriginalExtension();
+
+                $path = $file->storeAs($dir, $filename, 'public');
+                $data['favicon'] = $path;
+                $newFiles[] = $path;
+
+                // delete old favicon if exists
+                if ($setting->favicon && Storage::disk('public')->exists($setting->favicon)) {
+                    Storage::disk('public')->delete($setting->favicon);
+                }
             }
-            $data['favicon'] = $request->file('favicon')->store('settings', 'public');
+
+            $setting->fill($data);
+            $setting->save();
+
+            flash()->success('Pengaturan berhasil diperbarui.');
+            return back();
+        } catch (\Exception $e) {
+            // remove any newly uploaded files to avoid orphan files
+            foreach ($newFiles as $f) {
+                if (Storage::disk('public')->exists($f)) {
+                    Storage::disk('public')->delete($f);
+                }
+            }
+
+            // optional: log the error
+            Log::error('Failed updating settings: ' . $e->getMessage());
+
+            flash()->error('Terjadi kesalahan saat memperbarui pengaturan.');
+            return back()->withInput();
         }
-
-        $setting->fill($data);
-        $setting->save();
-
-        toastr()->success('Pengaturan berhasil diperbarui.');
-        return back();
     }
 }
