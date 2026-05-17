@@ -12,7 +12,7 @@
                             SEO Pages
                         </div>
                         <h2 class="page-title">
-                            Search Engine Optimization
+                            Search Engine Optimization - {{ $page->page_name }}
                         </h2>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                             <div class="card-body">
                                 <form action="{{ route('seo.update', $page->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-
+                                    @method('PUT')
                                     <div class="mb-3">
                                         <label class="form-label required">Nama Halaman</label>
                                         <input type="text" class="form-control" name="page_name" placeholder="Masukkan nama halaman" value="{{ $page->page_name }}">
@@ -79,7 +79,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">OG Image (1200 x 630 piksel) maks: 300kb</label>
+                                        <label class="form-label">OG Image (630 x 1200 piksel) maks: 300kb</label>
                                         <input type="file" class="form-control" name="og_image">
                                     </div>
 

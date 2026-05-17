@@ -6,9 +6,9 @@ use App\Models\Portfolio;
 use App\Models\Product;
 use App\Models\SeoPage;
 
-class HomeController
+class LandingController
 {
-    public function index() {
+    public function home() {
         $seo = SeoPage::where('slug', '/')->first();
         $data = Product::all();
         $portofolios = Portfolio::limit(4)->get();

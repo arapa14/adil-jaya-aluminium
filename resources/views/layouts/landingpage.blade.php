@@ -14,7 +14,7 @@
     <meta property="og:description" content="{{ $seo->og_description ?? 'Solusi aluminium berkualitas untuk hunian, kantor, dan bangunan komersial di area Tangerang & Jabodetabek.' }}">
     <meta property="og:image" content="{{ $seo->og_image ? Storage::url($seo->og_image) : asset('assets/frontend/images/logo.png') }}">
     <meta property="og:url" content="{{ url()->current() }}">
-    
+
     <link href="{{ asset('assets/frontend/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.35.0/tabler-icons.min.css"
         integrity="sha512-gzw5zNP2TRq+DKyAqZfDclaTG4dOrGJrwob2Fc8xwcJPDPVij0HowLIMZ8c1NefFM0OZZYUUUNoPfcoI5jqudw=="
