@@ -17,10 +17,10 @@
                     </div>
 
                     <div class="col-auto ms-auto d-print-none">
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreateProduct">
+                        <a href="{{ route('products.create') }}" class="btn btn-primary">
                             <x-icon-plus />
                             Tambah Product
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
             <div class="container-xl">
                 <div class="row row-cards">
                     <div class="col-md-12">
-                        <div class="card">
+                        {{-- <div class="card">
                             <div class="table-responsive">
                                 <table class="table table-vcenter card-table">
                                     <thead>
@@ -209,11 +209,30 @@
                             <div class="card-footer">
                                 {{ $products->links() }}
                             </div>
+                        </div> --}}
+
+                        <div class="card">
+                            <div class="table-responsive">
+                                <table class="table table-vcenter card-table" id="products-table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Thumbnail</th>
+                                            <th>Product</th>
+                                            <th>Category</th>
+                                            <th>Status</th>
+                                            <th width="80">Action</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- CATEGORY -->
 
                 </div>
+
+
 
             </div>
         </div>
@@ -222,7 +241,7 @@
     </div>
 
     <!-- CREATE PRODUCT MODAL -->
-    <div class="modal modal-blur fade" id="modalCreateProduct" tabindex="-1" role="dialog" aria-hidden="true">
+    {{-- <div class="modal modal-blur fade" id="modalCreateProduct" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -234,12 +253,14 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label required">Nama Produk</label>
-                            <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="Nama Produk">
+                            <input type="text" name="name" class="form-control" value="{{ old('name') }}"
+                                placeholder="Nama Produk">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Slug (opsional)</label>
-                            <input type="text" name="slug" class="form-control" value="{{ old('slug') }}" placeholder="slug-produk">
+                            <input type="text" name="slug" class="form-control" value="{{ old('slug') }}"
+                                placeholder="slug-produk">
                             <small class="form-hint">Jika dikosongkan, akan dibuat otomatis dari nama.</small>
                         </div>
 
@@ -256,9 +277,11 @@
                                                     <span class="form-selectgroup-check"></span>
                                                 </span>
                                                 <span class="form-selectgroup-label-content">
-                                                    <span class="mb-1 form-selectgroup-title strong">{{ $category->name }}</span>
-                                                    @if(!empty($category->description))
-                                                        <span class="d-block text-secondary">{{ $category->description }}</span>
+                                                    <span
+                                                        class="mb-1 form-selectgroup-title strong">{{ $category->name }}</span>
+                                                    @if (!empty($category->description))
+                                                        <span
+                                                            class="d-block text-secondary">{{ $category->description }}</span>
                                                     @endif
                                                 </span>
                                             </span>
@@ -289,7 +312,8 @@
 
                                     <div class="mb-3">
                                         <label class="form-label">Alt Image</label>
-                                        <input type="text" name="alt_image" class="form-control" value="{{ old('alt_image') }}" placeholder="Alt text untuk gambar">
+                                        <input type="text" name="alt_image" class="form-control"
+                                            value="{{ old('alt_image') }}" placeholder="Alt text untuk gambar">
                                     </div>
                                 </div>
 
@@ -304,7 +328,8 @@
 
                                     <div class="mb-3">
                                         <label class="form-label">Alt Preview</label>
-                                        <div class="text-muted small">Preview teks alt akan membantu aksesibilitas dan SEO gambar.</div>
+                                        <div class="text-muted small">Preview teks alt akan membantu aksesibilitas dan SEO
+                                            gambar.</div>
                                     </div>
                                 </div>
                             </div>
@@ -316,17 +341,20 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Meta Title</label>
-                                        <input type="text" name="meta_title" class="form-control" value="{{ old('meta_title') }}" placeholder="Meta title">
+                                        <input type="text" name="meta_title" class="form-control"
+                                            value="{{ old('meta_title') }}" placeholder="Meta title">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Meta Keywords</label>
-                                        <input type="text" name="meta_keywords" class="form-control" value="{{ old('meta_keywords') }}" placeholder="keyword1, keyword2">
+                                        <input type="text" name="meta_keywords" class="form-control"
+                                            value="{{ old('meta_keywords') }}" placeholder="keyword1, keyword2">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Focus Keyword</label>
-                                        <input type="text" name="focus_keyword" class="form-control" value="{{ old('focus_keyword') }}" placeholder="Focus keyword">
+                                        <input type="text" name="focus_keyword" class="form-control"
+                                            value="{{ old('focus_keyword') }}" placeholder="Focus keyword">
                                     </div>
                                 </div>
 
@@ -351,5 +379,49 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+    <script>
+        $(function() {
+
+            $('#products-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('products.api') }}",
+
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'thumbnail',
+                        name: 'thumbnail',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'product',
+                        name: 'name'
+                    },
+                    {
+                        data: 'category',
+                        name: 'category.name'
+                    },
+                    {
+                        data: 'status_badge',
+                        name: 'status'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    }
+                ]
+            });
+
+        });
+    </script>
 @endsection

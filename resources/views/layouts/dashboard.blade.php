@@ -16,6 +16,10 @@
     <link href="{{ asset('assets/backend/dist/css/tabler-payments.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/backend/dist/css/tabler-vendors.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/backend/dist/css/tabler-marketing.min.css') }}" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <!-- END PLUGINS STYLES -->
     <!-- BEGIN DEMO STYLES -->
     <link href="{{ asset('assets/backend/preview/css/demo.min.css') }}" rel="stylesheet" />

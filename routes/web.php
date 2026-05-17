@@ -24,8 +24,10 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::resource('seo', SEOController::class);
 
     Route::group(['prefix' => 'products'], function () {
-        Route::resources(['category' => ProductCategoryController::class]);
+        // API
+        Route::get('/products/api', [ProductController::class, 'indexApi'])->name('products.api');
 
-        Route::get('/products', [ProductController::class, 'index'])->name('products');
+        Route::resources(['category' => ProductCategoryController::class]);
+        Route::resources(['products' => ProductController::class]);
     });
 });

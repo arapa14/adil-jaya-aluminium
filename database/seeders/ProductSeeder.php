@@ -76,7 +76,7 @@ class ProductSeeder extends Seeder
 
                     'og_image' => $item['thumbnail'],
 
-                    'alt_image' => $item['name'],
+                    'alt_image' => $item['thumbnail'],
 
                     'created_by' => 1 // Assuming you want to set the created_by field to a specific user ID
                 ]);

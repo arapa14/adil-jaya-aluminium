@@ -41,7 +41,7 @@ return [
         'route_group' => 'products.*',
         'submenus' => [
             ['title' => 'Kategori Produk', 'route' => 'category.index'],
-            ['title' => 'Produk', 'route' => 'products'],
+            ['title' => 'Produk', 'route' => 'products.index'],
         ]
     ],
 ];
