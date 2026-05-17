@@ -50,7 +50,7 @@ class SeoPageSeeder extends Seeder
 
             [
                 'page_name' => 'About Us',
-                'slug' => 'about-us',
+                'slug' => 'about',
 
                 'meta_title' => 'Tentang Kami | Adil Jaya Aluminium',
 

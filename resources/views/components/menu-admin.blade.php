@@ -1,7 +1,16 @@
 <ul class="navbar-nav pt-lg-3">
     @foreach (config('menu') as $item)
-        @if ($item['is_dropdown'])
-            {{-- RENDER MENU DROPDOWN --}}
+
+        {{-- RENDER PEMBATAS / HEADER MENU --}}
+        @if (isset($item['is_header']) && $item['is_header'])
+            <li class="nav-item">
+                <div class="text-muted px-3 my-2" style="font-size: 0.75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;">
+                    {{ $item['title'] }}
+                </div>
+            </li>
+
+        {{-- RENDER MENU DROPDOWN --}}
+        @elseif ($item['is_dropdown'])
             @php
                 $isActive = false;
                 foreach ($item['submenus'] as $sub) {
@@ -15,7 +24,7 @@
             <li class="nav-item dropdown {{ $isActive ? 'active' : '' }}">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" role="button">
                     <span class="nav-link-icon">
-                        {!! $item['icon'] !!} {{-- Render SVG Manual di sini --}}
+                        {!! $item['icon'] !!}
                     </span>
                     <span class="nav-link-title">{{ $item['title'] }}</span>
                 </a>
@@ -28,16 +37,18 @@
                     @endforeach
                 </div>
             </li>
+
+        {{-- RENDER MENU SINGLE --}}
         @else
-            {{-- RENDER MENU SINGLE --}}
             <li class="nav-item {{ request()->routeIs($item['route']) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ Route::has($item['route']) ? route($item['route']) : '#' }}">
                     <span class="nav-link-icon">
-                        {!! $item['icon'] !!} {{-- Render SVG Manual di sini --}}
+                        {!! $item['icon'] !!}
                     </span>
                     <span class="nav-link-title">{{ $item['title'] }}</span>
                 </a>
             </li>
         @endif
+
     @endforeach
 </ul>
