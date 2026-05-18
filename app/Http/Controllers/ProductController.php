@@ -67,6 +67,7 @@ class ProductController
             ->addColumn('action', function ($product) {
                 $editUrl = route('products.edit', $product->id);
                 $deleteUrl = route('products.destroy', $product->id);
+                $modalId = 'modalDeleteProduct-' . $product->id;
 
                 return '
                     <div class="d-flex gap-2 justify-content-center">
@@ -74,15 +75,60 @@ class ProductController
                             <i class="ti ti-edit"></i>
                             Edit
                         </a>
-                        <form action="' . $deleteUrl . '" method="POST"
-                            onsubmit="return confirm(\'Yakin ingin menghapus product ini?\')">
-                            ' . csrf_field() . '
-                            ' . method_field('DELETE') . '
-                            <button type="submit" class="btn btn-danger">
-                                <i class="ti ti-trash"></i>
-                                Hapus
-                            </button>
-                        </form>
+
+                        <button type="button"
+                            class="btn btn-danger"
+                            data-bs-toggle="modal"
+                            data-bs-target="#' . $modalId . '">
+                            <i class="ti ti-trash"></i>
+                            Hapus
+                        </button>
+                    </div>
+
+                    <!-- Modal Delete -->
+                    <div class="modal modal-blur fade"
+                        id="' . $modalId . '"
+                        tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">
+                                        Hapus Product
+                                    </h5>
+
+                                    <button type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <p>
+                                        Apakah Anda yakin ingin menghapus product
+                                        <strong>' . e($product->name) . '</strong>?
+                                    </p>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button"
+                                        class="btn btn-secondary"
+                                        data-bs-dismiss="modal">
+                                        Batal
+                                    </button>
+
+                                    <form action="' . $deleteUrl . '" method="POST">
+                                        ' . csrf_field() . '
+                                        ' . method_field('DELETE') . '
+
+                                        <button type="submit"
+                                            class="btn btn-danger">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 ';
             })
@@ -243,6 +289,74 @@ class ProductController
 
             flash()->error('Terjadi kesalahan saat membuat produk.');
             return back()->withInput();
+        }
+    }
+
+    public function destroy(Product $product)
+    {
+        DB::beginTransaction();
+
+        try {
+
+            /*
+        |--------------------------------------------------------------------------
+        | Delete Thumbnail
+        |--------------------------------------------------------------------------
+        */
+            if ($product->thumbnail && Storage::disk('public')->exists($product->thumbnail)) {
+                Storage::disk('public')->delete($product->thumbnail);
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | Delete OG Image
+        |--------------------------------------------------------------------------
+        */
+            if ($product->og_image && Storage::disk('public')->exists($product->og_image)) {
+                Storage::disk('public')->delete($product->og_image);
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | Delete Gallery Images
+        |--------------------------------------------------------------------------
+        */
+            foreach ($product->images as $image) {
+
+                if ($image->image && Storage::disk('public')->exists($image->image)) {
+                    Storage::disk('public')->delete($image->image);
+                }
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | Delete Gallery Folder
+        |--------------------------------------------------------------------------
+        */
+            $galleryFolder = 'products/gallery/' . $product->slug;
+
+            if (Storage::disk('public')->exists($galleryFolder)) {
+                Storage::disk('public')->deleteDirectory($galleryFolder);
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | Delete Product
+        |--------------------------------------------------------------------------
+        */
+            $product->delete();
+            DB::commit();
+            flash()->success('Product berhasil dihapus.');
+            return back();
+        } catch (\Throwable $th) {
+
+            DB::rollBack();
+            Log::error('Gagal menghapus product', [
+                'message' => $th->getMessage(),
+                'product_id' => $product->id,
+            ]);
+            flash()->error('Terjadi kesalahan saat menghapus product.');
+            return back();
         }
     }
 }
