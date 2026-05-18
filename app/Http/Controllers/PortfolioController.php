@@ -330,8 +330,70 @@ class PortfolioController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Portfolio $portfolio)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            /*
+        |--------------------------------------------------------------------------
+        | Delete Thumbnail
+        |--------------------------------------------------------------------------
+        */
+            if ($portfolio->thumbnail && Storage::disk('public')->exists($portfolio->thumbnail)) {
+                Storage::disk('public')->delete($portfolio->thumbnail);
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | Delete OG Image
+        |--------------------------------------------------------------------------
+        */
+            if ($portfolio->og_image && Storage::disk('public')->exists($portfolio->og_image)) {
+                Storage::disk('public')->delete($portfolio->og_image);
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | Delete Gallery Images
+        |--------------------------------------------------------------------------
+        */
+            foreach ($portfolio->images as $image) {
+
+                if ($image->image && Storage::disk('public')->exists($image->image)) {
+                    Storage::disk('public')->delete($image->image);
+                }
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | Delete Gallery Folder
+        |--------------------------------------------------------------------------
+        */
+            $galleryFolder = 'portfolios/gallery/' . $portfolio->slug;
+
+            if (Storage::disk('public')->exists($galleryFolder)) {
+                Storage::disk('public')->deleteDirectory($galleryFolder);
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | Delete portfolio
+        |--------------------------------------------------------------------------
+        */
+            $portfolio->delete();
+            DB::commit();
+            flash()->success('Portofolio berhasil dihapus.');
+            return back();
+        } catch (\Throwable $th) {
+
+            DB::rollBack();
+            Log::error('Gagal menghapus portfolio', [
+                'message' => $th->getMessage(),
+                'portfolio_id' => $portfolio->id,
+            ]);
+            flash()->error('Terjadi kesalahan saat menghapus portfolio.');
+            return back();
+        }
     }
 }
