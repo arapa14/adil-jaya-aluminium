@@ -29,5 +29,6 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
 
         Route::resources(['category' => ProductCategoryController::class]);
         Route::resources(['products' => ProductController::class]);
+
     });
 });

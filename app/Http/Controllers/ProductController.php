@@ -292,6 +292,212 @@ class ProductController
         }
     }
 
+
+    public function edit(Product $product)
+    {
+        $categories = ProductCategory::latest()->get();
+        $product->load('images');
+
+        return view('admin.products.edit', compact('product', 'categories'));
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        /*
+    |--------------------------------------------------------------------------
+    | Validation
+    |--------------------------------------------------------------------------
+    */
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'category_id' => 'required|exists:product_categories,id',
+            'description' => 'required|string',
+            'status' => 'required|boolean',
+            /*
+        |--------------------------------------------------------------------------
+        | SEO
+        |--------------------------------------------------------------------------
+        */
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string',
+            'meta_keywords' => 'nullable|string',
+            'focus_keyword' => 'nullable|string|max:255',
+
+            /*
+        |--------------------------------------------------------------------------
+        | Images
+        |--------------------------------------------------------------------------
+        */
+            'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+            'og_image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+            'alt_image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+
+            /*
+        |--------------------------------------------------------------------------
+        | Gallery
+        |--------------------------------------------------------------------------
+        */
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpg,jpeg,png,webp',
+            'delete_images' => 'nullable|array',
+            'delete_images.*' => 'exists:product_images,id',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            /*
+        |--------------------------------------------------------------------------
+        | Thumbnail Update
+        |--------------------------------------------------------------------------
+        */
+            $thumbnailPath = $product->thumbnail;
+            if ($request->hasFile('thumbnail')) {
+                // delete old thumbnail
+                if (
+                    $product->thumbnail &&
+                    Storage::disk('public')->exists($product->thumbnail)
+                ) {
+                    Storage::disk('public')->delete($product->thumbnail);
+                }
+
+                // upload new thumbnail
+                $thumbnailPath = $request->file('thumbnail')
+                    ->store('products/thumbnails', 'public');
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | OG Image Update
+        |--------------------------------------------------------------------------
+        */
+            $ogImagePath = $product->og_image;
+            if ($request->hasFile('og_image')) {
+                // delete old og image
+                if (
+                    $product->og_image &&
+                    Storage::disk('public')->exists($product->og_image)
+                ) {
+                    Storage::disk('public')->delete($product->og_image);
+                }
+
+                // upload new image
+                $ogImagePath = $request->file('og_image')
+                    ->store('products/og', 'public');
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | Slug (Permanent)
+        |--------------------------------------------------------------------------
+        |
+        | Best practice:
+        | slug tidak berubah otomatis ketika nama berubah.
+        |
+        */
+            $slug = $product->slug;
+
+            /*
+        |--------------------------------------------------------------------------
+        | Update Product
+        |--------------------------------------------------------------------------
+        */
+            $product->update([
+                'category_id' => $validated['category_id'],
+                'name' => $validated['name'],
+                'slug' => $slug,
+                'description' => $validated['description'],
+                'thumbnail' => $thumbnailPath,
+                'meta_title' => $validated['meta_title']
+                    ?? $validated['name'],
+                'meta_description' => $validated['meta_description']
+                    ?? $validated['description'],
+                'meta_keywords' => $validated['meta_keywords']
+                    ?? $validated['name'],
+                'focus_keyword' => $validated['focus_keyword']
+                    ?? $validated['name'],
+                'og_image' => $ogImagePath,
+                'alt_image' => $validated['alt_image']
+                    ?? $validated['name'],
+                'status' => $validated['status'],
+            ]);
+
+            /*
+            |--------------------------------------------------------------------------
+            | Delete Selected Gallery Images
+            |--------------------------------------------------------------------------
+            */
+            if ($request->filled('delete_images')) {
+
+                $imagesToDelete = ProductImage::whereIn(
+                    'id',
+                    $request->delete_images
+                )
+                    ->where('product_id', $product->id)
+                    ->get();
+
+                foreach ($imagesToDelete as $image) {
+
+                    // hapus file storage
+                    if (
+                        $image->image &&
+                        Storage::disk('public')->exists($image->image)
+                    ) {
+                        Storage::disk('public')->delete($image->image);
+                    }
+
+                    // hapus row database
+                    $image->delete();
+                }
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | Upload New Gallery Images
+        |--------------------------------------------------------------------------
+        */
+            if ($request->hasFile('images')) {
+                $galleryFolder = 'products/gallery/' . $product->slug;
+
+                foreach ($request->file('images') as $index => $image) {
+                    if ($image->isValid()) {
+                        $path = $image->store(
+                            $galleryFolder,
+                            'public'
+                        );
+
+                        ProductImage::create([
+                            'product_id' => $product->id,
+
+                            'image' => $path,
+
+                            'alt_text' => $validated['name']
+                                . ' gallery image '
+                                . ($index + 1),
+                        ]);
+                    }
+                }
+            }
+
+            DB::commit();
+
+            flash()->success('Product berhasil diperbarui.');
+
+            return redirect()
+                ->route('products.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::error('Gagal update product', [
+                'message' => $th->getMessage(),
+                'product_id' => $product->id,
+            ]);
+
+            flash()->error('Terjadi kesalahan saat update product.');
+
+            return back()->withInput();
+        }
+    }
+
     public function destroy(Product $product)
     {
         DB::beginTransaction();
