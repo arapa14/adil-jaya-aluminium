@@ -3,11 +3,14 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\PortfolioCategoryController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SEOController;
 use App\Http\Controllers\SettingController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Models\Portfolio;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'home'])->name('home');
@@ -29,6 +32,10 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
 
         Route::resources(['category' => ProductCategoryController::class]);
         Route::resources(['products' => ProductController::class]);
+    });
 
+    Route::group(['prefix' => 'portfolios', 'as' => 'portfolios.'], function () {
+        Route::resources(['category' => PortfolioCategoryController::class]);
+        Route::resources(['portfolios' => PortfolioController::class]);
     });
 });
