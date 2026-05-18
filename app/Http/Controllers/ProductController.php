@@ -104,7 +104,8 @@ class ProductController
 
     public function store(Request $request)
     {
-        log::info("ini oke 0");
+        // Array untuk melacak file yang sukses di-upload (Perbaikan untuk blok catch)
+        $uploadedFiles = [];
         // 1. Jalankan Validasi
         try {
             $validated = $request->validate([
@@ -130,10 +131,6 @@ class ProductController
                 // 'alt_texts.*' => 'nullable|string|max:255',
             ]);
 
-            // Array untuk melacak file yang sukses di-upload (Perbaikan untuk blok catch)
-            $uploadedFiles = [];
-
-            log::info("ini oke 1");
             // Bungkus dengan Transaction agar jika galeri/image error, data Produk ikut di-rollback (tidak tersimpan setengah)
             return DB::transaction(function () use ($request, $validated, &$uploadedFiles) {
 
@@ -185,7 +182,6 @@ class ProductController
             | Create Product
             |--------------------------------------------------------------------------
             */
-                log::info("ini oke 2");
                 $product = Product::create([
                     'category_id'      => $validated['category_id'],
                     'name'             => $validated['name'],
