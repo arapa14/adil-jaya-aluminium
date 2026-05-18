@@ -314,17 +314,213 @@ class PortfolioController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Portfolio $portfolio)
     {
-        //
+        $categories = PortfolioCategory::latest()->get();
+        $portfolio->load('images');
+
+        return view('admin.portfolios.portfolios.edit', compact('portfolio', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Portfolio $portfolio)
     {
-        //
+        /*
+    |--------------------------------------------------------------------------
+    | Validation
+    |--------------------------------------------------------------------------
+    */
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'category_id' => 'required|exists:portfolio_categories,id',
+            'location' => 'required|string',
+            'description' => 'required|string',
+            'status' => 'required|boolean',
+            /*
+        |--------------------------------------------------------------------------
+        | SEO
+        |--------------------------------------------------------------------------
+        */
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string',
+            'meta_keywords' => 'nullable|string',
+            'focus_keyword' => 'nullable|string|max:255',
+
+            /*
+        |--------------------------------------------------------------------------
+        | Images
+        |--------------------------------------------------------------------------
+        */
+            'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+            'og_image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+            'alt_image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+
+            /*
+        |--------------------------------------------------------------------------
+        | Gallery
+        |--------------------------------------------------------------------------
+        */
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpg,jpeg,png,webp',
+            'delete_images' => 'nullable|array',
+            'delete_images.*' => 'exists:product_images,id',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            /*
+        |--------------------------------------------------------------------------
+        | Thumbnail Update
+        |--------------------------------------------------------------------------
+        */
+            $thumbnailPath = $portfolio->thumbnail;
+            if ($request->hasFile('thumbnail')) {
+                // delete old thumbnail
+                if (
+                    $portfolio->thumbnail &&
+                    Storage::disk('public')->exists($portfolio->thumbnail)
+                ) {
+                    Storage::disk('public')->delete($portfolio->thumbnail);
+                }
+
+                // upload new thumbnail
+                $thumbnailPath = $request->file('thumbnail')
+                    ->store('portfolios/thumbnails', 'public');
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | OG Image Update
+        |--------------------------------------------------------------------------
+        */
+            $ogImagePath = $portfolio->og_image;
+            if ($request->hasFile('og_image')) {
+                // delete old og image
+                if (
+                    $portfolio->og_image &&
+                    Storage::disk('public')->exists($portfolio->og_image)
+                ) {
+                    Storage::disk('public')->delete($portfolio->og_image);
+                }
+
+                // upload new image
+                $ogImagePath = $request->file('og_image')
+                    ->store('portfolios/og', 'public');
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | Slug (Permanent)
+        |--------------------------------------------------------------------------
+        |
+        | Best practice:
+        | slug tidak berubah otomatis ketika nama berubah.
+        |
+        */
+            $slug = $portfolio->slug;
+
+            /*
+        |--------------------------------------------------------------------------
+        | Update portfolio
+        |--------------------------------------------------------------------------
+        */
+            $portfolio->update([
+                'category_id' => $validated['category_id'],
+                'title' => $validated['title'],
+                'slug' => $slug,
+                'description' => $validated['description'],
+                'thumbnail' => $thumbnailPath,
+                'meta_title' => $validated['meta_title']
+                    ?? $validated['title'],
+                'meta_description' => $validated['meta_description']
+                    ?? $validated['description'],
+                'meta_keywords' => $validated['meta_keywords']
+                    ?? $validated['title'],
+                'focus_keyword' => $validated['focus_keyword']
+                    ?? $validated['title'],
+                'og_image' => $ogImagePath,
+                'alt_image' => $validated['alt_image']
+                    ?? $validated['title'],
+                'status' => $validated['status'],
+            ]);
+
+            /*
+            |--------------------------------------------------------------------------
+            | Delete Selected Gallery Images
+            |--------------------------------------------------------------------------
+            */
+            if ($request->filled('delete_images')) {
+
+                $imagesToDelete = PortfolioImage::whereIn(
+                    'id',
+                    $request->delete_images
+                )
+                    ->where('portfolio_id', $portfolio->id)
+                    ->get();
+
+                foreach ($imagesToDelete as $image) {
+
+                    // hapus file storage
+                    if (
+                        $image->image &&
+                        Storage::disk('public')->exists($image->image)
+                    ) {
+                        Storage::disk('public')->delete($image->image);
+                    }
+
+                    // hapus row database
+                    $image->delete();
+                }
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | Upload New Gallery Images
+        |--------------------------------------------------------------------------
+        */
+            if ($request->hasFile('images')) {
+                $galleryFolder = 'portfolios/gallery/' . $portfolio->slug;
+
+                foreach ($request->file('images') as $index => $image) {
+                    if ($image->isValid()) {
+                        $path = $image->store(
+                            $galleryFolder,
+                            'public'
+                        );
+
+                        PortfolioImage::create([
+                            'portfolio_id' => $portfolio->id,
+
+                            'image' => $path,
+
+                            'alt_text' => $validated['title']
+                                . ' gallery image '
+                                . ($index + 1),
+                        ]);
+                    }
+                }
+            }
+
+            DB::commit();
+
+            flash()->success('Portofolio berhasil diperbarui.');
+
+            return redirect()
+                ->route('portfolios.portfolios.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::error('Gagal update portofolio', [
+                'message' => $th->getMessage(),
+                'portfolio_id' => $portfolio->id,
+            ]);
+
+            flash()->error('Terjadi kesalahan saat update portofolio.');
+
+            return back()->withInput();
+        }
     }
 
     /**
