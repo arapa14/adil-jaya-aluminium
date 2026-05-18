@@ -7,8 +7,15 @@
                 <div class="row g-2 align-items-center">
                     <div class="col">
                         <h2 class="page-title">
-                            Create Product
+                            Tambah Produk
                         </h2>
+                    </div>
+
+                    <div class="col-auto ms-auto d-print-none">
+                        <a href="{{ route('products.index') }}" class="btn btn-primary">
+                            <x-icon-back />
+                            Kembali
+                        </a>
                     </div>
                 </div>
             </div>
@@ -32,10 +39,11 @@
 
                                     <div class="mb-3">
                                         <label class="form-label">
-                                            Slug
+                                            Slug (Opsional)
                                         </label>
                                         <input type="text" name="slug" class="form-control"
                                             value="{{ old('slug') }}">
+                                        <small class="form-hint">Jika dikosongkan, akan dibuat otomatis dari nama.</small>
                                     </div>
 
                                     <div class="mb-3">
@@ -53,9 +61,9 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    
+
                                     <div class="mb-3">
-                                        <label class="form-label">
+                                        <label class="form-label required">
                                             Description
                                         </label>
                                         <textarea name="description" rows="8" class="form-control">{{ old('description') }}</textarea>
@@ -76,6 +84,7 @@
                                             Meta Title
                                         </label>
                                         <input type="text" name="meta_title" class="form-control">
+                                        <small class="form-hint">Jika dikosongkan, akan diambil dari nama.</small>
                                     </div>
 
                                     <div class="mb-3">
@@ -83,6 +92,7 @@
                                             Meta Description
                                         </label>
                                         <textarea name="meta_description" rows="4" class="form-control"></textarea>
+                                        <small class="form-hint">Jika dikosongkan, akan diambil dari deskripsi..</small>
                                     </div>
 
                                     <div class="mb-3">
@@ -90,6 +100,7 @@
                                             Meta Keywords
                                         </label>
                                         <textarea name="meta_keywords" rows="3" class="form-control"></textarea>
+                                        <small class="form-hint">Jika dikosongkan, akan diambil dari nama.</small>
                                     </div>
 
                                     <div class="mb-3">
@@ -97,6 +108,7 @@
                                             Focus Keyword
                                         </label>
                                         <input type="text" name="focus_keyword" class="form-control">
+                                        <small class="form-hint">Jika dikosongkan, akan diambil dari nama.</small>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +119,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="mb-3">
-                                        <label class="form-label">
+                                        <label class="form-label required">
                                             Thumbnail
                                         </label>
                                         <input type="file" name="thumbnail" class="form-control">
@@ -118,17 +130,19 @@
                                             OG Image
                                         </label>
                                         <input type="file" name="og_image" class="form-control">
+                                        <small class="form-hint">Jika dikosongkan, akan digunakan thumbnail.</small>
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">
                                             Alt Image
                                         </label>
-                                        <input type="file" name="alt_image" class="form-control">
+                                        <input type="file" name="alt_image" class="form-control"
+                                            value="{{ old('alt_image') }}">
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">
+                                        <label class="form-label required">
                                             Gallery Images
                                         </label>
                                         <input type="file" name="images[]" multiple class="form-control">

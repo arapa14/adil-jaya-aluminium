@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('meta_keywords');
             $table->string('focus_keyword');
             $table->string('og_image');
-            $table->string('alt_image');
+            $table->string('alt_image')->nullable();
             $table->enum('status', [true, false])->default(true);
             $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();

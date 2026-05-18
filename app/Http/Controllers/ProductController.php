@@ -104,33 +104,36 @@ class ProductController
 
     public function store(Request $request)
     {
+        log::info("ini oke 0");
         // 1. Jalankan Validasi
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'category_id' => 'required|exists:product_categories,id',
-            'status' => 'required|boolean',
-
-            'slug' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-
-            'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp',
-            'og_image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
-
-            'meta_title' => 'nullable|string|max:255',
-            'meta_description' => 'nullable|string',
-            'meta_keywords' => 'nullable|string',
-            'focus_keyword' => 'nullable|string|max:255',
-
-            'alt_image' => 'nullable|string|max:255',
-
-            'images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp',
-            'alt_texts.*' => 'nullable|string|max:255',
-        ]);
-
-        // Array untuk melacak file yang sukses di-upload (Perbaikan untuk blok catch)
-        $uploadedFiles = [];
-
         try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'category_id' => 'required|exists:product_categories,id',
+                'status' => 'required|boolean',
+
+                'slug' => 'nullable|string|max:255',
+                'description' => 'required|string',
+
+                'thumbnail' => 'required|image|mimes:jpg,jpeg,png,webp',
+                'og_image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+
+                'meta_title' => 'nullable|string|max:255',
+                'meta_description' => 'nullable|string',
+                'meta_keywords' => 'nullable|string',
+                'focus_keyword' => 'nullable|string|max:255',
+
+                'alt_image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+
+                'images' => 'required|array|min:1',
+                'images.*' => 'image|mimes:jpg,jpeg,png,webp',
+                // 'alt_texts.*' => 'nullable|string|max:255',
+            ]);
+
+            // Array untuk melacak file yang sukses di-upload (Perbaikan untuk blok catch)
+            $uploadedFiles = [];
+
+            log::info("ini oke 1");
             // Bungkus dengan Transaction agar jika galeri/image error, data Produk ikut di-rollback (tidak tersimpan setengah)
             return DB::transaction(function () use ($request, $validated, &$uploadedFiles) {
 
@@ -173,7 +176,7 @@ class ProductController
             */
                 $ogImagePath = null;
                 if ($request->hasFile('og_image')) {
-                    $ogImagePath = $request->file('og_image')->store('products/og-images', 'public');
+                    $ogImagePath = $request->file('og_image')->store('products/og', 'public');
                     $uploadedFiles[] = $ogImagePath; // Catat file terpilih
                 }
 
@@ -182,37 +185,44 @@ class ProductController
             | Create Product
             |--------------------------------------------------------------------------
             */
+                log::info("ini oke 2");
                 $product = Product::create([
                     'category_id'      => $validated['category_id'],
                     'name'             => $validated['name'],
                     'slug'             => $slug,
-                    'description'      => $validated['description'] ?? null,
+                    'description'      => $validated['description'],
                     'thumbnail'        => $thumbnailPath,
-                    'meta_title'       => $validated['meta_title'] ?? null,
-                    'meta_description' => $validated['meta_description'] ?? null,
-                    'meta_keywords'    => $validated['meta_keywords'] ?? null,
-                    'focus_keyword'    => $validated['focus_keyword'] ?? null,
-                    'og_image'         => $ogImagePath,
+                    'meta_title'       => $validated['meta_title'] ?? $validated['name'],
+                    'meta_description' => $validated['meta_description'] ?? $validated['description'],
+                    'meta_keywords'    => $validated['meta_keywords'] ?? $validated['name'],
+                    'focus_keyword'    => $validated['focus_keyword'] ?? $validated['name'],
+                    'og_image'         => $ogImagePath ?? $thumbnailPath,
                     'alt_image'        => $validated['alt_image'] ?? null,
                     'status'           => $validated['status'],
                     'created_by'       => Auth::user()->id,
                 ]);
-
+                log::info("ini oke 3");
                 /*
             |--------------------------------------------------------------------------
             | Upload Gallery Images
             |--------------------------------------------------------------------------
             */
                 if ($request->hasFile('images')) {
+                    $productFolder = Str::slug($validated['name']);
                     foreach ($request->file('images') as $index => $image) {
                         if ($image->isValid()) {
-                            $path = $image->store('products/gallery', 'public');
-                            $uploadedFiles[] = $path; // Catat file terpilih
+                            $path = $image->store(
+                                'products/gallery/' . $productFolder,
+                                'public'
+                            );
+
+                            $uploadedFiles[] = $path;
 
                             ProductImage::create([
                                 'product_id' => $product->id,
                                 'image'      => $path,
-                                'alt_text'   => $validated['alt_texts'][$index] ?? $validated['name'] . ' ' . $index,
+                                'alt_text'   => $validated['alt_texts'][$index]
+                                    ?? $validated['name'] . ' ' . ($index + 1),
                             ]);
                         }
                     }
@@ -235,7 +245,7 @@ class ProductController
                 'user_id'   => Auth::user()->id
             ]);
 
-            flash()->error('Terjadi kesalahan saat memperbarui pengaturan.');
+            flash()->error('Terjadi kesalahan saat membuat produk.');
             return back()->withInput();
         }
     }
