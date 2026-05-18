@@ -34,6 +34,9 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     });
 
     Route::group(['prefix' => 'portfolios', 'as' => 'portfolios.'], function () {
+        // API
+        Route::get('/portfolios/api', [PortfolioController::class, 'indexApi'])->name('portfolios.api');
+
         Route::resources(['category' => PortfolioCategoryController::class]);
         Route::resources(['portfolios' => PortfolioController::class]);
     });
