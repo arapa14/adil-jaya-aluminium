@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
                 'hero_image',
                 'whatsapp',
                 'address',
+                'email',
             ])
         ) {
             View::share([
