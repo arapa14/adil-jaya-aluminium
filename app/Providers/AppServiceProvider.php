@@ -41,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
                 'hero_image' => Setting::value('hero_image'),
                 'whatsapp' => Setting::value('whatsapp'),
                 'address' => Setting::value('address'),
+                'email' => Setting::value('email'),
             ]);
         }
     }

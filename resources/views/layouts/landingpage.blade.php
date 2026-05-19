@@ -7,12 +7,16 @@
     <title>Adil Jaya Aluminium - Solusi Aluminium Terpercaya</title>
     <link rel="icon" type="image/x-icon" href="{{ Storage::url($favicon) }}" />
     <meta name="title" content="{{ $seo->meta_title ?? 'Adil Jaya Aluminium - Solusi Aluminium Terpercaya' }}">
-    <meta name="description" content="{{ $seo->meta_description ?? 'Solusi aluminium berkualitas untuk hunian, kantor, dan bangunan komersial di area Tangerang & Jabodetabek.' }}">
-    <meta name="keywords" content="{{ $seo->meta_keywords ?? 'aluminium, kaca, ACP, canopy, partisi, railing, Tangerang, Jabodetabek' }}">
+    <meta name="description"
+        content="{{ $seo->meta_description ?? 'Solusi aluminium berkualitas untuk hunian, kantor, dan bangunan komersial di area Tangerang & Jabodetabek.' }}">
+    <meta name="keywords"
+        content="{{ $seo->meta_keywords ?? 'aluminium, kaca, ACP, canopy, partisi, railing, Tangerang, Jabodetabek' }}">
     <meta name="robots" content="{{ $seo->robots_index }},{{ $seo->robots_follow }}">
     <meta property="og:title" content="{{ $seo->og_title ?? 'Adil Jaya Aluminium - Solusi Aluminium Terpercaya' }}">
-    <meta property="og:description" content="{{ $seo->og_description ?? 'Solusi aluminium berkualitas untuk hunian, kantor, dan bangunan komersial di area Tangerang & Jabodetabek.' }}">
-    <meta property="og:image" content="{{ $seo->og_image ? Storage::url($seo->og_image) : asset('assets/frontend/images/logo.png') }}">
+    <meta property="og:description"
+        content="{{ $seo->og_description ?? 'Solusi aluminium berkualitas untuk hunian, kantor, dan bangunan komersial di area Tangerang & Jabodetabek.' }}">
+    <meta property="og:image"
+        content="{{ $seo->og_image ? Storage::url($seo->og_image) : asset('assets/frontend/images/logo.png') }}">
     <meta property="og:url" content="{{ url()->current() }}">
 
     <link href="{{ asset('assets/frontend/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
@@ -49,22 +53,28 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 px-3 gap-4 text-uppercase">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="{{ url('/') }}">Beranda</a>
+                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page"
+                            href="{{ url('/') }}">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">Tentang Kami</a>
+                        <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
+                            href="{{ route('about') }}">Tentang Kami</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('products*') ? 'active' : '' }}" href="{{ route('products') }}">Produk Kami</a>
+                        <a class="nav-link {{ request()->routeIs('products*') ? 'active' : '' }}"
+                            href="{{ route('products') }}">Produk Kami</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('portfolio*') ? 'active' : '' }}" href="{{ route('portfolio') }}">Portofolio</a>
+                        <a class="nav-link {{ request()->routeIs('portfolio*') ? 'active' : '' }}"
+                            href="{{ route('portfolio') }}">Portofolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('services*') ? 'active' : '' }}" href="{{ route('services') }}">Layanan</a>
+                        <a class="nav-link {{ request()->routeIs('services*') ? 'active' : '' }}"
+                            href="{{ route('services') }}">Layanan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('contact*') ? 'active' : '' }}" href="{{ route('contact') }}">Kontak</a>
+                        <a class="nav-link {{ request()->routeIs('contact*') ? 'active' : '' }}"
+                            href="{{ route('contact') }}">Kontak</a>
                     </li>
                 </ul>
                 <a class="btn btn-primary px-3 ms-3 text-uppercase" href="#" role="button"><i
@@ -112,45 +122,40 @@
                             <i class="ti ti-brand-youtube"></i>
                         </a>
                     </div>
-                    <div class="small text-light-50 mt-3">© <span id="year"></span> Adil Jaya Aluminium.
-                        All
-                        Rights
-                        Reserved.</div>
                 </div>
 
                 <div class="col-6 col-md-2">
                     <h6 class="fw-semibold text-uppercase">Quick Link</h6>
                     <ul class="list-unstyled small mb-0">
-                        <li><a class="text-decoration-none text-light-50" href="#">Beranda</a></li>
-                        <li><a class="text-decoration-none text-light-50" href="/about.html">Tentang Kami</a>
+                        <li><a class="text-decoration-none text-white" href="#">Beranda</a></li>
+                        <li><a class="text-decoration-none text-white" href="/about.html">Tentang Kami</a>
                         </li>
-                        <li><a class="text-decoration-none text-light-50" href="#">Produk</a></li>
-                        <li><a class="text-decoration-none text-light-50" href="#">Kontak</a></li>
+                        <li><a class="text-decoration-none text-white" href="#">Produk</a></li>
+                        <li><a class="text-decoration-none text-white" href="#">Kontak</a></li>
                     </ul>
                 </div>
 
                 <div class="col-6 col-md-2">
                     <h6 class="fw-semibold text-uppercase">Produk</h6>
                     <ul class="list-unstyled small mb-0">
-                        <li><a class="text-decoration-none text-light-50" href="#">Kusen Aluminium</a>
+                        <li><a class="text-decoration-none text-white" href="#">Kusen Aluminium</a>
                         </li>
-                        <li><a class="text-decoration-none text-light-50" href="#">Pintu Aluminium</a>
+                        <li><a class="text-decoration-none text-white" href="#">Pintu Aluminium</a>
                         </li>
-                        <li><a class="text-decoration-none text-light-50" href="#">Jendela Sliding</a>
+                        <li><a class="text-decoration-none text-white" href="#">Jendela Sliding</a>
                         </li>
-                        <li><a class="text-decoration-none text-light-50" href="#">Partisi Kaca</a></li>
+                        <li><a class="text-decoration-none text-white" href="#">Partisi Kaca</a></li>
                     </ul>
                 </div>
 
                 <div class="col-md-3">
                     <h6 class="fw-semibold text-uppercase">Kontak Kami</h6>
                     <address class="small text-light-50 mb-2">
-                        <i class="ti ti-map-pin me-2"></i>Jl. Pintu Air RT03/RW02, Karang Tengah, Tangerang<br>
+                        <i class="ti ti-map-pin me-2"></i>{{ $address }}<br>
                     </address>
                     <div class="small text-light-50">
-                        <div><i class="ti ti-phone me-2"></i>0821-6904-9991</div>
-                        <div><i class="ti ti-mail me-2"></i>cahyadi642@gmail.com</div>
-                        <div class="mt-1">Senin - Sabtu: 08.00 - 17.00</div>
+                        <div><i class="ti ti-phone me-2"></i>{{ $whatsapp }}</div>
+                        <div><i class="ti ti-mail me-2"></i>{{ $email }}</div>
                     </div>
                 </div>
 
@@ -172,9 +177,12 @@
                     <a href="#" class="text-decoration-none text-light-50">Syarat & Ketentuan</a>
                 </div>
                 <div class="col-md-6 text-center text-md-end small text-light-50">
-                    Hak Cipta dilindungi Undang-undang &copy; 2026
-                </div>
+                    © <span id="year"></span> Adil Jaya Aluminium.
+                    All
+                    Rights
+                    Reserved.</div>
             </div>
+        </div>
         </div>
 
         <script>
