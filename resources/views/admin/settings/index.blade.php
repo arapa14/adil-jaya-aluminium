@@ -249,12 +249,16 @@
                         aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Konfirmasi</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
                                 <div class="modal-body">
-                                    <h2>Konfirmasi!</h2>
-                                    <p>Apakah anda yakin ingin mengubah pengaturan aplikasi?</p>
+                                    <p>Apakah Anda yakin ingin mengubah pengaturan ini?</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-1" data-bs-dismiss="modal">Batal</button>
                                     <button type="submit" class="btn btn-primary">Ya, Ubah Pengaturan</button>
                                 </div>
                             </div>

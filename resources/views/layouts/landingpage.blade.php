@@ -27,8 +27,7 @@
     <div class="top-bar d-none d-md-block">
         <div class="container">
             <div class="d-flex justify-content-between">
-                <div class="p-2"><i class="ti ti-map-pin"></i> Jl. Pintu Air RT03/RW02, Karang Tengah, Tangerang,
-                    Banten
+                <div class="p-2"><i class="ti ti-map-pin"></i> {{ $address }}
                 </div>
                 <div class="p-2"><i class="ti ti-clock"></i> Senin - Sabtu: 08.00 - 17.00</div>
             </div>
@@ -50,22 +49,22 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 px-3 gap-4 text-uppercase">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Beranda</a>
+                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="{{ url('/') }}">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('about') }}">Tentang Kami</a>
+                        <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">Tentang Kami</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products') }}">Produk Kami</a>
+                        <a class="nav-link {{ request()->routeIs('products*') ? 'active' : '' }}" href="{{ route('products') }}">Produk Kami</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('portfolio') }}">Portofolio</a>
+                        <a class="nav-link {{ request()->routeIs('portfolio*') ? 'active' : '' }}" href="{{ route('portfolio') }}">Portofolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('services') }}">Layanan</a>
+                        <a class="nav-link {{ request()->routeIs('services*') ? 'active' : '' }}" href="{{ route('services') }}">Layanan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('contact') }}">Kontak</a>
+                        <a class="nav-link {{ request()->routeIs('contact*') ? 'active' : '' }}" href="{{ route('contact') }}">Kontak</a>
                     </li>
                 </ul>
                 <a class="btn btn-primary px-3 ms-3 text-uppercase" href="#" role="button"><i
@@ -184,7 +183,7 @@
     </footer>
 
     <!-- CTA Whatsapp -->
-    <a href="https://wa.me/6282169049991"
+    <a href="https://wa.me/{{ $whatsapp }}"
         class="btn-floating d-flex align-items-center justify-content-center text-decoration-none" target="_blank"
         rel="noopener noreferrer" aria-label="Hubungi via WhatsApp" title="Hubungi via WhatsApp">
         <i class="ti ti-brand-whatsapp text-white fs-2"></i>

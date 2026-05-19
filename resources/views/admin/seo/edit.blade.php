@@ -122,8 +122,11 @@
                                             placeholder='{"@@context":"https://schema.org", ...}'>{{ old('schema_markup') }}</textarea>
                                     </div>
 
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#modalChangePage-{{ $page->id }}">Simpan Perubahan</button>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#modalChangePage-{{ $page->id }}"><x-icon-edit/> Simpan
+                                            Perubahan</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

@@ -75,24 +75,24 @@
                     Dengan pengalaman bertahun-tahun, kami siap membantu mewujudkan hunian atau bangunan impian Anda
                     menjadi kenyataan.
                 </p>
-                <a href="#" class="btn btn-primary px-3 text-uppercase">Selengkapnya Tentang Kami</a>
+                <a href="{{ route('about') }}" class="btn btn-primary px-3 text-uppercase">Selengkapnya Tentang Kami</a>
             </div>
             <div class="col-md-7 col-12">
                 <div class="row g-3 align-items-stretch h-100">
                     <div class="col-12 col-md-8 d-flex">
                         <div class="ratio ratio-1x1 rounded-4 overflow-hidden flex-fill">
-                            <img src="assets/img/hero-section.jpeg" alt="Large product" class="w-100 h-100"
+                            <img src="{{ Storage::url($hero_image) }}" alt="Large product" class="w-100 h-100"
                                 style="object-fit:cover;">
                         </div>
                     </div>
 
                     <div class="col-12 col-md-4 d-flex flex-column gap-3">
                         <div class="ratio ratio-1x1 rounded-4 overflow-hidden">
-                            <img src="assets/img/hero-section.jpeg" alt="Product 1" class="w-100 h-100"
+                            <img src="{{ Storage::url($hero_image) }}" alt="Product 1" class="w-100 h-100"
                                 style="object-fit:cover;">
                         </div>
                         <div class="ratio ratio-1x1 rounded-4 overflow-hidden">
-                            <img src="assets/img/hero-section.jpeg" alt="Product 2" class="w-100 h-100"
+                            <img src="{{ Storage::url($hero_image) }}" alt="Product 2" class="w-100 h-100"
                                 style="object-fit:cover;">
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                     <p class="text-light">Berbagai proyek telah kami selesaikan dengan hasil rapi, presisi, dan
                         sesuai
                         kebutuhan klien.</p>
-                    <a href="#" class="btn btn-outline-light text-uppercase my-4">Lihat Semua
+                    <a href="{{ route('portfolio') }}" class="btn btn-outline-light text-uppercase my-4">Lihat Semua
                         Portofolio</a>
                 </div>
 
@@ -165,7 +165,7 @@
                                             alt="Rumah Tinggal Modern" class="w-100 h-100" style="object-fit:cover;">
                                     </div>
                                     <div class="card-body">
-                                        <h6 class="mb-1 fw-bold">{{ $portofolio->name }}</h6>
+                                        <h6 class="mb-1 fw-bold">{{ $portofolio->title }}</h6>
                                         <small class="text-secondary">{{ $portofolio->location }}</small>
                                     </div>
                                 </div>
@@ -401,7 +401,7 @@
                 </div>
                 <div
                     class="col-12 col-md-5 p-3 p-md-4 d-flex flex-column flex-md-row gap-2 justify-content-center justify-content-md-end align-items-center">
-                    <a href="https://wa.me/6282169049991" target="_blank" rel="noopener"
+                    <a href="https://wa.me/{{ $whatsapp }}" target="_blank" rel="noopener"
                         class="btn btn-light d-flex py-2 align-items-center gap-2 px-4 w-100 w-md-auto justify-content-center"
                         aria-label="Hubungi WhatsApp">
                         <i class="ti ti-brand-whatsapp"></i>

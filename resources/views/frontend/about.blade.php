@@ -1,6 +1,6 @@
 @extends('layouts.landingpage')
 @section('content')
-    <section class="bg-dark text-white" style="background: url({{ asset('assets/frontend/assets/img/hero-section.jpeg') }}) center/cover no-repeat;">
+    <section class="bg-dark text-white" style="background: url({{ Storage::url($hero_image) }}) center/cover no-repeat;">
         <div class="bg-dark bg-opacity-75">
             <div class="container py-5">
                 <nav aria-label="breadcrumb" class="mb-3">
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <a href="https://wa.me/6282169049991" target="_blank" rel="noopener" class="btn btn-primary px-4 py-2">
+                    <a href="https://wa.me/{{ $whatsapp }}" target="_blank" rel="noopener" class="btn btn-primary px-4 py-2">
                         Konsultasi Gratis
                     </a>
                 </div>
@@ -85,7 +85,7 @@
 
             <div class="col-12 col-md-5">
                 <div class="card rounded-4 shadow-sm overflow-hidden">
-                    <img src="./assets/img/hero-section.jpeg" class="img-fluid w-100" alt="Proyek Adil Jaya Aluminium"
+                    <img src="{{ Storage::url($hero_image) }}" class="img-fluid w-100" alt="Proyek Adil Jaya Aluminium"
                         style="object-fit:cover; height:100%;">
                 </div>
             </div>

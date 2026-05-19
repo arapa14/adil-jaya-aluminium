@@ -28,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
                 'favicon' => Setting::value('favicon'),
                 'logo' => Setting::value('logo'),
                 'hero_image' => Setting::value('hero_image'),
+                'whatsapp' => Setting::value('whatsapp'),
+                'address' => Setting::value('address')
             ]);
         }
     }
