@@ -73,7 +73,7 @@ class SEOController
 
             // handle og_image upload
             if ($request->hasFile('og_image')) {
-                $path = $request->file('og_image')->store('seo_images', 'public');
+                $path = $request->file('og_image')->store('seo', 'public');
                 $data['og_image'] = $path;
             }
 
@@ -154,7 +154,7 @@ class SEOController
 
             // handle og_image upload
             if ($request->hasFile('og_image')) {
-                $path = $request->file('og_image')->store('seo_images', 'public');
+                $path = $request->file('og_image')->store('seo', 'public');
 
                 // delete old image if exists
                 if ($page->og_image && \Illuminate\Support\Facades\Storage::disk('public')->exists($page->og_image)) {
