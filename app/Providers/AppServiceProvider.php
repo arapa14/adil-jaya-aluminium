@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
             View::share([
                 'favicon' => Setting::value('favicon'),
                 'logo' => Setting::value('logo'),
+                'hero_image' => Setting::value('hero_image'),
             ]);
         }
     }

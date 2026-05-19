@@ -30,6 +30,7 @@ class SettingController
             'mission' => 'nullable|string',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp',
             'favicon' => 'nullable|mimes:png,ico,svg,webp,jpeg,jpg',
+            'hero_image' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp',
         ]);
 
         $setting = Setting::first() ?: new Setting();
@@ -64,6 +65,21 @@ class SettingController
                 // delete old favicon if exists
                 if ($setting->favicon && Storage::disk('public')->exists($setting->favicon)) {
                     Storage::disk('public')->delete($setting->favicon);
+                }
+            }
+
+            // Handle hero_image upload: store first, then delete old
+            if ($request->hasFile('hero_image')) {
+                $file = $request->file('hero_image');
+                $filename = time() . '_hero.' . $file->getClientOriginalExtension();
+
+                $path = $file->storeAs($dir, $filename, 'public');
+                $data['hero_image'] = $path;
+                $newFiles[] = $path;
+
+                // delete old hero_image if exists
+                if ($setting->hero_image && Storage::disk('public')->exists($setting->hero_image)) {
+                    Storage::disk('public')->delete($setting->hero_image);
                 }
             }
 

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('mission');
             $table->string('logo');
             $table->string('favicon');
+            $table->string('hero_image');
             $table->timestamps();
         });
     }

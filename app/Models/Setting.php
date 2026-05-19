@@ -21,5 +21,6 @@ class Setting extends Model
         'mission',
         'logo',
         'favicon',
+        'hero_image'
     ];
 }

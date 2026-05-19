@@ -34,6 +34,8 @@ class SettingSeeder extends Seeder
             'logo' => 'settings/logo.png',
 
             'favicon' => 'settings/favicon.png',
+
+            'hero_image' => 'settings/hero-section.jpeg'
         ]);
     }
 }

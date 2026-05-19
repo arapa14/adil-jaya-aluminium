@@ -1,7 +1,7 @@
 @extends('layouts.landingpage')
 @section('content')
 <!-- Start Hero -->
-    <div class="p-5 py-5 text-white font-poppins" id="hero">
+    <div class="p-5 py-5 text-white font-poppins" id="hero" style="background-image:url({{ Storage::url($hero_image) }}); background-size:cover; background-position:center; position:relative; overflow:hidden; height:35rem;">
         <div class="container col">
             <div class="col-md-6">
                 <h1 class="display-5 fw-bold">SOLUSI ALUMINIUM MODERN UNTUK BANGUNAN ANDA</h1>

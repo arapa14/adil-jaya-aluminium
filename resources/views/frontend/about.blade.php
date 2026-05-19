@@ -1,7 +1,6 @@
 @extends('layouts.landingpage')
 @section('content')
-    !-- Start About Hero / Breadcrumb -->
-    <section class="bg-dark text-white" style="background: url('./assets/img/hero-section.jpeg') center/cover no-repeat;">
+    <section class="bg-dark text-white" style="background: url({{ asset('assets/frontend/assets/img/hero-section.jpeg') }}) center/cover no-repeat;">
         <div class="bg-dark bg-opacity-75">
             <div class="container py-5">
                 <nav aria-label="breadcrumb" class="mb-3">

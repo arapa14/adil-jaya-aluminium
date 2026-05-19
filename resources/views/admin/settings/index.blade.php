@@ -131,6 +131,25 @@
                                             <input type="file" name="favicon" class="mb-2 form-control">
                                         </div>
                                     </div>
+
+                                    {{-- Hero Image --}}
+                                    <div class="mb-3 row">
+                                        <label class="col-3 col-form-label required">Hero Image</label>
+                                        <div class="col">
+                                            @if ($errors->has('hero_image'))
+                                                <div class="invalid-feedback d-block">{{ $errors->first('hero_image') }}
+                                                </div>
+                                            @endif
+
+                                            @if (!empty($setting->hero_image))
+                                                <div class="mt-2">
+                                                    <img src="{{ Storage::url($setting->hero_image) }}" alt="Hero Image"
+                                                        class="img-fluid" style="max-height: 100px;">
+                                                </div>
+                                            @endif
+                                            <input type="file" name="hero_image" class="mb-2 form-control">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
