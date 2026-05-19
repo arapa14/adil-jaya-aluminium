@@ -28,7 +28,7 @@ class SeoPageSeeder extends Seeder
 
                 'og_description' => 'Jasa pemasangan aluminium dan kaca modern berkualitas.',
 
-                'og_image' => 'seo/home-og.jpg',
+                'og_image' => 'seo/630x1200.png',
 
                 'canonical_url' => 'https://adiljayaaluminium.com/',
 
