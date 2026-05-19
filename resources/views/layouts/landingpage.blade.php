@@ -53,30 +53,19 @@
                         <a class="nav-link active" aria-current="page" href="#">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/about.html">Tentang Kami</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Produk
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Profil Perusahaan</a></li>
-                            <li><a class="dropdown-item" href="#">Visi & Misi</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Tim Kami</a></li>
-                        </ul>
+                        <a class="nav-link" href="{{ route('about') }}">Tentang Kami</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/portofolio.html">Portofolio</a>
+                        <a class="nav-link" href="{{ route('products') }}">Produk Kami</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/services.html">Layanan</a>
+                        <a class="nav-link" href="{{ route('portfolio') }}">Portofolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contact.html">Kontak</a>
+                        <a class="nav-link" href="{{ route('services') }}">Layanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('contact') }}">Kontak</a>
                     </li>
                 </ul>
                 <a class="btn btn-primary px-3 ms-3 text-uppercase" href="#" role="button"><i

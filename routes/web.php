@@ -13,7 +13,11 @@ use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'home'])->name('home');
-Route::get('/about', [LandingController::class, 'index'])->name('home');
+Route::get('/about', [LandingController::class, 'about'])->name('about');
+Route::get('/products', [LandingController::class, 'products'])->name('products');
+Route::get('/portfolio', [LandingController::class, 'portfolio'])->name('portfolio');
+Route::get('/services', [LandingController::class, 'services'])->name('services');
+Route::get('/contact', [LandingController::class, 'contact'])->name('contact');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginSubmit'])->name('login.submit');

@@ -64,7 +64,7 @@ class SeoPageSeeder extends Seeder
 
                 'og_description' => 'Profil perusahaan aluminium dan kaca modern.',
 
-                'og_image' => 'seo/about-og.jpg',
+                'og_image' => 'seo/630x1200.png',
 
                 'canonical_url' => 'https://adiljayaaluminium.com/about-us',
 
@@ -91,7 +91,7 @@ class SeoPageSeeder extends Seeder
 
                 'og_description' => 'Berbagai layanan aluminium dan kaca profesional.',
 
-                'og_image' => 'seo/services-og.jpg',
+                'og_image' => 'seo/630x1200.png',
 
                 'canonical_url' => 'https://adiljayaaluminium.com/services',
 
@@ -118,7 +118,7 @@ class SeoPageSeeder extends Seeder
 
                 'og_description' => 'Hasil project aluminium dan kaca berkualitas.',
 
-                'og_image' => 'seo/portfolio-og.jpg',
+                'og_image' => 'seo/630x1200.png',
 
                 'canonical_url' => 'https://adiljayaaluminium.com/portfolio',
 
@@ -145,7 +145,7 @@ class SeoPageSeeder extends Seeder
 
                 'og_description' => 'Hubungi kami untuk kebutuhan aluminium dan kaca modern.',
 
-                'og_image' => 'seo/contact-og.jpg',
+                'og_image' => 'seo/630x1200.png',
 
                 'canonical_url' => 'https://adiljayaaluminium.com/contact',
 

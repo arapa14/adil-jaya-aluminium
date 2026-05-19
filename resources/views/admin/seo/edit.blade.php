@@ -35,22 +35,26 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('seo.update', $page->id) }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('seo.update', $page->id) }}" method="POST"
+                                    enctype="multipart/form-data" id="changePage">
                                     @csrf
                                     @method('PUT')
                                     <div class="mb-3">
                                         <label class="form-label required">Nama Halaman</label>
-                                        <input type="text" class="form-control" name="page_name" placeholder="Masukkan nama halaman" value="{{ $page->page_name }}">
+                                        <input type="text" class="form-control" name="page_name"
+                                            placeholder="Masukkan nama halaman" value="{{ $page->page_name }}">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label required">Slug (Opsional)</label>
-                                        <input type="text" class="form-control cursor-not-allowed" name="slug" placeholder="Masukkan slug halaman" value="{{ $page->slug }}" disabled>
+                                        <input type="text" class="form-control cursor-not-allowed" name="slug"
+                                            placeholder="Masukkan slug halaman" value="{{ $page->slug }}" disabled>
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Meta Title</label>
-                                        <input type="text" class="form-control" name="meta_title" placeholder="Judul meta" value="{{ $page->meta_title }}">
+                                        <input type="text" class="form-control" name="meta_title"
+                                            placeholder="Judul meta" value="{{ $page->meta_title }}">
                                     </div>
 
                                     <div class="mb-3">
@@ -60,17 +64,20 @@
 
                                     <div class="mb-3">
                                         <label class="form-label">Meta Keywords</label>
-                                        <input type="text" class="form-control" name="meta_keywords" placeholder="keyword1, keyword2" value="{{ $page->meta_keywords }}">
+                                        <input type="text" class="form-control" name="meta_keywords"
+                                            placeholder="keyword1, keyword2" value="{{ $page->meta_keywords }}">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Focus Keyword</label>
-                                        <input type="text" class="form-control" name="focus_keyword" placeholder="Kata kunci fokus" value="{{ $page->focus_keyword }}">
+                                        <input type="text" class="form-control" name="focus_keyword"
+                                            placeholder="Kata kunci fokus" value="{{ $page->focus_keyword }}">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">OG Title</label>
-                                        <input type="text" class="form-control" name="og_title" placeholder="Judul Open Graph" value="{{ $page->og_title }}">
+                                        <input type="text" class="form-control" name="og_title"
+                                            placeholder="Judul Open Graph" value="{{ $page->og_title }}">
                                     </div>
 
                                     <div class="mb-3">
@@ -85,31 +92,38 @@
 
                                     <div class="mb-3">
                                         <label class="form-label">Canonical URL</label>
-                                        <input type="text" class="form-control" name="canonical_url" placeholder="https://example.com/page" value="{{ $page->canonical_url }}">
+                                        <input type="text" class="form-control" name="canonical_url"
+                                            placeholder="https://example.com/page" value="{{ $page->canonical_url }}">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Robots Index</label>
                                         <select class="form-select" name="robots_index">
-                                            <option value="1" {{ old('robots_index') == '1' ? 'selected' : '' }}>Index</option>
-                                            <option value="0" {{ old('robots_index') == '0' ? 'selected' : '' }}>Noindex</option>
+                                            <option value="1" {{ old('robots_index') == '1' ? 'selected' : '' }}>Index
+                                            </option>
+                                            <option value="0" {{ old('robots_index') == '0' ? 'selected' : '' }}>
+                                                Noindex</option>
                                         </select>
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Robots Follow</label>
                                         <select class="form-select" name="robots_follow">
-                                            <option value="1" {{ old('robots_follow') == '1' ? 'selected' : '' }}>Follow</option>
-                                            <option value="0" {{ old('robots_follow') == '0' ? 'selected' : '' }}>Nofollow</option>
+                                            <option value="1" {{ old('robots_follow') == '1' ? 'selected' : '' }}>
+                                                Follow</option>
+                                            <option value="0" {{ old('robots_follow') == '0' ? 'selected' : '' }}>
+                                                Nofollow</option>
                                         </select>
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Schema Markup (JSON-LD)</label>
-                                        <textarea class="form-control" name="schema_markup" rows="4" placeholder='{"@@context":"https://schema.org", ...}'>{{ old('schema_markup') }}</textarea>
+                                        <textarea class="form-control" name="schema_markup" rows="4"
+                                            placeholder='{"@@context":"https://schema.org", ...}'>{{ old('schema_markup') }}</textarea>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#modalChangePage-{{ $page->id }}">Simpan Perubahan</button>
                                 </form>
                             </div>
                         </div>
@@ -119,5 +133,25 @@
             </div>
         </div>
         <!-- END PAGE BODY -->
+    </div>
+
+    {{-- MODAL DELETE CATEGORY --}}
+    <div class="modal modal-blur fade" id="modalChangePage-{{ $page->id }}" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ubah Halaman SEO</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin mengubah halaman ini?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-1" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" form="changePage">Simpan
+                        Perubahan</button>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
