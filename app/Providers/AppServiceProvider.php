@@ -4,8 +4,9 @@ namespace App\Providers;
 
 use App\Models\Setting;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,13 +24,23 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFive();
-        if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
+
+        if (
+            Schema::hasTable('settings') &&
+            Schema::hasColumns('settings', [
+                'favicon',
+                'logo',
+                'hero_image',
+                'whatsapp',
+                'address',
+            ])
+        ) {
             View::share([
                 'favicon' => Setting::value('favicon'),
                 'logo' => Setting::value('logo'),
                 'hero_image' => Setting::value('hero_image'),
                 'whatsapp' => Setting::value('whatsapp'),
-                'address' => Setting::value('address')
+                'address' => Setting::value('address'),
             ]);
         }
     }
