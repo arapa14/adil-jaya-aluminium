@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('focus_keyword');
             $table->string('og_image');
             $table->enum('status', [true, false])->default(true);
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }
