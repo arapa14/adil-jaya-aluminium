@@ -32,7 +32,6 @@ class ServiceSeeder extends Seeder
                 'description' => $service['title'] . ' menggunakan material berkualitas tinggi dengan pengerjaan profesional.',
 
                 // Storage otomatis menggunakan slug
-                'icon' => 'services/icons/' . $slug . '.svg',
                 'thumbnail' => 'services/thumbnails/' . $slug . '-thumb.jpg',
 
                 // Meta SEO otomatis seperti ProductSeeder

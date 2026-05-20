@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('description');
-            $table->string('icon');
             $table->string('thumbnail');
             $table->string('meta_title');
             $table->text('meta_description');
