@@ -14,6 +14,7 @@ class Testimonial extends Model
         'rating',
         'message',
         'photo',
-        'status'
+        'status',
+        'created_by'
     ];
 }

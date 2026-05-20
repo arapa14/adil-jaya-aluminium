@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('rating');
             $table->text('message');
             $table->string('photo');
-            $table->enum('status', [true, false])->default(true);
+            $table->boolean('status')->default(true);
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }
