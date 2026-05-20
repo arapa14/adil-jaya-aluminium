@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->enum('type', ['product', 'portfolio', 'service', 'banner', 'testimonial', 'company', 'gallery'])->default('gallery');
             $table->string('caption');
             $table->string('alt_text');
             $table->enum('status', [true, false])->default(true);
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }
