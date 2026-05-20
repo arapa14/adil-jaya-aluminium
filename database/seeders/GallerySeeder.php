@@ -38,34 +38,6 @@ class GallerySeeder extends Seeder
             [
                 'title' => 'Instalasi Kaca Tempered',
             ],
-
-            [
-                'title' => 'Banner Homepage Utama',
-            ],
-
-            [
-                'title' => 'Banner Promo Layanan',
-            ],
-
-            [
-                'title' => 'Customer Puas Project Rumah',
-            ],
-
-            [
-                'title' => 'Workshop Adil Jaya Aluminium',
-            ],
-
-            [
-                'title' => 'Tim Profesional Adil Jaya Aluminium',
-            ],
-
-            [
-                'title' => 'Gallery Project Aluminium',
-            ],
-
-            [
-                'title' => 'Hasil Pemasangan Kaca dan Aluminium',
-            ],
         ];
 
         foreach ($galleries as $gallery) {
