@@ -69,8 +69,8 @@
                             href="{{ route('portfolio') }}">Portofolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('services*') ? 'active' : '' }}"
-                            href="{{ route('services') }}">Layanan</a>
+                        <a class="nav-link {{ request()->routeIs('services.landing*') ? 'active' : '' }}"
+                            href="{{ route('services.landing') }}">Layanan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('contact*') ? 'active' : '' }}"
