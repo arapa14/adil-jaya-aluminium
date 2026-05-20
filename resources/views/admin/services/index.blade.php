@@ -8,17 +8,17 @@
                 <div class="row g-2 align-items-center">
                     <div class="col">
                         <div class="page-pretitle">
-                            Manajemen Service
+                            Manajemen Layanan
                         </div>
                         <h2 class="page-title">
-                            Kelola Service Anda
+                            Kelola Layanan Anda
                         </h2>
                     </div>
 
                     <div class="col-auto ms-auto d-print-none">
                         <a href="{{ route('services.create') }}" class="btn btn-primary">
                             <x-icon-plus />
-                            Tambah Service
+                            Tambah Layanan
                         </a>
                     </div>
                 </div>
