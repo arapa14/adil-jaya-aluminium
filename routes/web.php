@@ -8,6 +8,7 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SEOController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,8 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/settings', [SettingController::class, 'index'])->name('settings');
     Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
     Route::resource('seo', SEOController::class);
+    Route::get('/services/api', [ServiceController::class, 'indexApi'])->name('services.api');
+    Route::resource('services', ServiceController::class);
 
     Route::group(['prefix' => 'products'], function () {
         // API
@@ -44,6 +47,4 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
         Route::resources(['category' => PortfolioCategoryController::class]);
         Route::resources(['portfolios' => PortfolioController::class]);
     });
-
-    
 });
