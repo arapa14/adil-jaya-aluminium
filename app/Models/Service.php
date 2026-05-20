@@ -12,7 +12,6 @@ class Service extends Model
         'title',
         'slug',
         'description',
-        'icon',
         'thumbnail',
         'meta_title',
         'meta_description',
@@ -20,5 +19,6 @@ class Service extends Model
         'focus_keyword',
         'og_image',
         'status',
+        'created_by',
     ];
 }
