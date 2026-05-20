@@ -49,7 +49,7 @@ class ServiceController
             ->addColumn('description', function ($services) {
                 return '
                     <span class="badge bg-blue-lt">
-                        ' . \Illuminate\Support\Str::limit($services->description ?? '-', 50) . '
+                        ' . Str::limit($services->description ?? '-', 50) . '
                     </span>
                 ';
             })
