@@ -44,4 +44,6 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
         Route::resources(['category' => PortfolioCategoryController::class]);
         Route::resources(['portfolios' => PortfolioController::class]);
     });
+
+    
 });
