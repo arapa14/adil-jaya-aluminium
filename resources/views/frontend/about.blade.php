@@ -7,7 +7,6 @@
                     <ol class="breadcrumb mb-0 text-white-50">
                         <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-white-50">Beranda</a>
                         </li>
-                        <li class="breadcrumb-item active text-white" aria-current="page">/</li>
                         <li class="breadcrumb-item active text-white" aria-current="page">Tentang Kami</li>
                     </ol>
                 </nav>

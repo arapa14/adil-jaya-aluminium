@@ -127,24 +127,24 @@
                 <div class="col-6 col-md-2">
                     <h6 class="fw-semibold text-uppercase">Quick Link</h6>
                     <ul class="list-unstyled small mb-0">
-                        <li><a class="text-decoration-none text-white" href="#">Beranda</a></li>
-                        <li><a class="text-decoration-none text-white" href="/about.html">Tentang Kami</a>
+                        <li><a class="text-decoration-none text-white" href="{{ route('home') }}">Beranda</a></li>
+                        <li><a class="text-decoration-none text-white" href="{{ route('about') }}">Tentang Kami</a>
                         </li>
-                        <li><a class="text-decoration-none text-white" href="#">Produk</a></li>
-                        <li><a class="text-decoration-none text-white" href="#">Kontak</a></li>
+                        <li><a class="text-decoration-none text-white" href="{{ route('products') }}">Produk</a></li>
+                        <li><a class="text-decoration-none text-white" href="{{ route('contact') }}">Kontak</a></li>
                     </ul>
                 </div>
 
                 <div class="col-6 col-md-2">
                     <h6 class="fw-semibold text-uppercase">Produk</h6>
                     <ul class="list-unstyled small mb-0">
-                        <li><a class="text-decoration-none text-white" href="#">Kusen Aluminium</a>
+                        {{-- <li><a class="text-decoration-none text-white" href="{{ route('product.kusen') }}">Kusen Aluminium</a>
                         </li>
-                        <li><a class="text-decoration-none text-white" href="#">Pintu Aluminium</a>
+                        <li><a class="text-decoration-none text-white" href="{{ route('product.pintu') }}">Pintu Aluminium</a>
                         </li>
-                        <li><a class="text-decoration-none text-white" href="#">Jendela Sliding</a>
+                        <li><a class="text-decoration-none text-white" href="{{ route('product.jendela') }}">Jendela Sliding</a>
                         </li>
-                        <li><a class="text-decoration-none text-white" href="#">Partisi Kaca</a></li>
+                        <li><a class="text-decoration-none text-white" href="{{ route('product.partisi') }}">Partisi Kaca</a></li> --}}
                     </ul>
                 </div>
 
