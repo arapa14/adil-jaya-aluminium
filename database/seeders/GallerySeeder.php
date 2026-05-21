@@ -3,124 +3,69 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use App\Models\Gallery;
 
 class GallerySeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
         $galleries = [
 
-            // PRODUCT
             [
-                'image' => 'galleries/products/kusen-aluminium.jpg',
-                'type' => 'product',
-                'caption' => 'Produk kusen aluminium premium',
-                'alt_text' => 'Kusen aluminium premium modern',
+                'title' => 'Produk Kusen Aluminium Premium',
             ],
 
             [
-                'image' => 'galleries/products/pintu-aluminium.jpg',
-                'type' => 'product',
-                'caption' => 'Pintu aluminium minimalis',
-                'alt_text' => 'Pintu aluminium minimalis modern',
-            ],
-
-            // PORTFOLIO
-            [
-                'image' => 'galleries/portfolios/rumah-minimalis.jpg',
-                'type' => 'portfolio',
-                'caption' => 'Project rumah minimalis Jakarta',
-                'alt_text' => 'Portfolio rumah minimalis aluminium',
+                'title' => 'Pintu Aluminium Minimalis',
             ],
 
             [
-                'image' => 'galleries/portfolios/office-tower.jpg',
-                'type' => 'portfolio',
-                'caption' => 'Facade kaca gedung perkantoran',
-                'alt_text' => 'Facade kaca gedung modern',
-            ],
-
-            // SERVICE
-            [
-                'image' => 'galleries/services/pemasangan-kusen.jpg',
-                'type' => 'service',
-                'caption' => 'Layanan pemasangan kusen aluminium',
-                'alt_text' => 'Jasa pemasangan kusen aluminium',
+                'title' => 'Rumah Minimalis Jakarta',
             ],
 
             [
-                'image' => 'galleries/services/kaca-tempered.jpg',
-                'type' => 'service',
-                'caption' => 'Instalasi kaca tempered',
-                'alt_text' => 'Pemasangan kaca tempered modern',
-            ],
-
-            // BANNER
-            [
-                'image' => 'galleries/banners/banner-1.jpg',
-                'type' => 'banner',
-                'caption' => 'Banner homepage utama',
-                'alt_text' => 'Banner aluminium dan kaca modern',
+                'title' => 'Facade Kaca Gedung Perkantoran',
             ],
 
             [
-                'image' => 'galleries/banners/banner-2.jpg',
-                'type' => 'banner',
-                'caption' => 'Banner promo layanan',
-                'alt_text' => 'Banner promo jasa aluminium',
-            ],
-
-            // TESTIMONIAL
-            [
-                'image' => 'galleries/testimonials/customer-1.jpg',
-                'type' => 'testimonial',
-                'caption' => 'Customer puas project rumah',
-                'alt_text' => 'Customer testimonial aluminium',
-            ],
-
-            // COMPANY
-            [
-                'image' => 'galleries/company/workshop.jpg',
-                'type' => 'company',
-                'caption' => 'Workshop Adil Jaya Aluminium',
-                'alt_text' => 'Workshop aluminium modern',
+                'title' => 'Pemasangan Kusen Aluminium',
             ],
 
             [
-                'image' => 'galleries/company/team.jpg',
-                'type' => 'company',
-                'caption' => 'Tim profesional Adil Jaya Aluminium',
-                'alt_text' => 'Team perusahaan aluminium',
-            ],
-
-            // GENERAL GALLERY
-            [
-                'image' => 'galleries/general/gallery-1.jpg',
-                'type' => 'gallery',
-                'caption' => 'Gallery project aluminium',
-                'alt_text' => 'Gallery aluminium modern',
-            ],
-
-            [
-                'image' => 'galleries/general/gallery-2.jpg',
-                'type' => 'gallery',
-                'caption' => 'Hasil pemasangan kaca dan aluminium',
-                'alt_text' => 'Hasil project aluminium dan kaca',
+                'title' => 'Instalasi Kaca Tempered',
             ],
         ];
 
         foreach ($galleries as $gallery) {
 
+            /*
+            |--------------------------------------------------------------------------
+            | Generate Slug
+            |--------------------------------------------------------------------------
+            */
+            $slug = Str::slug($gallery['title']);
+
+            /*
+            |--------------------------------------------------------------------------
+            | Generate Image Path
+            |--------------------------------------------------------------------------
+            */
+            $imagePath = 'galleries/' . $slug . '.jpg';
+
             Gallery::create([
+                'image' => $imagePath,
 
-                'image' => $gallery['image'],
+                'caption' => $gallery['title'],
 
-                'type' => $gallery['type'],
+                'alt_text' => $gallery['title'],
 
-                'caption' => $gallery['caption'],
+                'status' => true,
 
-                'alt_text' => $gallery['alt_text'],
+                'created_by' => 1,
             ]);
         }
     }

@@ -10,9 +10,9 @@ class Gallery extends Model
 
     protected $fillable = [
         'image',
-        'type',
         'caption',
         'alt_text',
-        'status,'
+        'status',
+        'created_by',
     ];
 }

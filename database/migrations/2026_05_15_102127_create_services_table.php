@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('description');
-            $table->string('icon');
             $table->string('thumbnail');
             $table->string('meta_title');
             $table->text('meta_description');
@@ -24,6 +23,7 @@ return new class extends Migration
             $table->string('focus_keyword');
             $table->string('og_image');
             $table->enum('status', [true, false])->default(true);
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }

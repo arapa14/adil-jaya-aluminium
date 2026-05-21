@@ -12,13 +12,13 @@ class Service extends Model
         'title',
         'slug',
         'description',
-        'icon',
         'thumbnail',
         'meta_title',
         'meta_description',
         'meta_keywords',
         'focus_keyword',
         'og_image',
-        'status,'
+        'status',
+        'created_by',
     ];
 }
