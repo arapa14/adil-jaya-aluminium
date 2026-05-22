@@ -28,7 +28,7 @@
         <div class="container">
             <div class="row g-4 g-lg-5">
                 <div class="col-lg-4">
-                    <div class="sticky-top" style="top:120px;">
+                    <div>
                         <p class="text-primary fw-semibold text-uppercase mb-2">
                             Informasi Kontak
                         </p>
