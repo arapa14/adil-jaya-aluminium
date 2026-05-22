@@ -76,12 +76,12 @@ class SeoPageSeeder extends Seeder
             ],
 
             [
-                'page_name' => 'Services',
-                'slug' => 'services',
+                'page_name' => 'Products',
+                'slug' => 'products',
 
-                'meta_title' => 'Layanan Aluminium dan Kaca | Adil Jaya Aluminium',
+                'meta_title' => 'Produk Aluminium dan Kaca | Adil Jaya Aluminium',
 
-                'meta_description' => 'Layanan pemasangan kusen aluminium, kaca tempered, partisi kantor, dan canopy modern.',
+                'meta_description' => 'Produk kusen aluminium, kaca tempered, partisi kantor, dan canopy modern.',
 
                 'meta_keywords' => 'layanan aluminium, kaca tempered, canopy aluminium',
 
