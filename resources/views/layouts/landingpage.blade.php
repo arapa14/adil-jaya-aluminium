@@ -87,7 +87,7 @@
 
     @yield('content')
 
-    <footer class="bg-primary text-light font-poppins pt-5 pb-3">
+    <footer class="bg-primary text-light font-poppins pt-5 pb-3 mt-5">
         <div class="container">
             <div class="row gy-4">
                 <div class="col-md-3">
@@ -173,8 +173,8 @@
 
             <div class="row mt-4 pt-3 border-top border-light-10">
                 <div class="col-md-6 text-center text-md-start small text-light-50 mb-2 mb-md-0">
-                    <a href="#" class="text-decoration-none text-light-50 me-3">Kebijakan Privasi</a>
-                    <a href="#" class="text-decoration-none text-light-50">Syarat & Ketentuan</a>
+                    <a href="#" class="text-decoration-none text-white me-3">Kebijakan Privasi</a>
+                    <a href="#" class="text-decoration-none text-white">Syarat & Ketentuan</a>
                 </div>
                 <div class="col-md-6 text-center text-md-end small text-light-50">
                     © <span id="year"></span> Adil Jaya Aluminium.
@@ -182,7 +182,6 @@
                     Rights
                     Reserved.</div>
             </div>
-        </div>
         </div>
 
         <script>
@@ -200,3 +199,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
     </script>
+
+    @stack('scripts')
+</body>

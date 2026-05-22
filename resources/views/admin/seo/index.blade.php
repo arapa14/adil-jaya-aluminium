@@ -51,7 +51,9 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>
                                                         @if ($page->og_image)
-                                                            <img src="{{ Storage::url($page->og_image) }}" alt="{{ $page->page_name }}" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
+                                                            <img src="{{ Storage::url($page->og_image) }}"
+                                                                alt="{{ $page->page_name }}" class="img-thumbnail"
+                                                                style="max-width: 100px; max-height: 100px;">
                                                         @else
                                                             <span class="text-muted">-</span>
                                                         @endif
@@ -95,7 +97,8 @@
                                                     </td>
                                                     <td>
                                                         <div class="d-flex gap-2 justify-content-center">
-                                                            <a href="{{ route('seo.edit', $page->id) }}" class="btn btn-primary" title="Edit Halaman">
+                                                            <a href="{{ route('seo.edit', $page->id) }}"
+                                                                class="btn btn-primary" title="Edit Halaman">
                                                                 <x-icon-edit /> Edit
                                                             </a>
                                                             <button type="button" class="btn btn-danger"
@@ -104,6 +107,39 @@
                                                                 title="Hapus Halaman">
                                                                 <x-icon-delete /> Hapus
                                                             </button>
+
+                                                            {{-- MODAL DELETE PAGE --}}
+                                                            <div class="modal modal-blur fade"
+                                                                id="modalDeletePage-{{ $page->id }}"
+                                                                tabindex="-1">
+                                                                <div class="modal-dialog modal-dialog-centered">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title">Hapus Halaman SEO
+                                                                            </h5>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <p>Apakah Anda yakin ingin menghapus kategori
+                                                                                ini?</p>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-1"
+                                                                                data-bs-dismiss="modal">Batal</button>
+                                                                            <form
+                                                                                action="{{ route('seo.destroy', $page->id) }}"
+                                                                                method="POST">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button type="submit"
+                                                                                    class="btn btn-danger">Hapus</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </td>
                                                 </tr>

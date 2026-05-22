@@ -33,59 +33,75 @@ class SEOController
      */
     public function store(Request $request)
     {
-        $rules = [
+        // dd($request->all());
+        $validated = $request->validate([
             'page_name' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255',
-            'meta_title' => 'nullable|string|max:255',
-            'meta_description' => 'nullable|string',
-            'meta_keywords' => 'nullable|string',
-            'focus_keyword' => 'nullable|string',
-            'og_title' => 'nullable|string|max:255',
-            'og_description' => 'nullable|string',
-            'og_image' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg,webp|max:2048',
-            'canonical_url' => 'nullable|url|max:2048',
-            'robots_index' => 'sometimes|boolean',
-            'robots_follow' => 'sometimes|boolean',
-            'schema_markup' => 'nullable|string',
-        ];
-
-        // validate first (let validation exceptions be handled by Laravel)
-        $validated = $request->validate($rules);
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string|max:500',
+            'meta_keywords' => 'required|string|max:500',
+            'focus_keyword' => 'required|string|max:255',
+            'og_title' => 'required|string|max:255',
+            'og_description' => 'required|string|max:500',
+            'og_image' => 'required|image|mimes:jpg,jpeg,png,webp|max:300',
+            'canonical_url' => 'required|url|max:2048',
+            'robots_index' => 'required|boolean',
+            'robots_follow' => 'required|boolean',
+            'schema_markup' => 'nullable|json',
+        ]);
 
         try {
-            // prepare data
+
             $data = $validated;
 
-            // generate slug from input or page_name
-            $slugSource = $request->filled('slug') ? $request->input('slug') : $request->input('page_name');
+            /*
+            |--------------------------------------------------------------------------
+            | Generate Slug
+            |--------------------------------------------------------------------------
+            */
+            $slugSource = $request->filled('slug')
+                ? $request->slug
+                : $request->page_name;
+
             $slug = Str::slug($slugSource);
 
-            // ensure unique slug
-            $base = $slug;
+            $originalSlug = $slug;
             $counter = 1;
+
             while (SeoPage::where('slug', $slug)->exists()) {
-                $slug = $base . '-' . $counter++;
+                $slug = $originalSlug . '-' . $counter++;
             }
+
             $data['slug'] = $slug;
 
-            // normalize boolean checkboxes
-            $data['robots_index'] = $request->has('robots_index') ? 1 : 0;
-            $data['robots_follow'] = $request->has('robots_follow') ? 1 : 0;
-
-            // handle og_image upload
+            /*
+            |--------------------------------------------------------------------------
+            | Upload OG Image
+            |--------------------------------------------------------------------------
+            */
             if ($request->hasFile('og_image')) {
-                $path = $request->file('og_image')->store('seo', 'public');
-                $data['og_image'] = $path;
+
+                $data['og_image'] = $request
+                    ->file('og_image')
+                    ->store('seo', 'public');
             }
 
-            // create record
             SeoPage::create($data);
 
-            flash()->success('Halaman SEO berhasil dibuat.');
-            return redirect()->back();
-        } catch (Throwable $e) {
-            Log::error('SEO store error: ' . $e->getMessage(), ['exception' => $e]);
-            flash()->error('Gagal menyimpan halaman SEO. Silakan coba lagi.');
+            flash()->success('Konfigurasi SEO berhasil ditambahkan.');
+
+            return redirect()
+                ->route('seo.index');
+
+        } catch (\Throwable $e) {
+
+            Log::error('SEO Store Error', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            flash()->error('Terjadi kesalahan saat menyimpan data.');
+
             return redirect()->back()->withInput();
         }
     }
@@ -139,8 +155,15 @@ class SEOController
 
             // map validated input into $data (preserve unchanged fields by not including them)
             $fields = [
-                'page_name', 'meta_title', 'meta_description', 'meta_keywords',
-                'focus_keyword', 'og_title', 'og_description', 'canonical_url', 'schema_markup'
+                'page_name',
+                'meta_title',
+                'meta_description',
+                'meta_keywords',
+                'focus_keyword',
+                'og_title',
+                'og_description',
+                'canonical_url',
+                'schema_markup'
             ];
             foreach ($fields as $f) {
                 if (array_key_exists($f, $validated)) {
@@ -201,6 +224,9 @@ class SEOController
      */
     public function destroy(string $id)
     {
-        //
+        $page = SeoPage::findOrFail($id);
+        $page->delete();
+        flash()->success('Halaman SEO berhasil dihapus.');
+        return redirect()->back();
     }
 }

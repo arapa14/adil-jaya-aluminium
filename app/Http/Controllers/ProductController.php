@@ -565,4 +565,18 @@ class ProductController
             return back();
         }
     }
+
+    public function filterProduct(Request $request)
+    {
+        $query = Product::with('category')
+            ->where('status', 1);
+
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        $products = $query->get();
+
+        return response()->json($products);
+    }
 }

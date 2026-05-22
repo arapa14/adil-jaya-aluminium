@@ -19,8 +19,11 @@ Route::get('/', [LandingController::class, 'home'])->name('home');
 Route::get('/about', [LandingController::class, 'about'])->name('about');
 Route::get('/products', [LandingController::class, 'products'])->name('products');
 Route::get('/portfolio', [LandingController::class, 'portfolio'])->name('portfolio');
-Route::get('/service', [LandingController::class, 'services'])->name('services.landing');
+Route::get('/portfolio/{slug}', [LandingController::class, 'portfolioDetail'])->name('portfolio.show');
+Route::get('/our-services', [LandingController::class, 'services'])->name('services.landing');
 Route::get('/contact', [LandingController::class, 'contact'])->name('contact');
+
+Route::get('/api/products', [ProductController::class, 'filterProduct'])->name('products.filter');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginSubmit'])->name('login.submit');

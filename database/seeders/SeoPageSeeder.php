@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 use App\Models\SeoPage;
 
 class SeoPageSeeder extends Seeder
@@ -84,6 +83,61 @@ class SeoPageSeeder extends Seeder
                 'meta_description' => 'Produk kusen aluminium, kaca tempered, partisi kantor, dan canopy modern.',
 
                 'meta_keywords' => 'layanan aluminium, kaca tempered, canopy aluminium',
+
+                'focus_keyword' => 'layanan aluminium jakarta',
+
+                'og_title' => 'Layanan Adil Jaya Aluminium',
+
+                'og_description' => 'Berbagai layanan aluminium dan kaca profesional.',
+
+                'og_image' => 'seo/630x1200.png',
+
+                'canonical_url' => 'https://adiljayaaluminium.com/services',
+
+                'robots_index' => 'index',
+
+                'robots_follow' => 'follow',
+
+                'schema_markup' => null,
+            ],
+
+            [
+                'page_name' => 'Portfolio',
+                'slug' => 'portfolio',
+
+                'meta_title' => 'Portfolio Project Aluminium | Adil Jaya Aluminium',
+
+                'meta_description' => 'Portfolio project aluminium dan kaca modern untuk rumah, kantor, dan bangunan komersial.',
+
+                'meta_keywords' => 'portfolio aluminium, project kaca modern',
+
+                'focus_keyword' => 'portfolio aluminium jakarta',
+
+                'og_title' => 'Portfolio Adil Jaya Aluminium',
+
+                'og_description' => 'Hasil project aluminium dan kaca berkualitas.',
+
+                'og_image' => 'seo/630x1200.png',
+
+                'canonical_url' => 'https://adiljayaaluminium.com/portfolio',
+
+                'robots_index' => 'index',
+
+                'robots_follow' => 'follow',
+
+                'schema_markup' => null,
+            ],
+
+            [
+                'page_name' => 'Services',
+
+                'slug' => 'our-services',
+
+                'meta_title' => 'Layanan Aluminium | Adil Jaya Aluminium',
+
+                'meta_description' => 'Layanan aluminium dan kaca profesional untuk kebutuhan hunian dan komersial.',
+
+                'meta_keywords' => 'layanan aluminium, jasa kaca jakarta',
 
                 'focus_keyword' => 'layanan aluminium jakarta',
 

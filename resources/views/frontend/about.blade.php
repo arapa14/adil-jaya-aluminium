@@ -27,7 +27,9 @@
     <section class="container my-5">
         <div class="row g-4 align-items-center">
             <div class="col-12 col-md-7">
-                <div class="mb-3 small text-primary fw-semibold">Siapa Kami</div>
+                <p class="text-blue fw-bold text-uppercase">
+                    Siapa Kami
+                </p>
                 <h2 class="fw-bold mb-3">Berpengalaman, Profesional, dan Terpercaya</h2>
                 <p class="text-muted mb-3">Adil Jaya Aluminium berdiri dengan semangat memberikan produk dan layanan
                     aluminium berkualitas tinggi yang mengutamakan ketepatan, kekuatan, dan keindahan. Kami melayani proyek
@@ -76,7 +78,8 @@
                 </div>
 
                 <div class="mt-4">
-                    <a href="https://wa.me/{{ $whatsapp }}" target="_blank" rel="noopener" class="btn btn-primary px-4 py-2">
+                    <a href="https://wa.me/{{ $whatsapp }}" target="_blank" rel="noopener"
+                        class="btn btn-primary px-4 py-2">
                         Konsultasi Gratis
                     </a>
                 </div>
