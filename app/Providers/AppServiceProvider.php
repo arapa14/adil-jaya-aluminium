@@ -43,6 +43,7 @@ class AppServiceProvider extends ServiceProvider
                 'whatsapp' => Setting::value('whatsapp'),
                 'address' => Setting::value('address'),
                 'email' => Setting::value('email'),
+                'embed_map' => Setting::value('maps_embed'),
             ]);
         }
     }

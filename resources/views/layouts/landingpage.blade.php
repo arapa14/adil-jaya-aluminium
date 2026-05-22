@@ -136,15 +136,14 @@
                 </div>
 
                 <div class="col-6 col-md-2">
-                    <h6 class="fw-semibold text-uppercase">Produk</h6>
+                    <h6 class="fw-semibold text-uppercase">Kategori Produk</h6>
                     <ul class="list-unstyled small mb-0">
-                        {{-- <li><a class="text-decoration-none text-white" href="{{ route('product.kusen') }}">Kusen Aluminium</a>
-                        </li>
-                        <li><a class="text-decoration-none text-white" href="{{ route('product.pintu') }}">Pintu Aluminium</a>
-                        </li>
-                        <li><a class="text-decoration-none text-white" href="{{ route('product.jendela') }}">Jendela Sliding</a>
-                        </li>
-                        <li><a class="text-decoration-none text-white" href="{{ route('product.partisi') }}">Partisi Kaca</a></li> --}}
+                        @php
+                            $product = \DB::table('product_categories')->limit(5)->get();
+                        @endphp
+                        @foreach ($product as $p)
+                            <li><a class="text-decoration-none text-white" href="{{ route('products') }}">{{ $p->name }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
 

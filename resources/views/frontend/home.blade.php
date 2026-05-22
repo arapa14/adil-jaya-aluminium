@@ -330,7 +330,7 @@
                 <div class="col-md-4">
                     <div class="card shadow-sm p-3 h-100">
                         <div class="d-flex align-items-center mb-3">
-                            <img src="assets/img/blank.jpg" alt="Avatar" class="rounded-circle me-3"
+                            <img src="storage/defaults/default.png" alt="Avatar" class="rounded-circle me-3"
                                 style="width:48px;height:48px;object-fit:cover;">
                             <div>
                                 <strong>Budi Santoso</strong>
@@ -349,7 +349,7 @@
                 <div class="col-md-4">
                     <div class="card shadow-sm p-3 h-100">
                         <div class="d-flex align-items-center mb-3">
-                            <img src="assets/img/blank.jpg" alt="Avatar" class="rounded-circle me-3"
+                            <img src="storage/defaults/default.png" alt="Avatar" class="rounded-circle me-3"
                                 style="width:48px;height:48px;object-fit:cover;">
                             <div>
                                 <strong>Dewi Lestari</strong>
@@ -368,7 +368,7 @@
                 <div class="col-md-4">
                     <div class="card shadow-sm p-3 h-100">
                         <div class="d-flex align-items-center mb-3">
-                            <img src="assets/img/blank.jpg" alt="Avatar" class="rounded-circle me-3"
+                            <img src="storage/defaults/default.png" alt="Avatar" class="rounded-circle me-3"
                                 style="width:48px;height:48px;object-fit:cover;">
                             <div>
                                 <strong>Rizky Pratama</strong>
