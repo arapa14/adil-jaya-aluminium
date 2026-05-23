@@ -15,9 +15,9 @@ class ProductCategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            'Kusen Aluminium',
-            'Pintu Aluminium',
-            'Jendela Aluminium',
+            'Kusen',
+            'Pintu',
+            'Jendela',
         ];
 
         foreach ($categories as $category) {
