@@ -86,8 +86,7 @@
             <div class="row align-items-center g-5">
                 {{-- LEFT --}}
                 <div class="col-lg-6">
-                    <img src="{{ Storage::url($hero_image) }}" class="img-fluid rounded-4 shadow-sm"
-                        alt="Why Choose Us">
+                    <img src="{{ Storage::url($hero_image) }}" class="img-fluid rounded-4 shadow-sm" alt="Why Choose Us">
                 </div>
 
                 {{-- RIGHT --}}
@@ -152,31 +151,7 @@
     </section>
 
     {{-- CTA --}}
-    <section class="container my-5">
-        <div class="card rounded-4 shadow-lg overflow-hidden font-poppins" style="background:#0B1F3A;">
-            <div class="row g-0 align-items-center">
-                <div class="col-12 col-md-7 p-4 p-md-5 text-white text-center text-md-start">
-                    <h4 class="fw-bold mb-2 text-uppercase fs-5 fs-md-4">Siap mewujudkan proyek aluminium Anda?</h4>
-                    <p class="mb-0 small">Konsultasikan kebutuhan Anda sekarang juga. Gratis survey & penawaran terbaik
-                        untuk Anda.</p>
-                </div>
-                <div
-                    class="col-12 col-md-5 p-3 p-md-4 d-flex flex-column flex-md-row gap-2 justify-content-center justify-content-md-end align-items-center">
-                    <a href="https://wa.me/6282169049991" target="_blank" rel="noopener"
-                        class="btn btn-light d-flex py-2 align-items-center gap-2 px-4 w-100 w-md-auto justify-content-center"
-                        aria-label="Hubungi WhatsApp">
-                        <i class="ti ti-brand-whatsapp"></i>
-                        <span>Hubungi WhatsApp</span>
-                    </a>
-                    {{-- <a href="#"
-                        class="btn btn-outline-light d-flex align-items-center gap-2 px-4 w-100 w-md-auto py-2 justify-content-center"
-                        aria-label="Request Penawaran">
-                        Request Penawaran
-                    </a> --}}
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-cta-component />
 @endsection
 
 @push('styles')

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallery;
 use App\Models\Portfolio;
 use App\Models\PortfolioCategory;
 use App\Models\Product;
@@ -75,5 +76,11 @@ class LandingController
     {
         $seo = SeoPage::where('slug', 'contact')->first();
         return view('frontend.contact', compact('seo'));
+    }
+
+    public function gallery() {
+        $seo = SeoPage::where('slug', 'gallery')->first();
+        $galleries = Gallery::where('status', 1)->get();
+        return view('frontend.gallery', compact('seo', 'galleries'));
     }
 }

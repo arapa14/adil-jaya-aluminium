@@ -209,6 +209,33 @@ class SeoPageSeeder extends Seeder
 
                 'schema_markup' => null,
             ],
+
+            [
+                'page_name' => 'Gallery',
+                'slug' => 'gallery',
+
+                'meta_title' => 'Galeri Kami | Adil Jaya Aluminium',
+
+                'meta_description' => 'Lihat galeri project aluminium dan kaca kami yang berkualitas.',
+
+                'meta_keywords' => 'galeri jasa aluminium, jasa kaca jakarta',
+
+                'focus_keyword' => 'galeri adil jaya aluminium',
+
+                'og_title' => 'galeri Adil Jaya Aluminium',
+
+                'og_description' => 'Hubungi kami untuk kebutuhan aluminium dan kaca modern.',
+
+                'og_image' => 'seo/630x1200.png',
+
+                'canonical_url' => 'https://adiljayaaluminium.com/gallery',
+
+                'robots_index' => 'index',
+
+                'robots_follow' => 'follow',
+
+                'schema_markup' => null,
+            ],
         ];
 
         foreach ($seoPages as $page) {

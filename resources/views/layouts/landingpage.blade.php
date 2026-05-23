@@ -65,6 +65,10 @@
                             href="{{ route('products') }}">Produk Kami</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('gallery*') ? 'active' : '' }}"
+                            href="{{ route('gallery') }}">Galeri</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('services.landing*') ? 'active' : '' }}"
                             href="{{ route('services.landing') }}">Layanan</a>
                     </li>
@@ -111,16 +115,6 @@
                             style="width:36px;height:36px;" aria-label="Facebook">
                             <i class="ti ti-brand-facebook"></i>
                         </a>
-                        <a href="#"
-                            class="btn btn-outline-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center"
-                            style="width:36px;height:36px;" aria-label="Instagram">
-                            <i class="ti ti-brand-instagram"></i>
-                        </a>
-                        <a href="#"
-                            class="btn btn-outline-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center"
-                            style="width:36px;height:36px;" aria-label="YouTube">
-                            <i class="ti ti-brand-youtube"></i>
-                        </a>
                     </div>
                 </div>
 
@@ -128,9 +122,9 @@
                     <h6 class="fw-semibold text-uppercase">Quick Link</h6>
                     <ul class="list-unstyled small mb-0">
                         <li><a class="text-decoration-none text-white" href="{{ route('home') }}">Beranda</a></li>
-                        <li><a class="text-decoration-none text-white" href="{{ route('about') }}">Tentang Kami</a>
-                        </li>
+                        <li><a class="text-decoration-none text-white" href="{{ route('about') }}">Tentang Kami</a></li>
                         <li><a class="text-decoration-none text-white" href="{{ route('products') }}">Produk</a></li>
+                        <li><a class="text-decoration-none text-white" href="{{ route('gallery') }}">Galeri</a></li>
                         <li><a class="text-decoration-none text-white" href="{{ route('contact') }}">Kontak</a></li>
                     </ul>
                 </div>
@@ -154,8 +148,16 @@
                         <i class="ti ti-map-pin me-2"></i>{{ $address }}<br>
                     </address>
                     <div class="small text-light-50">
-                        <div><i class="ti ti-phone me-2"></i>{{ $whatsapp }}</div>
-                        <div><i class="ti ti-mail me-2"></i>{{ $email }}</div>
+                        <div>
+                            <a href="https://wa.me/{{ $whatsapp }}" target="_blank" class="text-decoration-none text-white">
+                                <i class="ti ti-brand-whatsapp me-2"></i>{{ $whatsapp }}
+                            </a>
+                        </div>
+                        <div>
+                            <a href="mailto:{{ $email }}" class="text-decoration-none text-white">
+                                <i class="ti ti-mail me-2"></i>{{ $email }}
+                            </a>
+                        </div>
                     </div>
                 </div>
 

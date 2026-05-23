@@ -22,6 +22,7 @@ Route::get('/portfolio', [LandingController::class, 'portfolio'])->name('portfol
 Route::get('/portfolio/{slug}', [LandingController::class, 'portfolioDetail'])->name('portfolio.show');
 Route::get('/our-services', [LandingController::class, 'services'])->name('services.landing');
 Route::get('/contact', [LandingController::class, 'contact'])->name('contact');
+Route::get('/gallery', [LandingController::class, 'gallery'])->name('gallery');
 
 Route::get('/api/products', [ProductController::class, 'filterProduct'])->name('products.filter');
 Route::get('/api/portfolios', [PortfolioController::class, 'filterPortfolio'])->name('portfolios.filter');
