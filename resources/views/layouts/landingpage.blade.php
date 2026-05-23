@@ -16,7 +16,7 @@
     <meta property="og:description"
         content="{{ $seo->og_description ?? 'Solusi aluminium berkualitas untuk hunian, kantor, dan bangunan komersial di area Tangerang & Jabodetabek.' }}">
     <meta property="og:image"
-        content="{{ $seo->og_image ? Storage::url($seo->og_image) : asset('assets/frontend/images/logo.png') }}">
+        content="{{ Storage::url($seo->og_image) ? Storage::url($seo->og_image) : asset('assets/frontend/images/logo.png') }}">
     <meta property="og:url" content="{{ url()->current() }}">
 
     <link href="{{ asset('assets/frontend/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
