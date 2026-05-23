@@ -74,9 +74,9 @@
                                     <div class="mb-3 row">
                                         <label class="col-3 col-form-label required">Visi Perusahaan</label>
                                         <div class="col">
-                                            <textarea id="tinymce-vision" name="visson" class="form-control" rows="2" placeholder="Vision">{{ old('visson', $setting->visson ?? '') }}</textarea>
-                                            @if ($errors->has('visson'))
-                                                <div class="invalid-feedback d-block">{{ $errors->first('visson') }}
+                                            <textarea id="tinymce-vision" name="visson" class="form-control" rows="2" placeholder="Vision">{{ old('vision', $setting->vision ?? '') }}</textarea>
+                                            @if ($errors->has('vision'))
+                                                <div class="invalid-feedback d-block">{{ $errors->first('vision') }}
                                                 </div>
                                             @endif
                                         </div>
