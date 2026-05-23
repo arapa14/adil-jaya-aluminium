@@ -162,11 +162,11 @@
                 <div class="col-md-2">
                     <h6 class="fw-semibold text-uppercase">Area Layanan</h6>
                     <ul class="list-unstyled small mb-0 text-light-50">
-                        <li>Tangerang</li>
                         <li>Jakarta</li>
                         <li>Bogor</li>
                         <li>Depok</li>
-                        <li>Serpong & Sekitarnya</li>
+                        <li>Tangerang</li>
+                        <li>Bekasi & Sekitarnya</li>
                     </ul>
                 </div>
             </div>

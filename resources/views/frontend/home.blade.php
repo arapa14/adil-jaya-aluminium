@@ -43,7 +43,7 @@
                         <i class="ti ti-map-pin-pin" style="font-size:70px; color:#0B1F3A;"></i>
                         <div class="ps-3">
                             <h4 class="fw-bold text-primary mb-1">JABODETABEK</h2>
-                                <p class="small text-uppercase mb-0">Layanan Area <br> Tangerang & Sekitarnya</p>
+                                <p class="small text-uppercase mb-0">Layanan Area <br> Jakarta & Sekitarnya</p>
                         </div>
                     </div>
                     <div class="col-md-auto col-12 p-4 d-flex align-items-center text-start">
