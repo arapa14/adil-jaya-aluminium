@@ -59,10 +59,10 @@ class ProductController
             })
             ->addColumn('status_badge', function ($product) {
                 if ($product->status) {
-                    return '<span class="badge bg-green">Active</span>';
+                    return '<span class="badge" style="background-color: #e6f4ea; color: #137333; padding: 0.5em 0.75em; border-radius: 4px;">Active</span>';
                 }
 
-                return '<span class="badge bg-red">Inactive</span>';
+                return '<span class="badge" style="background-color: #fce8e6; color: #c5221f; padding: 0.5em 0.75em; border-radius: 4px;">Inactive</span>';
             })
             ->addColumn('action', function ($product) {
                 $editUrl = route('products.edit', $product->id);
