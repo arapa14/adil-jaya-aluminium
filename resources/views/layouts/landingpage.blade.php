@@ -16,7 +16,7 @@
     <meta property="og:description"
         content="{{ $seo->og_description ?? 'Solusi aluminium berkualitas untuk hunian, kantor, dan bangunan komersial di area Tangerang & Jabodetabek.' }}">
     <meta property="og:image"
-        content="{{ Storage::url($seo->og_image) ? Storage::url($seo->og_image) : asset('assets/frontend/images/logo.png') }}">
+        content="{{ asset($seo->og_image ? Storage::url($seo->og_image) : 'assets/frontend/images/logo.png') }}">
     <meta property="og:url" content="{{ url()->current() }}">
 
     <link href="{{ asset('assets/frontend/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
@@ -81,8 +81,8 @@
                             href="{{ route('contact') }}">Kontak</a>
                     </li>
                 </ul>
-                <a class="btn btn-primary px-3 ms-3 text-uppercase" href="https://wa.me/{{ $whatsapp }}" target="_blank"
-                    role="button"><i class="ti ti-brand-whatsapp"></i>
+                <a class="btn btn-primary px-3 ms-3 text-uppercase" href="https://wa.me/{{ $whatsapp }}"
+                    target="_blank" role="button"><i class="ti ti-brand-whatsapp"></i>
                     Konsultasi Gratis</a>
             </div>
         </div>
@@ -122,7 +122,8 @@
                     <h6 class="fw-semibold text-uppercase">Quick Link</h6>
                     <ul class="list-unstyled small mb-0">
                         <li><a class="text-decoration-none text-white" href="{{ route('home') }}">Beranda</a></li>
-                        <li><a class="text-decoration-none text-white" href="{{ route('about') }}">Tentang Kami</a></li>
+                        <li><a class="text-decoration-none text-white" href="{{ route('about') }}">Tentang Kami</a>
+                        </li>
                         <li><a class="text-decoration-none text-white" href="{{ route('products') }}">Produk</a></li>
                         <li><a class="text-decoration-none text-white" href="{{ route('gallery') }}">Galeri</a></li>
                         <li><a class="text-decoration-none text-white" href="{{ route('contact') }}">Kontak</a></li>
@@ -149,7 +150,8 @@
                     </address>
                     <div class="small text-light-50">
                         <div>
-                            <a href="https://wa.me/{{ $whatsapp }}" target="_blank" class="text-decoration-none text-white">
+                            <a href="https://wa.me/{{ $whatsapp }}" target="_blank"
+                                class="text-decoration-none text-white">
                                 <i class="ti ti-brand-whatsapp me-2"></i>{{ $whatsapp }}
                             </a>
                         </div>
