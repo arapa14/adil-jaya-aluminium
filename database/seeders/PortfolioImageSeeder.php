@@ -11,12 +11,7 @@ class PortfolioImageSeeder extends Seeder
     public function run(): void
     {
         $portfolioImages = [
-            'Pemasangan Kusen Aluminium Rumah Minimalis' => 3,
-            'Jendela Aluminium Modern Residence' => 3,
-            'Facade Kaca Gedung Office Tower' => 3,
-            'Partisi Aluminium Kantor Modern' => 3,
-            'Pintu Aluminium Ruko Premium' => 3,
-            'Kaca Tempered Cafe Minimalis' => 3,
+            'Pemasangan Aluminium Perkantoran Modern' => 1,
         ];
 
         foreach ($portfolioImages as $portfolioTitle => $totalImages) {

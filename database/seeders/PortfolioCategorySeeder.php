@@ -11,9 +11,7 @@ class PortfolioCategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            'Rumah Tinggal',
             'Perkantoran',
-            'Ruko & Komersial',
         ];
 
         foreach ($categories as $category) {

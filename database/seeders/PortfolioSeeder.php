@@ -12,34 +12,10 @@ class PortfolioSeeder extends Seeder
     public function run(): void
     {
         $portfolios = [
-            'Rumah Tinggal' => [
-                [
-                    'title' => 'Pemasangan Kusen Aluminium Rumah Minimalis',
-                    'location' => 'Jakarta Selatan',
-                ],
-                [
-                    'title' => 'Jendela Aluminium Modern Residence',
-                    'location' => 'Bekasi',
-                ],
-            ],
             'Perkantoran' => [
                 [
-                    'title' => 'Facade Kaca Gedung Office Tower',
-                    'location' => 'Jakarta Pusat',
-                ],
-                [
-                    'title' => 'Partisi Aluminium Kantor Modern',
-                    'location' => 'Tangerang',
-                ],
-            ],
-            'Ruko & Komersial' => [
-                [
-                    'title' => 'Pintu Aluminium Ruko Premium',
-                    'location' => 'Depok',
-                ],
-                [
-                    'title' => 'Kaca Tempered Cafe Minimalis',
-                    'location' => 'Bogor',
+                    'title' => 'Pemasangan Aluminium Perkantoran Modern',
+                    'location' => 'Jakarta Barat',
                 ],
             ],
         ];
