@@ -35,7 +35,7 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     // API
     Route::get('/services/api', [ServiceController::class, 'indexApi'])->name('services.api');
     Route::get('/testimonials/api', [TestimonialController::class, 'indexApi'])->name('testimonials.api');
-    // Route::get('/galleries/api', [GalleryController::class, 'indexApi'])->name('galleries.api');
+    Route::get('/galleries/api', [GalleryController::class, 'indexApi'])->name('galleries.api');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/settings', [SettingController::class, 'index'])->name('settings');
@@ -43,7 +43,7 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::resource('seo', SEOController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('testimonials', TestimonialController::class);
-    // Route::resource('galleries', GalleryController::class);
+    Route::resource('galleries', GalleryController::class);
 
     Route::group(['prefix' => 'products'], function () {
         // API
