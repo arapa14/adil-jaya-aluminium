@@ -239,20 +239,20 @@ class PortfolioController
             |--------------------------------------------------------------------------
             */
                 $portfolio = Portfolio::create([
-                    'category_id'      => $validated['category_id'],
-                    'title'             => $validated['title'],
-                    'slug'             => $slug,
-                    'location'         => $validated['location'],
-                    'description'      => $validated['description'],
-                    'thumbnail'        => $thumbnailPath,
-                    'meta_title'       => $validated['meta_title'] ?? $validated['title'],
+                    'category_id' => $validated['category_id'],
+                    'title' => $validated['title'],
+                    'slug' => $slug,
+                    'location' => $validated['location'],
+                    'description' => $validated['description'],
+                    'thumbnail' => $thumbnailPath,
+                    'meta_title' => $validated['meta_title'] ?? $validated['title'],
                     'meta_description' => $validated['meta_description'] ?? $validated['description'],
-                    'meta_keywords'    => $validated['meta_keywords'] ?? $validated['title'],
-                    'focus_keyword'    => $validated['focus_keyword'] ?? $validated['title'],
-                    'og_image'         => $ogImagePath ?? $thumbnailPath,
-                    'alt_image'        => $validated['alt_image'] ?? null,
-                    'status'           => $validated['status'],
-                    'created_by'       => Auth::user()->id,
+                    'meta_keywords' => $validated['meta_keywords'] ?? $validated['title'],
+                    'focus_keyword' => $validated['focus_keyword'] ?? $validated['title'],
+                    'og_image' => $ogImagePath ?? $thumbnailPath,
+                    'alt_image' => $validated['alt_image'] ?? null,
+                    'status' => $validated['status'],
+                    'created_by' => Auth::user()->id,
                 ]);
                 Log::info("ini oke 3");
                 /*
@@ -273,8 +273,8 @@ class PortfolioController
 
                             PortfolioImage::create([
                                 'portfolio_id' => $portfolio->id,
-                                'image'      => $path,
-                                'alt_text'   => $validated['alt_texts'][$index]
+                                'image' => $path,
+                                'alt_text' => $validated['alt_texts'][$index]
                                     ?? $validated['title'] . ' ' . ($index + 1),
                             ]);
                         }
@@ -295,7 +295,7 @@ class PortfolioController
             // Log pesan error asli agar Anda mudah melakukan debugging jika ada masalah luar
             Log::error('Gagal membuat portofolio: ' . $th->getMessage(), [
                 'exception' => $th,
-                'user_id'   => Auth::user()->id
+                'user_id' => Auth::user()->id
             ]);
 
             flash()->error('Terjadi kesalahan saat membuat portofolio.');
@@ -591,5 +591,18 @@ class PortfolioController
             flash()->error('Terjadi kesalahan saat menghapus portfolio.');
             return back();
         }
+    }
+
+    public function filterPortfolio(Request $request)
+    {
+        $query = Portfolio::with('category');
+
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        $portfolios = $query->latest()->get();
+
+        return response()->json($portfolios);
     }
 }

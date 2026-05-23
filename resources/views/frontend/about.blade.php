@@ -120,6 +120,57 @@
     </section>
     <!-- End Stats -->
 
+    <!-- Start Vision Mission -->
+    <section class="container my-5">
+        <div class="text-center mb-5">
+            <p class="text-blue fw-bold text-uppercase mb-2">Visi & Misi</p>
+            <h2 class="fw-bold">Komitmen Kami untuk Pelayanan Terbaik</h2>
+            <p class="text-muted mx-auto" style="max-width:700px;">
+                Adil Jaya Aluminium terus berkembang dengan fokus pada kualitas,
+                profesionalisme, dan kepuasan pelanggan dalam setiap proyek yang kami kerjakan.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Vision -->
+            <div class="col-12 col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100 p-4">
+                    <div class="mb-3">
+                        <span class="badge bg-primary rounded-pill p-3">
+                            <i class="ti ti-eye text-white fs-5"></i>
+                        </span>
+                    </div>
+
+                    <h4 class="fw-bold mb-3">Visi</h4>
+
+                    <p class="text-muted mb-0">
+                        {{ $visi }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mission -->
+            <div class="col-12 col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100 p-4">
+                    <div class="mb-3">
+                        <span class="badge bg-primary rounded-pill p-3">
+                            <i class="ti ti-target-arrow text-white fs-5"></i>
+                        </span>
+                    </div>
+
+                    <h4 class="fw-bold mb-3">Misi</h4>
+
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex align-items-start gap-2">
+                            {!! $misi !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Vision Mission -->
+
     <section class="container my-5">
         <div class="card rounded-4 shadow-lg overflow-hidden font-poppins" style="background:#0B1F3A;">
             <div class="row g-0 align-items-center">

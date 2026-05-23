@@ -26,7 +26,7 @@ class SettingController
             'maps_embed' => 'nullable|string',
             'facebook' => 'nullable|url',
             'instagram' => 'nullable|url',
-            'visson' => 'nullable|string',
+            'vision' => 'nullable|string',
             'mission' => 'nullable|string',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp',
             'favicon' => 'nullable|mimes:png,ico,svg,webp,jpeg,jpg',

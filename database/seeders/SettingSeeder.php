@@ -27,9 +27,13 @@ class SettingSeeder extends Seeder
 
             'instagram' => 'https://instagram.com/adiljayaaluminium',
 
-            'visson' => 'Menjadi penyedia jasa alumunium yang berkualitas dan terpercaya.',
+            'vision' => 'Menjadi penyedia jasa alumunium yang berkualitas dan terpercaya.',
 
-            'mission' => '1. Menghasilkan produk berkualitas 2. Memberikan pelayanan terbaik 3. Menjaga kepercayaan pelanggan ',
+            'mission' => '<ol>
+<li>Menghasilkan produk berkualitas.</li>
+<li>Memberikan pelayanan terbaik</li>
+<li>Menjaga kepercayaan pelanggan</li>
+</ol>',
 
             'logo' => 'settings/logo.png',
 

@@ -24,6 +24,7 @@ Route::get('/our-services', [LandingController::class, 'services'])->name('servi
 Route::get('/contact', [LandingController::class, 'contact'])->name('contact');
 
 Route::get('/api/products', [ProductController::class, 'filterProduct'])->name('products.filter');
+Route::get('/api/portfolios', [PortfolioController::class, 'filterPortfolio'])->name('portfolios.filter');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginSubmit'])->name('login.submit');

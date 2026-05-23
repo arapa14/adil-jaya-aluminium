@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('maps_embed');
             $table->string('facebook');
             $table->string('instagram');
-            $table->text('visson');
+            $table->text('vision');
             $table->text('mission');
             $table->string('logo');
             $table->string('favicon');

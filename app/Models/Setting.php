@@ -17,7 +17,7 @@ class Setting extends Model
         'maps_embed',
         'facebook',
         'instagram',
-        'visson',
+        'vision',
         'mission',
         'logo',
         'favicon',

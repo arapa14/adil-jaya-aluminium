@@ -50,24 +50,24 @@
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap gap-2 justify-content-lg-start">
 
-                    <button class="btn btn-primary rounded-pill category-btn active" data-category="">
+                    <button class="btn btn-primary rounded-pill category-btn active" data-category=""
+                        data-url="{{ route('portfolios.filter') }}">
                         Semua
                     </button>
 
                     @foreach ($categories as $category)
                         <button class="btn btn-outline-primary rounded-pill category-btn"
-                            data-category="{{ $category->id }}">
+                            data-category="{{ $category->id }}" data-url="{{ route('portfolios.filter') }}">
                             {{ $category->name }}
                         </button>
                     @endforeach
-
                 </div>
             </div>
         </div>
 
         <div class="row g-4" id="product-wrapper">
             @foreach ($portofolios as $portofolio)
-                <div class="col-6 col-lg-3">
+                <div class="col-6 col-lg-3 portfolio-item">
 
                     <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 position-relative portfolio-card">
 
@@ -102,7 +102,7 @@
                         <div class="card-body d-flex flex-column p-4">
 
                             <h5 class="fw-bold mb-3 text-dark lh-sm">
-                                {{ $portofolio->name }}
+                                {{ $portofolio->title }}
                             </h5>
 
                             <p class="text-secondary small mb-4 lh-lg">
@@ -151,4 +151,119 @@
 @endsection
 
 @push('scripts')
+    <script>
+        const buttons = document.querySelectorAll('.category-btn');
+        const wrapper = document.getElementById('product-wrapper');
+
+        buttons.forEach(button => {
+
+            button.addEventListener('click', async function() {
+
+                // Active Button
+                buttons.forEach(btn => {
+                    btn.classList.remove('btn-primary', 'active');
+                    btn.classList.add('btn-outline-primary');
+                });
+
+                this.classList.remove('btn-outline-primary');
+                this.classList.add('btn-primary', 'active');
+
+                const category = this.dataset.category;
+
+                try {
+
+                    let url = `{{ route('portfolios.filter') }}`;
+
+                    if (category) {
+                        url += `?category=${category}`;
+                    }
+
+                    const response = await fetch(url);
+                    const portfolios = await response.json();
+
+                    wrapper.innerHTML = '';
+
+                    if (portfolios.length === 0) {
+
+                        wrapper.innerHTML = `
+                            <div class="col-12">
+                                <div class="alert alert-light border text-center rounded-4 py-4">
+                                    Tidak ada portfolio tersedia
+                                </div>
+                            </div>
+                        `;
+
+                        return;
+                    }
+
+                    portfolios.forEach(portfolio => {
+
+                        wrapper.innerHTML += `
+                            <div class="col-6 col-lg-3">
+
+                                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 position-relative portfolio-card">
+
+                                    <div class="position-relative overflow-hidden">
+
+                                        <img src="/storage/${portfolio.thumbnail}"
+                                            alt="${portfolio.title}"
+                                            class="card-img-top object-fit-cover portfolio-image"
+                                            style="height: 240px;">
+
+                                        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-25">
+                                        </div>
+
+                                        <div class="position-absolute top-0 end-0 m-3">
+                                            <div class="bg-white bg-opacity-25 backdrop-blur rounded-circle d-flex align-items-center justify-content-center shadow-sm"
+                                                style="width:48px; height:48px;">
+                                                <i class="ti ti-layout-grid text-white fs-5"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="position-absolute bottom-0 start-0 m-3">
+                                            <span class="badge rounded-pill text-bg-light px-3 py-2 fw-semibold">
+                                                ${portfolio.category?.name ?? 'Project'}
+                                            </span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="card-body d-flex flex-column p-4">
+
+                                        <h5 class="fw-bold mb-3 text-dark lh-sm">
+                                            ${portfolio.title}
+                                        </h5>
+
+                                        <p class="text-secondary small mb-4 lh-lg">
+                                            ${portfolio.description
+                                                ? portfolio.description.substring(0, 90) + '...'
+                                                : ''}
+                                        </p>
+
+                                        <div class="mt-auto">
+                                            <a href="/portfolio/${portfolio.slug}"
+                                                class="btn btn-dark rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2 fw-semibold">
+
+                                                View Project
+
+                                                <i class="ti ti-arrow-up-right"></i>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        `;
+                    });
+
+                } catch (error) {
+                    console.error(error);
+                }
+
+            });
+
+        });
+    </script>
 @endpush

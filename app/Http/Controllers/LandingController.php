@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\SeoPage;
 use App\Models\Service;
+use App\Models\Setting;
 use App\Models\Testimonial;
 
 class LandingController
@@ -25,7 +26,9 @@ class LandingController
     public function about()
     {
         $seo = SeoPage::where('slug', 'about')->first();
-        return view('frontend.about', compact('seo'));
+        $visi = Setting::first()->vision ?? '';
+        $misi = Setting::first()->mission ?? '';
+        return view('frontend.about', compact('seo', 'visi', 'misi'));
     }
 
     public function products()
@@ -56,7 +59,7 @@ class LandingController
     public function portfolioDetail($slug)
     {
         $seo = SeoPage::where('slug', 'portfolio')->first();
-        $portofolio = Portfolio::where('slug', $slug)->first();
+        $portofolio = Portfolio::where('slug', $slug)->with('images')->first();
         $relatedPortfolios = Portfolio::where('category_id', $portofolio->category_id)->where('id', '!=', $portofolio->id)->limit(4)->get();
         return view('frontend.portfolio-detail', compact('portofolio', 'seo', 'relatedPortfolios'));
     }
