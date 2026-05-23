@@ -16,9 +16,9 @@ class LandingController
     {
         $seo = SeoPage::where('slug', '/')->first();
         $data = Product::where('status', 1)->get();
-        $portofolios = Portfolio::limit(6)->where('status', 1)->get();
+        $portofolios = Portfolio::limit(4)->get();
         // dd($data);
-        $testimonials = Testimonial::limit(4)->get();
+        $testimonials = Testimonial::limit(6)->where('status', 1)->get();
         return view('frontend.home', compact('data', 'portofolios', 'seo', 'testimonials'));
     }
 
