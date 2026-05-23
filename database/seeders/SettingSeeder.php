@@ -15,21 +15,21 @@ class SettingSeeder extends Seeder
 
             'company_desc' => 'Adil Jaya Aluminium merupakan perusahaan yang bergerak di bidang pemasangan aluminium dan kaca modern untuk kebutuhan rumah, kantor, dan bangunan komersial dengan kualitas terbaik dan pengerjaan profesional.',
 
-            'address' => 'Jl. Contoh Raya No. 123, Jakarta Pusat, DKI Jakarta, Indonesia',
+            'address' => 'Jl. Pintu Air RT 03/RW 002, Kelurahan Karang Tengah, Kecamatan Karang Tengah, Kota Tangerang, Banten, Indonesia.',
 
-            'whatsapp' => '6281234567890',
+            'whatsapp' => '6282188049991',
 
-            'email' => 'info@adiljayaaluminium.com',
+            'email' => 'Ccahyadi642@gmail.com',
 
             'maps_embed' => '<iframe src="https://www.google.com/maps/embed?pb=!1m18..." width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
 
-            'facebook' => 'https://facebook.com/adiljayaaluminium',
+            'facebook' => 'https://www.facebook.com/cahyadi.ilham.264705',
 
             'instagram' => 'https://instagram.com/adiljayaaluminium',
 
-            'visson' => 'Menjadi perusahaan aluminium dan kaca terpercaya yang menghadirkan kualitas, inovasi, dan kepuasan pelanggan.',
+            'visson' => 'Menjadi penyedia jasa alumunium yang berkualitas dan terpercaya.',
 
-            'mission' => 'Memberikan layanan aluminium dan kaca berkualitas tinggi dengan pengerjaan profesional, tepat waktu, dan harga kompetitif.',
+            'mission' => '1. Menghasilkan produk berkualitas 2. Memberikan pelayanan terbaik 3. Menjaga kepercayaan pelanggan ',
 
             'logo' => 'settings/logo.png',
 

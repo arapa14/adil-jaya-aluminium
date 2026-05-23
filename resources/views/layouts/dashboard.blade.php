@@ -100,7 +100,7 @@
                             </a>
                         </div>
                         <div class="nav-item dropdown d-none d-md-flex me-3">
-                            <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
+                            {{-- <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
                                 aria-label="Show notifications">
                                 <!-- Download SVG icon from http://tabler.io/icons/icon/bell -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -111,7 +111,7 @@
                                     <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
                                 </svg>
                                 <span class="badge bg-red"></span>
-                            </a>
+                            </a> --}}
                             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
                                 <div class="card">
                                     <div class="card-header">
@@ -282,7 +282,7 @@
                             </a>
                         </div>
                         <div class="nav-item dropdown d-none d-md-flex me-3">
-                            <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
+                            {{-- <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
                                 aria-label="Show notifications">
                                 <!-- Download SVG icon from http://tabler.io/icons/icon/bell -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -293,7 +293,7 @@
                                     <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
                                 </svg>
                                 <span class="badge bg-red"></span>
-                            </a>
+                            </a> --}}
                             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
                                 <div class="card">
                                     <div class="card-header">
@@ -414,11 +414,11 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <a href="#" class="dropdown-item">Status</a>
+                            {{-- <a href="#" class="dropdown-item">Status</a>
                             <a href="./profile.html" class="dropdown-item">Profile</a>
                             <a href="#" class="dropdown-item">Feedback</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="./settings.html" class="dropdown-item">Settings</a>
+                            <div class="dropdown-divider"></div> --}}
+                            <a href="{{ route('settings') }}" class="dropdown-item">Settings</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="dropdown-item">Logout</button>
@@ -431,7 +431,7 @@
                         <!-- BEGIN NAVBAR MENU -->
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">
+                                <a class="nav-link" href="{{ route('home') }}" target="_blank">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"

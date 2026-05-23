@@ -65,20 +65,20 @@
                             href="{{ route('products') }}">Produk Kami</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('portfolio*') ? 'active' : '' }}"
-                            href="{{ route('portfolio') }}">Portofolio</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('services.landing*') ? 'active' : '' }}"
                             href="{{ route('services.landing') }}">Layanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('portfolio*') ? 'active' : '' }}"
+                            href="{{ route('portfolio') }}">Portofolio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('contact*') ? 'active' : '' }}"
                             href="{{ route('contact') }}">Kontak</a>
                     </li>
                 </ul>
-                <a class="btn btn-primary px-3 ms-3 text-uppercase" href="#" role="button"><i
-                        class="ti ti-brand-whatsapp"></i>
+                <a class="btn btn-primary px-3 ms-3 text-uppercase" href="https://wa.me/{{ $whatsapp }}" target="_blank"
+                    role="button"><i class="ti ti-brand-whatsapp"></i>
                     Konsultasi Gratis</a>
             </div>
         </div>
@@ -101,12 +101,12 @@
                         dan terpercaya.
                     </p>
                     <div class="d-flex gap-2 mt-3">
-                        <a href="#"
+                        <a href="https://wa.me/{{ $whatsapp }}" target="_blank"
                             class="btn btn-outline-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center"
                             style="width:36px;height:36px;" aria-label="WhatsApp">
                             <i class="ti ti-brand-whatsapp"></i>
                         </a>
-                        <a href="#"
+                        <a href="{{ $facebook }}" target="_blank"
                             class="btn btn-outline-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center"
                             style="width:36px;height:36px;" aria-label="Facebook">
                             <i class="ti ti-brand-facebook"></i>
@@ -142,7 +142,8 @@
                             $product = \DB::table('product_categories')->limit(5)->get();
                         @endphp
                         @foreach ($product as $p)
-                            <li><a class="text-decoration-none text-white" href="{{ route('products') }}">{{ $p->name }}</a></li>
+                            <li><a class="text-decoration-none text-white"
+                                    href="{{ route('products') }}">{{ $p->name }}</a></li>
                         @endforeach
                     </ul>
                 </div>

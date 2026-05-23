@@ -100,7 +100,7 @@
         <div class="card rounded-4 shadow-sm px-3 py-4">
             <div class="row text-center ">
                 <div class="col-6 col-md-3 mb-3 mb-md-0">
-                    <div class="fs-1 fw-bold text-primary">7+</div>
+                    <div class="fs-1 fw-bold text-primary">16+</div>
                     <div class="small text-muted">Tahun Pengalaman</div>
                 </div>
                 <div class="col-6 col-md-3 mb-3 mb-md-0">
@@ -136,11 +136,11 @@
                         <i class="ti ti-brand-whatsapp"></i>
                         <span>Hubungi WhatsApp</span>
                     </a>
-                    <a href="#"
+                    {{-- <a href="#"
                         class="btn btn-outline-light d-flex align-items-center gap-2 px-4 w-100 w-md-auto py-2 justify-content-center"
                         aria-label="Request Penawaran">
                         Request Penawaran
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </div>

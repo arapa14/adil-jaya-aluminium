@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
                 'whatsapp',
                 'address',
                 'email',
+                'facebook',
             ])
         ) {
             View::share([
@@ -43,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
                 'whatsapp' => Setting::value('whatsapp'),
                 'address' => Setting::value('address'),
                 'email' => Setting::value('email'),
+                'facebook' => Setting::value('facebook'),
                 'embed_map' => Setting::value('maps_embed'),
             ]);
         }

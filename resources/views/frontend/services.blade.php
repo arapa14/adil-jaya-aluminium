@@ -168,11 +168,11 @@
                         <i class="ti ti-brand-whatsapp"></i>
                         <span>Hubungi WhatsApp</span>
                     </a>
-                    <a href="#"
+                    {{-- <a href="#"
                         class="btn btn-outline-light d-flex align-items-center gap-2 px-4 w-100 w-md-auto py-2 justify-content-center"
                         aria-label="Request Penawaran">
                         Request Penawaran
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </div>

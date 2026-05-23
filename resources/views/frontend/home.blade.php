@@ -8,12 +8,12 @@
                 <p class="col-md-8 lh-base py-3">Spesialis kusen aluminium, kaca, ACP, canopy, partisi dan railing
                     berkualitas untuk
                     hunian, kantor, ruko, dan bangunan komersial di area Tangerang & Jabodetabek.</p>
-                <button class="btn btn-primary fw-semibold px-3 py-2 m-2" type="button"><i
-                        class="ti ti-brand-whatsapp"></i>
+                <a href="https://wa.me/{{ $whatsapp }}" target="_blank" class="btn btn-primary fw-semibold px-3 py-2 m-2" type="button"><i
+                        class="ti ti-brand-whatsapp" ></i>
                     KONSULTASI
-                    GRATIS</button>
-                <button class="btn btn-light fw-semibold px-3 py-2 m-2 text-uppercase" type="button">Lihat Produk <i
-                        class="ti ti-arrow-narrow-right"></i></button>
+                    GRATIS</a>
+                <a href="{{ route('products') }}" class="btn btn-light fw-semibold px-3 py-2 m-2 text-uppercase" type="button">Lihat Produk <i
+                        class="ti ti-arrow-narrow-right"></i></a>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
                     <div class="col-md-auto col-12 p-4 d-flex align-items-center text-start">
                         <i class="ti ti-shield" style="font-size:70px; color:#0B1F3A;"></i>
                         <div class="ps-3">
-                            <h4 class="fw-bold text-primary mb-1">7+</h2>
+                            <h4 class="fw-bold text-primary mb-1">16+</h2>
                                 <p class="small text-uppercase mb-0">Tahun <br> Pengalaman</p>
                         </div>
                     </div>
@@ -407,11 +407,11 @@
                         <i class="ti ti-brand-whatsapp"></i>
                         <span>Hubungi WhatsApp</span>
                     </a>
-                    <a href="#"
+                    {{-- <a href="#"
                         class="btn btn-outline-light d-flex align-items-center gap-2 px-4 w-100 w-md-auto py-2 justify-content-center"
                         aria-label="Request Penawaran">
                         Request Penawaran
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </div>
