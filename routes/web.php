@@ -8,6 +8,7 @@ use App\Http\Controllers\PortfolioCategoryController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SEOController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
@@ -40,6 +41,8 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/settings', [SettingController::class, 'index'])->name('settings');
     Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::resource('seo', SEOController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('testimonials', TestimonialController::class);
