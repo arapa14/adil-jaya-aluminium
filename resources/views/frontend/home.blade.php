@@ -1,19 +1,20 @@
 @extends('layouts.landingpage')
 @section('content')
-<!-- Start Hero -->
-    <div class="p-5 py-5 text-white font-poppins" id="hero" style="background-image:url({{ Storage::url($hero_image) }}); background-size:cover; background-position:center; position:relative; overflow:hidden; height:35rem;">
+    <!-- Start Hero -->
+    <div class="p-5 py-5 text-white font-poppins" id="hero"
+        style="background-image:url({{ Storage::url($hero_image) }}); background-size:cover; background-position:center; position:relative; overflow:hidden; height:35rem;">
         <div class="container col">
             <div class="col-md-6">
                 <h1 class="display-5 fw-bold">SOLUSI ALUMINIUM MODERN UNTUK BANGUNAN ANDA</h1>
                 <p class="col-md-8 lh-base py-3">Spesialis kusen aluminium, kaca, ACP, canopy, partisi dan railing
                     berkualitas untuk
                     hunian, kantor, ruko, dan bangunan komersial di area Tangerang & Jabodetabek.</p>
-                <a href="https://wa.me/{{ $whatsapp }}" target="_blank" class="btn btn-primary fw-semibold px-3 py-2 m-2" type="button"><i
-                        class="ti ti-brand-whatsapp" ></i>
+                <a href="https://wa.me/{{ $whatsapp }}" target="_blank" class="btn btn-primary fw-semibold px-3 py-2 m-2"
+                    type="button"><i class="ti ti-brand-whatsapp"></i>
                     KONSULTASI
                     GRATIS</a>
-                <a href="{{ route('products') }}" class="btn btn-light fw-semibold px-3 py-2 m-2 text-uppercase" type="button">Lihat Produk <i
-                        class="ti ti-arrow-narrow-right"></i></a>
+                <a href="{{ route('products') }}" class="btn btn-light fw-semibold px-3 py-2 m-2 text-uppercase"
+                    type="button">Lihat Produk <i class="ti ti-arrow-narrow-right"></i></a>
             </div>
         </div>
     </div>
@@ -161,8 +162,8 @@
                             <div class="col-6 col-md-3">
                                 <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
                                     <div class="ratio ratio-1x1 overflow-hidden rounded-top">
-                                        <img src="{{ Storage::url($portofolio->thumbnail) }}"
-                                            alt="Rumah Tinggal Modern" class="w-100 h-100" style="object-fit:cover;">
+                                        <img src="{{ Storage::url($portofolio->thumbnail) }}" alt="Rumah Tinggal Modern"
+                                            class="w-100 h-100" style="object-fit:cover;">
                                     </div>
                                     <div class="card-body">
                                         <h6 class="mb-1 fw-bold">{{ $portofolio->title }}</h6>
@@ -327,93 +328,58 @@
             </div>
 
             <div class="row g-3">
-                <div class="col-md-4">
-                    <div class="card shadow-sm p-3 h-100">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="storage/defaults/default.png" alt="Avatar" class="rounded-circle me-3"
-                                style="width:48px;height:48px;object-fit:cover;">
-                            <div>
-                                <strong>Budi Santoso</strong>
-                                <div class="small text-muted">Rumah Tinggal, BSD</div>
+                @forelse($testimonials as $testimonial)
+                    <div class="col-md-4">
+                        <div class="card shadow-sm p-3 h-100">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="{{ Storage::url($testimonial->photo) }}" alt="Avatar" class="rounded-circle me-3"
+                                    style="width:48px;height:48px;object-fit:cover;">
+                                <div>
+                                    <strong>{{ $testimonial->customer_name }}</strong>
+                                    <div class="small text-muted">{{ $testimonial->project_type }}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-2">
-                            <span class="text-warning">★★★★★</span>
-                        </div>
-                        <p class="text-muted small mb-0">Hasil pemasangan rapi dan sesuai ekspektasi. Tim
-                            sangat
-                            profesional dan komunikatif.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card shadow-sm p-3 h-100">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="storage/defaults/default.png" alt="Avatar" class="rounded-circle me-3"
-                                style="width:48px;height:48px;object-fit:cover;">
-                            <div>
-                                <strong>Dewi Lestari</strong>
-                                <div class="small text-muted">Ruko, Gading Serpong</div>
+                            <div class="mb-2">
+                                <span class="text-warning">{{ str_repeat('★', $testimonial->rating) }}</span>
                             </div>
+                            <p class="text-muted small mb-0">{{ $testimonial->message }}</p>
                         </div>
-                        <div class="mb-2">
-                            <span class="text-warning">★★★★★</span>
-                        </div>
-                        <p class="text-muted small mb-0">Kualitas aluminium dan kaca sangat bagus. Pengerjaan
-                            tepat
-                            waktu dan memuaskan.</p>
                     </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card shadow-sm p-3 h-100">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="storage/defaults/default.png" alt="Avatar" class="rounded-circle me-3"
-                                style="width:48px;height:48px;object-fit:cover;">
-                            <div>
-                                <strong>Rizky Pratama</strong>
-                                <div class="small text-muted">Kantor, Jakarta Selatan</div>
-                            </div>
-                        </div>
-                        <div class="mb-2">
-                            <span class="text-warning">★★★★★</span>
-                        </div>
-                        <p class="text-muted small mb-0">Pelayanan ramah, harga kompetitif, dan hasil kerja
-                            sangat
-                            rapi.
-                            Recommended!</p>
+                @empty
+                    <div class="col-12">
+                        <p class="text-center text-muted">Belum ada testimoni dari klien.</p>
                     </div>
-                </div>
+                @endforelse
             </div>
         </div>
-    </section>
-    <!-- End Testimoni -->
+</section>
+<!-- End Testimoni -->
 
-    <section class="container my-5">
-        <div class="card rounded-4 shadow-lg overflow-hidden font-poppins" style="background:#0B1F3A;">
-            <div class="row g-0 align-items-center">
-                <div class="col-12 col-md-7 p-4 p-md-5 text-white text-center text-md-start">
-                    <h4 class="fw-bold mb-2 text-uppercase fs-5 fs-md-4">Siap mewujudkan proyek aluminium Anda?
-                    </h4>
-                    <p class="mb-0 small">Konsultasikan kebutuhan Anda sekarang juga. Gratis survey & penawaran
-                        terbaik
-                        untuk Anda.</p>
-                </div>
-                <div
-                    class="col-12 col-md-5 p-3 p-md-4 d-flex flex-column flex-md-row gap-2 justify-content-center justify-content-md-end align-items-center">
-                    <a href="https://wa.me/{{ $whatsapp }}" target="_blank" rel="noopener"
-                        class="btn btn-light d-flex py-2 align-items-center gap-2 px-4 w-100 w-md-auto justify-content-center"
-                        aria-label="Hubungi WhatsApp">
-                        <i class="ti ti-brand-whatsapp"></i>
-                        <span>Hubungi WhatsApp</span>
-                    </a>
-                    {{-- <a href="#"
+<section class="container my-5">
+    <div class="card rounded-4 shadow-lg overflow-hidden font-poppins" style="background:#0B1F3A;">
+        <div class="row g-0 align-items-center">
+            <div class="col-12 col-md-7 p-4 p-md-5 text-white text-center text-md-start">
+                <h4 class="fw-bold mb-2 text-uppercase fs-5 fs-md-4">Siap mewujudkan proyek aluminium Anda?
+                </h4>
+                <p class="mb-0 small">Konsultasikan kebutuhan Anda sekarang juga. Gratis survey & penawaran
+                    terbaik
+                    untuk Anda.</p>
+            </div>
+            <div
+                class="col-12 col-md-5 p-3 p-md-4 d-flex flex-column flex-md-row gap-2 justify-content-center justify-content-md-end align-items-center">
+                <a href="https://wa.me/{{ $whatsapp }}" target="_blank" rel="noopener"
+                    class="btn btn-light d-flex py-2 align-items-center gap-2 px-4 w-100 w-md-auto justify-content-center"
+                    aria-label="Hubungi WhatsApp">
+                    <i class="ti ti-brand-whatsapp"></i>
+                    <span>Hubungi WhatsApp</span>
+                </a>
+                {{-- <a href="#"
                         class="btn btn-outline-light d-flex align-items-center gap-2 px-4 w-100 w-md-auto py-2 justify-content-center"
                         aria-label="Request Penawaran">
                         Request Penawaran
                     </a> --}}
-                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 @endsection

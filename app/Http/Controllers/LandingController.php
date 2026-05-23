@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\SeoPage;
 use App\Models\Service;
+use App\Models\Testimonial;
 
 class LandingController
 {
@@ -15,9 +16,10 @@ class LandingController
     {
         $seo = SeoPage::where('slug', '/')->first();
         $data = Product::where('status', 1)->get();
-        $portofolios = Portfolio::limit(4)->get();
+        $portofolios = Portfolio::limit(6)->where('status', 1)->get();
         // dd($data);
-        return view('frontend.home', compact('data', 'portofolios', 'seo'));
+        $testimonials = Testimonial::limit(4)->get();
+        return view('frontend.home', compact('data', 'portofolios', 'seo', 'testimonials'));
     }
 
     public function about()
