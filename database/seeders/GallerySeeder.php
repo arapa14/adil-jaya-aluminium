@@ -16,27 +16,27 @@ class GallerySeeder extends Seeder
         $galleries = [
 
             [
-                'title' => 'Produk Kusen Aluminium Premium',
+                'title' => 'Kusen UPVC Merk Conch',
             ],
 
             [
-                'title' => 'Pintu Aluminium Minimalis',
+                'title' => 'Pintu Lipat dan Jalusi 4 Daun',
             ],
 
             [
-                'title' => 'Rumah Minimalis Jakarta',
+                'title' => 'Pintu Lipat Sudut 5 Daun',
             ],
 
             [
-                'title' => 'Facade Kaca Gedung Perkantoran',
+                'title' => 'Pintu Garasi Dorong',
             ],
 
             [
-                'title' => 'Pemasangan Kusen Aluminium',
+                'title' => 'Jendela Swing Lengkung',
             ],
 
             [
-                'title' => 'Instalasi Kaca Tempered',
+                'title' => 'Jendela Sliding 3 Daun',
             ],
         ];
 

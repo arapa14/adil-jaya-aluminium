@@ -11,14 +11,12 @@ class ProductImageSeeder extends Seeder
     public function run(): void
     {
         $productImages = [
-            'Kusen Aluminium Silver' => 3,
-            'Kusen Aluminium Hitam' => 2,
-
-            'Pintu Aluminium Minimalis' => 3,
-            'Pintu Aluminium Geser' => 2,
-
-            'Jendela Aluminium Modern' => 2,
-            'Jendela Aluminium Putih' => 2,
+            'Kusen UPVC Merk Conch' => 1,
+            'Pintu Lipat dan Jalusi 4 Daun' => 1,
+            'Pintu Lipat Sudut 5 Daun' => 1,
+            'Pintu Garasi Dorong' => 1,
+            'Jendela Swing Lengkung' => 1,
+            'Jendela Sliding 3 Daun' => 1,
         ];
 
         foreach ($productImages as $productName => $totalImages) {

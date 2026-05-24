@@ -15,19 +15,19 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         $products = [
-            'Kusen Aluminium' => [
-                ['name' => 'Kusen Aluminium Silver'],
-                ['name' => 'Kusen Aluminium Hitam'],
+            'Kusen' => [
+                ['name' => 'Kusen UPVC Merk Conch'],
             ],
 
-            'Pintu Aluminium' => [
-                ['name' => 'Pintu Aluminium Minimalis'],
-                ['name' => 'Pintu Aluminium Geser'],
+            'Pintu' => [
+                ['name' => 'Pintu Lipat dan Jalusi 4 Daun'],
+                ['name' => 'Pintu Lipat Sudut 5 Daun'],
+                ['name' => 'Pintu Garasi Dorong'],
             ],
 
-            'Jendela Aluminium' => [
-                ['name' => 'Jendela Aluminium Modern'],
-                ['name' => 'Jendela Aluminium Putih'],
+            'Jendela' => [
+                ['name' => 'Jendela Swing Lengkung'],
+                ['name' => 'Jendela Sliding 3 Daun'],
             ],
         ];
 
