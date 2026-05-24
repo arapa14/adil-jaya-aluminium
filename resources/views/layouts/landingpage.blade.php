@@ -98,7 +98,7 @@
                 <div class="col-md-3">
                     <a href="#" class="d-inline-block mb-4">
                         <img src="{{ Storage::url($logo) }}" alt="Adil Jaya Aluminium"
-                            style="max-height: 48px; filter: grayscale(1) brightness(0) invert(1);">
+                            style="max-height: 48px;">
                     </a>
                     <p class="small text-light-50">
                         Spesialis aluminium & kaca untuk hunian, komersial, dan industri. Solusi modern,

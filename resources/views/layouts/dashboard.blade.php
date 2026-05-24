@@ -16,7 +16,7 @@
     <link href="{{ asset('assets/backend/dist/css/tabler-payments.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/backend/dist/css/tabler-vendors.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/backend/dist/css/tabler-marketing.min.css') }}" rel="stylesheet" />
-    
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -42,7 +42,8 @@
                 </button>
                 <!-- END NAVBAR TOGGLER -->
                 <!-- BEGIN NAVBAR LOGO -->
-                <div class="navbar-brand navbar-brand-autodark">
+                <div class="navbar-brand">
+                    {{-- {{ navbar-brand-autodark }} --}}
                     <a href="{{ route('dashboard') }}">
                         <img src="{{ Storage::url($logo) }}" alt="Logo" class="navbar-brand-image">
                     </a>
